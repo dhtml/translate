@@ -114,7 +114,7 @@ class BatchTranslatorService
         $this->showInfo("We started @ $formattedStartTime");
 
         if($this->settingsService->isLibrePaused()) {
-            $this->showInfo("...service paused...");
+            $this->showInfo("...service will soon resume...");
         }
     }
 
