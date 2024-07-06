@@ -94,4 +94,15 @@ class SettingsService
     {
         echo "$string\n";
     }
+
+    public function keepAlive()
+    {
+        $startTime = new DateTime();
+        $currentTime = $startTime->format($this->fmt); //start
+
+        $this->set("alive",[
+            "currentTime" => $currentTime,
+            "timeStamp" => time(),
+        ]);
+    }
 }

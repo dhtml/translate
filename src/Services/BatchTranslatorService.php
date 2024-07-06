@@ -126,7 +126,11 @@ class BatchTranslatorService
         $formattedBreakTime = $breakTime->format($this->fmt);
 
         $this->showInfo("Paused @ $currentTime, resume @ $formattedBreakTime");
-        sleep(60 * $this->restingMinutes);
+
+        while($this->settingsService->isLibrePaused()) {
+            $this->settingsService->keepAlive();
+            sleep(60);
+        }
     }
 
     protected function translate($tag = null)
@@ -212,7 +216,8 @@ class BatchTranslatorService
             //translate per locale
             $tdata = $data;
             foreach ($tdata as $key => &$value) {
-                    if($this->settingsService->isLibrePaused()) {
+                $this->settingsService->keepAlive();
+                if($this->settingsService->isLibrePaused()) {
                         $this->showInfo("...service paused...");
                         $this->failed = 1;
                         return false;
