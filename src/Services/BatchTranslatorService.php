@@ -112,6 +112,10 @@ class BatchTranslatorService
         $startTime = new DateTime();
         $formattedStartTime = $startTime->format($this->fmt);
         $this->showInfo("We started @ $formattedStartTime");
+
+        if($this->settingsService->isLibrePaused()) {
+            $this->showInfo("...service paused...");
+        }
     }
 
     protected function finishedTranslation() {
@@ -128,7 +132,7 @@ class BatchTranslatorService
         $from = $setting['from'];
         $to = $setting['to'];
 
-        $this->showInfo("Paused @ $from, resume in $duration minutes @ $to");
+        $this->showInfo("Paused @ $from for $duration minutes, resume @ $to");
 
         while($this->settingsService->isLibrePaused()) {
             $this->settingsService->keepAlive();
