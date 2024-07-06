@@ -6,6 +6,7 @@ dhtml-translate:
       googleApiKey: Google API Key
       microsoftApiKey: Microsoft API Key
       libreApiKey: Libre API Key
+      libreRestTime: Libre API Rest Interval (minutes)
       apiKey: API Key
       cronKey: Cron Job Key
       subdomains: Use localized subdomains e.g. ar.siteurl.com

@@ -4,6 +4,7 @@ namespace Dhtml\Translate;
 
 use Dhtml\Translate\Api\Controllers\LanguagesApiController;
 use Dhtml\Translate\Api\Controllers\TranslateApiController;
+use Dhtml\Translate\Controllers\BaseController;
 use Dhtml\Translate\Controllers\TranslateController;
 use Dhtml\Translate\Controllers\TranslateStatsController;
 use Dhtml\Translate\Middleware\ContentFilterMiddleware;
@@ -30,6 +31,7 @@ return [
 
     (new Extend\Routes('forum'))
         ->get('/cron/translate', 'cron.translate.controller', TranslateController::class)
+        ->get('/translate/stage', 'stage.translate.controller', BaseController::class)
         ->get('/translate/stats', 'stats.translate.controller', TranslateStatsController::class),
 
     (new Extend\Middleware('forum'))
@@ -64,6 +66,8 @@ return [
         ->default('dhtml-translate.googleApiKey', "1234543456")
         ->default('dhtml-translate.microsoftApiKey', "1234543456")
         ->default('dhtml-translate.libreApiKey', "1234543456")
+        ->default('dhtml-translate.libreRestTime', "15")
+        ->default('dhtml-translate.translateSettings', "[]")
         ->serializeToForum('dhtmlLanguageMenu', "dhtml-translate.locales",null,"en, ar, zh, fr, de, hi, pt, ru, es"),
 
     (new Extend\Settings())

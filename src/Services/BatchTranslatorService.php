@@ -23,6 +23,8 @@ class BatchTranslatorService
 
     protected $restingMinutes = 16; //minutes to rest when API is hot to cool down
 
+    protected $fmt = 'm-d-Y H:ia';
+
     public function __construct()
     {
         $this->translatorService = new TranslatorService();
@@ -37,27 +39,94 @@ class BatchTranslatorService
         $this->locales = $this->localeService->selectEnabled();
 
         $this->currentLocale = $this->localeService->getCurrentLocale();
+
+        $this->settingsService = new SettingsService();
     }
 
     public function start()
     {
-        set_time_limit(60 * 15); // Ensure the script does not exceed 5 minutes.
-        $startTime = time(); // Record the start time
-        $maxDuration = 240; // 4 minutes in seconds
+        $this->startedTranslation();
 
         while (true) {
-            $this->translate(); // Call the translate function
-            break;
+            $this->translate();
 
-            if ($this->stackEmpty || $this->failed) {
+            if ($this->stackEmpty) {
+                $this->finishedTranslation();
                 break;
             }
 
-            // Check if 5 minutes have passed
-            if ((time() - $startTime) >= $maxDuration) {
-                break; // Exit the loop if the maximum duration has been reached
+            if ($this->failed) {
+                $this->pauseTranslation();
             }
         }
+    }
+
+
+    public function startWithParam($param)
+    {
+
+        $this->startedTranslation();
+
+        $this->cliMode = true;
+        while (true) {
+            $this->translate($param); // Call the translate function
+
+
+            if ($this->stackEmpty) {
+                $this->finishedTranslation();
+                break;
+            }
+
+            if ($this->failed) {
+                $this->pauseTranslation();
+            }
+        }
+    }
+
+    public function startUntilEmpty()
+    {
+        $this->startedTranslation();
+
+        $this->cliMode = true;
+        while (true) {
+            $this->translate(); // Call the translate function
+
+            if ($this->stackEmpty) {
+                $this->finishedTranslation();
+                break;
+            }
+
+            if ($this->failed) {
+                $this->pauseTranslation();
+            }
+        }
+    }
+
+
+    protected function startedTranslation() {
+        $startTime = new DateTime();
+        $formattedStartTime = $startTime->format($this->fmt);
+        $this->showInfo("We started @ $formattedStartTime");
+    }
+
+    protected function finishedTranslation() {
+        $startTime = new DateTime();
+        $formattedStartTime = $startTime->format($this->fmt);
+        $this->showInfo("We finished @ $formattedStartTime");
+    }
+
+    protected function pauseTranslation() {
+        $this->settingsService->pauseLibreAPI();
+
+        $duration = $this->settings->get("dhtml-translate.libreRestTime");
+
+        $breakTime = new DateTime();
+        $currentTime = $breakTime->format($this->fmt);
+        $breakTime->modify("+{$duration} minutes");
+        $formattedBreakTime = $breakTime->format($this->fmt);
+
+        $this->showInfo("Paused @ $currentTime, resume @ $formattedBreakTime");
+        sleep(60 * $this->restingMinutes);
     }
 
     protected function translate($tag = null)
@@ -147,6 +216,12 @@ class BatchTranslatorService
                 if (is_array($value)) {
                     //do not bother to translate, leave as is
                 } else {
+
+                    if($this->settingsService->isLibrePaused()) {
+                        $this->failed = 1;
+                        return false;
+                    }
+
                     //attempt to translate
                     $response = $this->translatorService->translateHTML($value, $_locale, $source_language);
 
@@ -213,80 +288,6 @@ class BatchTranslatorService
     {
         $items = Post::where('type','comment')->orderBy('id', $dir)->get();
         return $this->sendForTranslation("post", $items);
-    }
-
-    public function startWithParam($param)
-    {
-        $fmt = 'm-d-Y H:ia';
-
-        $startTime = new DateTime();
-        $formattedBreakTime = $startTime->format($fmt);
-
-        $this->showInfo("We started @ $formattedBreakTime");
-
-        $this->cliMode = true;
-        while (true) {
-            $this->translate($param); // Call the translate function
-
-            // Check if stack is empty or if there was a failure
-            if ($this->stackEmpty || $this->failed) {
-                $breakTime = new DateTime();
-                $currentTime = $breakTime->format($fmt);
-                $breakTime->modify("+{$this->restingMinutes} minutes");
-                $formattedBreakTime = $breakTime->format($fmt);
-
-                $message = "Stopped @ $currentTime";
-                if ($this->stackEmpty) {
-                    $message .= "..stack empty";
-                } else if ($this->failed) {
-                    $message .= "...api failure";
-                }
-
-                $this->showInfo("$message, We rest till $formattedBreakTime");
-                sleep(60 * $this->restingMinutes); // Sleep for 30 minutes
-
-                $startTime = new DateTime();
-                $formattedBreakTime = $startTime->format($fmt);
-                $this->showInfo("We resumed @ $formattedBreakTime");
-            }
-        }
-    }
-
-    public function startUntilEmpty()
-    {
-        $fmt = 'm-d-Y H:ia';
-
-        $startTime = new DateTime();
-        $formattedBreakTime = $startTime->format($fmt);
-
-        $this->showInfo("We started @ $formattedBreakTime");
-
-        $this->cliMode = true;
-        while (true) {
-            $this->translate(); // Call the translate function
-
-            // Check if stack is empty or if there was a failure
-            if ($this->stackEmpty || $this->failed) {
-                $breakTime = new DateTime();
-                $currentTime = $breakTime->format($fmt);
-                $breakTime->modify("+$this->restingMinutes minutes");
-                $formattedBreakTime = $breakTime->format($fmt);
-
-                $message = "Stopped @ $currentTime";
-                if ($this->stackEmpty) {
-                    $message .= "..stack empty";
-                } else if ($this->failed) {
-                    $message .= "...api failure";
-                }
-
-                $this->showInfo("$message, We rest till $formattedBreakTime");
-                sleep(60 * $this->restingMinutes); // Sleep for 30 minutes
-
-                $startTime = new DateTime();
-                $formattedBreakTime = $startTime->format($fmt);
-                $this->showInfo("We resumed @ $formattedBreakTime");
-            }
-        }
     }
 
 

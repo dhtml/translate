@@ -44,7 +44,12 @@ app.initializers.add('dhtml/translate', () => {
       type: 'text',
       required: true,
     })
-
+    .registerSetting({
+      setting: 'dhtml-translate.libreRestTime',
+      label: app.translator.trans('dhtml-translate.admin.settings.libreRestTime'),
+      type: 'text',
+      required: true,
+    })
     .registerSetting({
       setting: 'dhtml-translate.rate-limit',
       label: app.translator.trans('dhtml-translate.admin.settings.rate-limit.label'),
