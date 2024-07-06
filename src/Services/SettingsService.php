@@ -121,9 +121,9 @@ class SettingsService
         $currentTime = time();
 
         $timediff = abs($currentTime - $timeStamp);
-        echo "Time different is $timediff\n";
 
         if ($timeStamp && ($timediff) <= 120) {
+            echo "Last activity $timediff seconds ago\n";
             return true;
         }
 

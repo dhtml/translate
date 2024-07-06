@@ -50,9 +50,6 @@ class BatchTranslatorService
             return;
         }
 
-        $this->showInfo("We are good to go");
-        return;
-
         $this->startedTranslation();
 
         while (true) {
