@@ -115,6 +115,10 @@ class BatchTranslatorService
 
         if($this->settingsService->isLibrePaused()) {
             $this->showInfo("...service will soon resume...");
+            while($this->settingsService->isLibrePaused()) {
+                $this->settingsService->keepAlive();
+                sleep(40);
+            }
         }
     }
 
