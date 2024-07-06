@@ -43,8 +43,8 @@ return [
         ->add(ContentFilterMiddleware::class),
 
     (new Extend\Console())
-        ->command(Console\BatchTranslator::class),
-        //->schedule(Console\BatchTranslator::class, Console\BatchTranslatorSchedule::class),
+        ->command(Console\BatchTranslator::class)
+        ->schedule(Console\BatchTranslator::class, Console\BatchTranslatorSchedule::class),
 
     (new Extend\Console())
         ->command(Console\TranslateAll::class),
