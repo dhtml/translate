@@ -130,7 +130,7 @@ class BatchTranslatorService
         $breakTime->modify("+{$duration} minutes");
         $formattedBreakTime = $breakTime->format($this->fmt);
 
-        $this->showInfo("Paused @ $currentTime, resume @ $formattedBreakTime");
+        $this->showInfo("Paused @ $currentTime, resume in $duration minutes @ $formattedBreakTime");
 
         while($this->settingsService->isLibrePaused()) {
             $this->settingsService->keepAlive();
