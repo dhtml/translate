@@ -65,6 +65,26 @@ if(!function_exists("getDetectedLocale")) {
     }
 }
 
+if(!function_exists("isArrayEmptyValues")) {
+    /*
+     * $array1 = ["key1" => "", "key2" => 0, "key3" => null];
+$array2 = ["key1" => "", "key2" => "not empty", "key3" => null];
+
+var_dump(isArrayEmptyValues($array1)); // bool(true)
+var_dump(isArrayEmptyValues($array2)); // bool(false)
+     */
+    function isArrayEmptyValues($array)
+    {
+        if(!is_array($array)) {return true;}
+        foreach ($array as $value) {
+            if (!empty($value)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
 if(!function_exists("refactorTranslationTable")) {
     function refactorTranslationTable($tableName,$direction) {
         $schema = resolve(Builder::class);
@@ -117,3 +137,5 @@ if(!function_exists("refactorTranslationTable")) {
         }
     }
 }
+
+

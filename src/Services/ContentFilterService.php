@@ -2,7 +2,7 @@
 
 namespace Dhtml\Translate\Services;
 
-use Carbon\Carbon;
+use Dhtml\Translate\Badge;
 use Dhtml\Translate\Discussion;
 use Dhtml\Translate\Page;
 use Dhtml\Translate\Post;
@@ -73,47 +73,71 @@ class ContentFilterService
      * @return void
      */
     public function localizeData(&$item) {
+        $id = $item['id'];
+        $model = null;
+
         switch ($item['type']) {
             case "posts":
-
+                $model = Post::where('type','comment')->where('id',$id)->first();
                 break;
             case "discussions":
+                $model = Discussion::where('id',$id)->first();
 
                 break;
             case "tags":
+                $model = Tag::where('id',$id)->first();
                 break;
             case "badges":
+                $model = Badge::where('id',$id)->first();
                 break;
             case "page":
+                $model = Page::where('id',$id)->first();
                 break;
-            case "users":
-            case "userBadges":
-            default:
-                return;
         }
 
-        //$modelData = $this->retrieveEntityData($item);
-        //$type = $item['type'];
-        //$type = $item['type'];
+        //no model found
+        if(!$model) {return;}
 
         $detectedLocale = getDetectedLocale();
-        //$locale = $item->_locale;
+        $locale = $model->_locale;
 
-        $this->logInfo($item);
-        //$this->logInfo([$detectedLocale,$locale]);
-    }
+        //detected local is same as model local
+        if($detectedLocale == $locale) {return;}
 
-    protected function retrieveEntityData($item) {
-        $id = $item['id'];$type = $item['type'];
+        //attempt to get localized data from db
+        $translatedData = $model->{"sub_".$detectedLocale} ?? null;
 
-        /*
-        $items = Tag::get();
-        $items = Page::get();
-        $items = Discussion::get();
-        $items = Post::where('type','comment')->orderBy('id', $dir)->get();
-        $items = Discussion::get();
-        */
+        //localized data not found
+        if(!$translatedData) {return;}
 
+        $tdata = @json_decode($translatedData,true);
+
+        //the translated data is empty -- error
+        if(isArrayEmptyValues($tdata)) {
+            return;
+        }
+
+        //translate item at this point
+        switch ($item['type']) {
+            case "posts":
+                //$this->logInfo(["post",$tdata]);
+                $item['attributes']['contentHtml'] = $tdata['contentHtml'];
+                break;
+            case "discussions":
+                $item['attributes']['title'] = $tdata['title'];
+                break;
+            case "tags":$model = Tag::where('id',$id)->first();
+                $item['attributes']['name'] = $tdata['name'];
+                $item['attributes']['description'] = $tdata['description'];
+                break;
+            case "badges":
+                $item['attributes']['name'] = strip_tags($tdata['name']);
+                break;
+            case "page":
+                $item['attributes']['title'] = $tdata['title'];
+                $item['attributes']['content'] = $tdata['content'];
+                break;
+        }
     }
 
     public function logInfo($content)
