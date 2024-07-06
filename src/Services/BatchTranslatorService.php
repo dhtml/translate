@@ -212,16 +212,11 @@ class BatchTranslatorService
             //translate per locale
             $tdata = $data;
             foreach ($tdata as $key => &$value) {
-
-                if (is_array($value)) {
-                    //do not bother to translate, leave as is
-                } else {
-
                     if($this->settingsService->isLibrePaused()) {
+                        $this->showInfo("...service paused...");
                         $this->failed = 1;
                         return false;
                     }
-
                     //attempt to translate
                     $response = $this->translatorService->translateHTML($value, $_locale, $source_language);
 
@@ -241,7 +236,6 @@ class BatchTranslatorService
                     } else {
                         $value = $response->translation;
                     }
-                }
             }
 
             //save this translation
