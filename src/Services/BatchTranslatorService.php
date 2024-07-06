@@ -118,7 +118,7 @@ class BatchTranslatorService
     protected function pauseTranslation() {
         $this->settingsService->pauseLibreAPI();
 
-        $duration = $this->settings->get("dhtml-translate.libreRestTime");
+        $duration = $this-> settingsService->get("dhtml-translate.libreRestTime");
 
         $breakTime = new DateTime();
         $currentTime = $breakTime->format($this->fmt);
