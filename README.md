@@ -4,6 +4,10 @@
 
 A [Flarum](http://flarum.org) extension. a flarum language translator
 
+git tag v0.0.0
+git push origin v0.0.0
+
+
 ## Installation
 
 Install with composer:
