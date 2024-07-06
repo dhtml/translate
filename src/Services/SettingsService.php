@@ -120,12 +120,11 @@ class SettingsService
         // Get the current Unix timestamp
         $currentTime = time();
 
-        $timediff = $currentTime - $timeStamp;
+        $timediff = abs($currentTime - $timeStamp);
         echo "Time different is $timediff\n";
 
-        // Check if the timestamp is set and if the difference is at least 2 minutes
-        if ($timeStamp && ($timediff) >= 120) {
-            return true; // Service was last active at least 2 minutes ago
+        if ($timeStamp && ($timediff) <= 120) {
+            return true;
         }
 
         return false; // Service was not active at least 2 minutes ago
