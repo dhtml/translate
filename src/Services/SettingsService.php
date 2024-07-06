@@ -100,9 +100,13 @@ class SettingsService
         $startTime = new DateTime();
         $currentTime = $startTime->format($this->fmt); //start
 
-        $this->set("alive",[
+        $data = [
             "currentTime" => $currentTime,
             "timeStamp" => time(),
-        ]);
+        ];
+
+        $this->set("alive",$data);
+
+        $this->showInfo("Keep alive:" . json_encode($data));
     }
 }
