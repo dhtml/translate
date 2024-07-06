@@ -123,18 +123,16 @@ class BatchTranslatorService
     protected function pauseTranslation() {
         $this->settingsService->pauseLibreAPI();
 
-        $duration = $this->settingsService->get("dhtml-translate.libreRestTime");
+        $setting = $this->settingsService->get("pauseLibreTranslate");
+        $duration = $setting['duration'];
+        $start = $setting['start'];
+        $stop = $setting['stop'];
 
-        $breakTime = new DateTime();
-        $currentTime = $breakTime->format($this->fmt);
-        $breakTime->modify("+{$duration} minutes");
-        $formattedBreakTime = $breakTime->format($this->fmt);
-
-        $this->showInfo("Paused @ $currentTime, resume in $duration minutes @ $formattedBreakTime");
+        $this->showInfo("Paused @ $start, resume in $duration minutes @ $stop");
 
         while($this->settingsService->isLibrePaused()) {
             $this->settingsService->keepAlive();
-            sleep(60);
+            sleep(40);
         }
     }
 
