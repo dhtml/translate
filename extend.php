@@ -2,6 +2,9 @@
 
 namespace Dhtml\Translate;
 
+use Flarum\Post\Event\Posted;
+use Flarum\Discussion\Event\Started;
+
 use Dhtml\Translate\Api\Controllers\LanguagesApiController;
 use Dhtml\Translate\Api\Controllers\TranslateApiController;
 use Dhtml\Translate\Controllers\BaseController;
@@ -55,6 +58,9 @@ return [
     (new Extend\Console())
         ->command(Console\TranslatorClear::class),
 
+    (new Extend\Event())
+        ->listen(Posted::class, [Listeners\ForumListener::class, 'postWasPosted'])
+        ->listen(Started::class, [Listeners\ForumListener::class, 'discussionWasStarted']),
 
     (new Extend\Settings())
         ->default('dhtml-translate.plugin.engine', 'libre')

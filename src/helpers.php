@@ -37,6 +37,34 @@ if(!function_exists("getCurrentTranslationLocale")) {
     }
 }
 
+if(!function_exists("getDefaultLocale")) {
+    function getDefaultLocale()
+    {
+        $translator = resolve('translator');
+        return $translator->getLocale();
+    }
+}
+
+if(!function_exists("getDetectedLocale")) {
+    function getDetectedLocale()
+    {
+        $host = $_SERVER['HTTP_HOST'];
+
+        $parts = explode('.', $host);
+
+        // Check if there are enough parts to have a subdomain
+        if (count($parts) >= 3) {
+            // The subdomain is the first part
+            $subdomain = $parts[0];
+        } else {
+            // No subdomain present - so use default
+            $subdomain = getDefaultLocale();
+        }
+
+        return $subdomain;
+    }
+}
+
 if(!function_exists("refactorTranslationTable")) {
     function refactorTranslationTable($tableName,$direction) {
         $schema = resolve(Builder::class);

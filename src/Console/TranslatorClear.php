@@ -2,7 +2,6 @@
 
 namespace Dhtml\Translate\Console;
 
-use Dhtml\Translate\Translate;
 use Dhtml\Translate\TranslateCache;
 use Flarum\Console\AbstractCommand;
 use Psr\Log\LoggerInterface;
@@ -32,7 +31,6 @@ class TranslatorClear extends AbstractCommand
     protected function fire()
     {
         $this->showInfo("Clearing translation data");
-        Translate::truncate();
         TranslateCache::truncate();
     }
 

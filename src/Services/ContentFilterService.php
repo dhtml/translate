@@ -3,15 +3,11 @@
 namespace Dhtml\Translate\Services;
 
 use Carbon\Carbon;
-use Dhtml\Translate\Translate;
-use Flarum\Foundation\Application;
+use Dhtml\Translate\Discussion;
+use Dhtml\Translate\Page;
+use Dhtml\Translate\Post;
+use Dhtml\Translate\Tag;
 use Flarum\Foundation\Paths;
-use Flarum\Settings\SettingsRepositoryInterface;
-use GuzzleHttp\Psr7\Utils;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 
 
 class ContentFilterService
@@ -63,61 +59,7 @@ class ContentFilterService
         foreach ($array as &$item) {
             if (is_array($item)) {
                 if (isset($item['type']) && isset($item['attributes'])) {
-
-                    switch ($item['type']) {
-                        case "page":
-                            $tdata = $this->localizeEntityData($item,
-                                [
-                                    "title" => $item['attributes']['title'],
-                                    "content" => $item['attributes']['content'],
-                                ]);
-
-                            $item['attributes']['title'] = $tdata['title'];
-                            $item['attributes']['content'] = $tdata['content'];
-                            break;
-                        case "discussions":
-                            $tdata = $this->localizeEntityData($item,
-                                [
-                                    "title" => $item['attributes']['title'],
-                                ]);
-                            $item['attributes']['title'] = $tdata['title'];
-                            break;
-                        case "tags":
-                            $tdata = $this->localizeEntityData($item,
-                                [
-                                    "name" => $item['attributes']['name'],
-                                    "description" => $item['attributes']['description'],
-                                ]);
-                            $item['attributes']['name'] = $tdata['name'];
-                            $item['attributes']['description'] = $tdata['description'];
-                            break;
-
-                        case "posts":
-                            if (!empty($item['attributes']['contentHtml']) && is_string($item['attributes']['contentHtml'])) {
-                                $tdata = $this->localizeEntityData($item,
-                                    [
-                                        "contentHtml" => $item['attributes']['contentHtml'],
-                                    ]);
-
-                                $item['attributes']['contentHtml'] = $tdata['contentHtml'];
-                            }
-                            break;
-
-                        case "badges":
-                            $tdata = $this->localizeEntityData($item,
-                                [
-                                    "name" => $item['attributes']['name'],
-                                ]);
-                            $item['attributes']['name'] = strip_tags($tdata['name']);
-                            break;
-
-                        case "users":
-                        case "userBadges":
-                            //no action
-                            break;
-                        default:
-                            //$this->logInfo($item);
-                    }
+                    $this->localizeData($item);
                 } else {
                     $this->searchAndTranslateAttributes($item);
                 }
@@ -125,115 +67,53 @@ class ContentFilterService
         }
     }
 
-    protected function isTooLong($array) {
-        foreach ($array as $key => $value) {
-            if (strlen($value) > 5000) {
-                return true; // There is at least one value exceeding 5000 characters
-            }
+    /**
+     * Filter content according to locale
+     * @param $item
+     * @return void
+     */
+    public function localizeData(&$item) {
+        switch ($item['type']) {
+            case "posts":
+
+                break;
+            case "discussions":
+
+                break;
+            case "tags":
+                break;
+            case "badges":
+                break;
+            case "page":
+                break;
+            case "users":
+            case "userBadges":
+            default:
+                return;
         }
-        return false; // No value exceeds 5000 characters
+
+        //$modelData = $this->retrieveEntityData($item);
+        //$type = $item['type'];
+        //$type = $item['type'];
+
+        $detectedLocale = getDetectedLocale();
+        //$locale = $item->_locale;
+
+        $this->logInfo($item);
+        //$this->logInfo([$detectedLocale,$locale]);
     }
 
-    public function localizeEntityData($item, $data) {
-        $entity = $item['type'] . '-' . $item['id'];
-
-        $original = json_encode($data);
-
-        $hash = md5($original);
-
-        //this is used for storing new conrents too
-        $locale = $this->localeService->getResolvedLocale(); //original locale
+    protected function retrieveEntityData($item) {
+        $id = $item['id'];$type = $item['type'];
 
         /*
-        $this->logInfo([
-            "locale"=>$locale,
-        ]);
+        $items = Tag::get();
+        $items = Page::get();
+        $items = Discussion::get();
+        $items = Post::where('type','comment')->orderBy('id', $dir)->get();
+        $items = Discussion::get();
         */
 
-
-        //dont accept empty values
-        if (empty(array_filter($data))) {
-            return $this->formatLocalizedResponse($original);
-        }
-
-            /*
-            if($this->translationEngine->name == 'microsoft' && $this->isTooLong($data)) {
-                return $this->formatLocalizedResponse($original); //too long
-            }
-            */
-
-        $translate = Translate::where('entity', $entity)->first();
-
-        $status = "new";
-
-        if(!$translate) {
-            //save data for the first time
-
-            //content filter spoof
-            if($locale!="en") {return $this->formatLocalizedResponse($original);}
-
-            $translate = Translate::firstOrNew([
-                "entity" => $entity,
-            ], [
-                "entity" => $entity,
-                "original" => $original,
-                "locale" => $locale, // locale of content, original posting but translation engine can change this
-                "pointer" => 0,
-                "translated" => 0,
-                "outdated" => 0,
-                "created_at" => Carbon::now(),
-                "updated_at" => Carbon::now(),
-            ]);
-            $translate->save();
-
-            $result = $original;
-
-            $status = "saved";
-        } else {
-            //fetch stored data (or update data)
-            if ($this->currentLocale==$translate->locale && $hash != $translate->hash) {
-                //original source has changed, must update
-                $translate->outdated = 1;
-                $translate->hash = $hash;
-                $translate->pointer = 0;
-                $translate->original = $original;
-                $translate->updated_at = Carbon::now();
-                $translate->save();
-                $result = $original;
-                $status = "hash mismatch";
-            } else {
-                //attempt to fetch data
-                $key = "sub_{$locale}";
-                if (isset($translate->{$key}) && strlen($translate->{$key}) > 3) {
-                    $result = $translate->{$key};
-                    $status = "resolved with $key";
-                } else {
-                    $result = $original; //translation outdated
-                    $status = "revert to orig";
-                }
-            }
-        }
-
-        /*
-        $this->logInfo([
-            "locale"=>$locale,
-            "status"=>$status,
-            $result,
-        ]);
-        */
-
-
-        return $this->formatLocalizedResponse($result);
-    }
-
-    protected function formatLocalizedResponse($result) {
-        $result = (array)json_decode($result);
-
-        //decode html
-        foreach ($result as $key => &$value) {
-            $value = html_entity_decode($value, ENT_QUOTES | ENT_HTML401, 'UTF-8');
-        }
-        return $result;
     }
 
     public function logInfo($content)
