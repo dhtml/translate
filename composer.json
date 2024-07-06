@@ -1,0 +1,57 @@
+{
+    "name": "dhtml/translate",
+    "description": "Flarum language translator",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "GPL-1.0-or-later",
+    "require": {
+        "flarum/core": "^1.2.0",
+        "google/cloud-translate": "^1.17",
+        "ramsey/uuid": "^4.0"
+    },
+    "authors": [
+        {
+            "name": "Anthony Ogundipe",
+            "email": "diltony@yahoo.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Dhtml\\Translate\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+			"title": "Flarum Language Translator",
+			"category": "language",
+            "icon": {
+                "name": "far fa-eye",
+                "backgroundColor": "#008000",
+                "color": "#fff"
+            }
+        },
+        "flarum-cli": {
+            "modules": {
+                "admin": true,
+                "forum": true,
+                "js": true,
+                "jsCommon": true,
+                "css": true,
+                "locale": true,
+                "gitConf": true,
+                "githubActions": false,
+                "prettier": true,
+                "typescript": true,
+                "bundlewatch": true,
+                "backendTesting": false,
+                "editorConfig": false,
+                "styleci": false
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

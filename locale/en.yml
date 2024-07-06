@@ -1,0 +1,127 @@
+dhtml-translate:
+  # For more details on the format
+  # Checkout https://docs.flarum.org/extend/i18n/#appendix-a-standard-key-format
+  admin:
+    settings:
+      googleApiKey: Google API Key
+      microsoftApiKey: Microsoft API Key
+      libreApiKey: Libre API Key
+      apiKey: API Key
+      cronKey: Cron Job Key
+      subdomains: Use localized subdomains e.g. ar.siteurl.com
+      language-menu: Put locales you want to show in language menu here (coma separated)
+      engine:
+        label: Translation Engine
+        help: Ensure you get the correct api and that you also select languages supported
+      rate-limit:
+        label: Use rate limiting
+        help: What this setting means depends on what translator engine is being used
+      post-limit:
+        label: Post Size Limit
+        help: Set the maximum number of post that is allowed
+      plugin:
+        help: Put your api key here based on the service you are using
+        cronHelp: This key will be used when the translation cron job gets called with /cron/translate?key=12345
+        subdomains: This requires you to redirect your subdomains to your forum
+        language:
+          af: Afrikaans (af)
+          am: Amharic [አማርኛ] (am)
+          ar: Arabic [العربية] (ar)
+          as: Assamese [অসমীয়া] (as)
+          az: Azerbaijani [Azərbaycan] (az)
+          ba: Bashkir [Башҡорт теле] (ba)
+          be: Belarusian [Беларуская] (be)
+          bg: Bulgarian [Български] (bg)
+          bn: Bengali [বাংলা] (bn)
+          bs: Bosnian [Bosanski] (bs)
+          ca: Catalan [Català] (ca)
+          cs: Czech [Čeština] (cs)
+          cy: Welsh [Cymraeg] (cy)
+          da: Danish [Dansk] (da)
+          de: German [Deutsch] (de)
+          dv: Dhivehi [ދިވެހިބަސް] (dv)
+          el: Greek [Ελληνικά] (el)
+          en: English (en)
+          eo: Esperanto [Esperanto] (eo)
+          es: Spanish [Español] (es)
+          et: Estonian [Eesti] (et)
+          eu: Basque [Euskara] (eu)
+          fa: Persian [فارسی] (fa)
+          fi: Finnish [Suomi] (fi)
+          fil: Filipino [Filipino] (fil)
+          fj: Fijian [Na Vosa Vakaviti] (fj)
+          fo: Faroese [Føroyskt] (fo)
+          fr: French [Français] (fr)
+          ga: Irish [Gaeilge] (ga)
+          gl: Galician [Galego] (gl)
+          gu: Gujarati [ગુજરાતી] (gu)
+          ha: Hausa [Hausa] (ha)
+          he: Hebrew [עברית] (he)
+          hi: Hindi [हिन्दी] (hi)
+          hr: Croatian [Hrvatski] (hr)
+          hu: Hungarian [Magyar] (hu)
+          hy: Armenian [Հայերեն] (hy)
+          id: Indonesian [Bahasa Indonesia] (id)
+          ig: Igbo [Asụsụ Igbo] (ig)
+          is: Icelandic [Íslenska] (is)
+          it: Italian [Italiano] (it)
+          ja: Japanese [日本語] (ja)
+          ka: Georgian [ქართული] (ka)
+          kk: Kazakh [Қазақ] (kk)
+          km: Khmer [ភាសាខ្មែរ] (km)
+          kn: Kannada [ಕನ್ನಡ] (kn)
+          ko: Korean [한국어] (ko)
+          ku: Kurdish [Kurdî] (ku)
+          ky: Kyrgyz [Кыргызча] (ky)
+          lo: Lao [ລາວ] (lo)
+          lt: Lithuanian [Lietuvių] (lt)
+          lv: Latvian [Latviešu] (lv)
+          mg: Malagasy [Malagasy] (mg)
+          mi: Maori [Māori] (mi)
+          mk: Macedonian [Македонски] (mk)
+          ml: Malayalam [മലയാളം] (ml)
+          mn: Mongolian [Монгол] (mn)
+          mr: Marathi [मराठी] (mr)
+          ms: Malay [Bahasa Melayu] (ms)
+          mt: Maltese [Malti] (mt)
+          my: Burmese [မြန်မာစာ] (my)
+          nb: Norwegian Bokmål [Bokmål] (nb)
+          ne: Nepali [नेपाली] (ne)
+          nl: Dutch [Nederlands] (nl)
+          no: Norwegian [Norsk] (no)
+          ny: Chichewa [Chinyanja] (ny)
+          or: Odia [ଓଡ଼ିଆ] (or)
+          pa: Punjabi [ਪੰਜਾਬੀ] (pa)
+          ps: Pashto [پښتو] (ps)
+          pl: Polish [Polski] (pl)
+          pt: Portuguese [Português] (pt)
+          ro: Romanian [Română] (ro)
+          ru: Russian [Русский] (ru)
+          sd: Sindhi [سنڌي] (sd)
+          si: Sinhala [සිංහල] (si)
+          sk: Slovak [Slovenčina] (sk)
+          sl: Slovenian [Slovenščina] (sl)
+          sm: Samoan [Gagana Sāmoa] (sm)
+          so: Somali [Soomaali] (so)
+          sq: Albanian [Shqip] (sq)
+          sr: Serbian [Српски] (sr)
+          st: Sesotho [Sesotho] (st)
+          su: Sundanese [Basa Sunda] (su)
+          sv: Swedish [Svenska] (sv)
+          sw: Swahili [Kiswahili] (sw)
+          ta: Tamil [தமிழ்] (ta)
+          te: Telugu [తెలుగు] (te)
+          th: Thai [ไทย] (th)
+          tl: Tagalog [Tagalog] (tl)
+          tr: Turkish [Türkçe] (tr)
+          uk: Ukrainian [Українська] (uk)
+          ur: Urdu [اردو] (ur)
+          uz: Uzbek [Oʻzbek] (uz)
+          vi: Vietnamese [Tiếng Việt] (vi)
+          xh: Xhosa [isiXhosa] (xh)
+          yo: Yoruba [Yorùbá] (yo)
+          zh: Chinese [中文] (zh)
+          zt: Traditional Chinese [繁體中文] (zt)
+          zu: Zulu [isiZulu] (zu)
+
+  forum:
