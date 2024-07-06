@@ -125,10 +125,10 @@ class BatchTranslatorService
 
         $setting = $this->settingsService->get("pauseLibreTranslate");
         $duration = $setting['duration'];
-        $start = $setting['start'];
-        $stop = $setting['stop'];
+        $from = $setting['from'];
+        $to = $setting['to'];
 
-        $this->showInfo("Paused @ $start, resume in $duration minutes @ $stop");
+        $this->showInfo("Paused @ $from, resume in $duration minutes @ $to");
 
         while($this->settingsService->isLibrePaused()) {
             $this->settingsService->keepAlive();
