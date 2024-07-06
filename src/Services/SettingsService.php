@@ -123,10 +123,30 @@ class SettingsService
         $timediff = abs($currentTime - $timeStamp);
 
         if ($timeStamp && ($timediff) <= 120) {
-            echo "Last activity $timediff seconds ago\n";
             return true;
         }
 
         return false; // Service was not active at least 2 minutes ago
+    }
+
+    public function showLastTranslatorActivity()
+    {
+        $this->showInfo("Another instance of translator service is currently running");
+
+        // Retrieve the 'alive' setting
+        $alive = $this->get("alive");
+
+        // Check if 'timeStamp' is set and retrieve its value
+        $timeStamp = isset($alive['timeStamp']) ? $alive['timeStamp'] : null;
+
+        // Get the current Unix timestamp
+        $currentTime = time();
+
+        $timediff = number_format(abs($currentTime - $timeStamp));
+
+        if ($timeStamp && ($timediff) <= 120) {
+           $this->showInfo("The last activity was $timediff seconds ago");
+        }
+
     }
 }
