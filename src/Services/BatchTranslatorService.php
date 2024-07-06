@@ -21,7 +21,7 @@ class BatchTranslatorService
 
     protected $cliMode = false;
 
-    protected $restingMinutes = 13; //minutes to rest when API is hot to cool down
+    protected $restingMinutes = 16; //minutes to rest when API is hot to cool down
 
     public function __construct()
     {
