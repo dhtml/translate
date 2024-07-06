@@ -45,6 +45,10 @@ class BatchTranslatorService
 
     public function start()
     {
+        if($this->settingsService->isTranslatorServiceActive()) {
+            $this->showInfo("Another instance of translator service is currently active");
+        }
+
         $this->startedTranslation();
 
         while (true) {

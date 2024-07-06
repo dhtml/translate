@@ -108,4 +108,23 @@ class SettingsService
         $this->set("alive",$data);
         //$this->showInfo("Keep alive:" . json_encode($data));
     }
+
+    public function isTranslatorServiceActive()
+    {
+        // Retrieve the 'alive' setting
+        $alive = $this->get("alive");
+
+        // Check if 'timeStamp' is set and retrieve its value
+        $timeStamp = isset($alive['timeStamp']) ? $alive['timeStamp'] : null;
+
+        // Get the current Unix timestamp
+        $currentTime = time();
+
+        // Check if the timestamp is set and if the difference is at least 2 minutes
+        if ($timeStamp && ($currentTime - $timeStamp) >= 120) {
+            return true; // Service was last active at least 2 minutes ago
+        }
+
+        return false; // Service was not active at least 2 minutes ago
+    }
 }
