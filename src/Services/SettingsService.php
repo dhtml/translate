@@ -106,7 +106,6 @@ class SettingsService
         ];
 
         $this->set("alive",$data);
-
-        $this->showInfo("Keep alive:" . json_encode($data));
+        //$this->showInfo("Keep alive:" . json_encode($data));
     }
 }
