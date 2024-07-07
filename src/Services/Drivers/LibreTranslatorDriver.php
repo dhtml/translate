@@ -97,7 +97,7 @@ class LibreTranslatorDriver
 
             curl_close($ch);
 
-            $this->logInfo(["rawResult"=>$result]);
+            //$this->logInfo(["rawResult"=>$result]);
 
             $result = @json_decode($result, true);
 
