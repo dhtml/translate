@@ -184,7 +184,7 @@ class BatchTranslatorService
                 if(!isArrayEmptyValues($current)) {continue;}
 
                 //process the empty value here
-                echo "==> $itemName-{$item->id}::{$i}...sub_{$_locale}\n";
+                echo "\n==> $itemName-{$item->id}::{$i}...sub_{$_locale}\n";
 
                 //attempt to translate the skipped locale
                 $this->settingsService->keepAlive();
