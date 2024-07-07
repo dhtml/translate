@@ -38,39 +38,27 @@ class LibreTranslatorDriver
             $this->setCurrentLocale($source_language);
         }
 
-        $response = ["success" => false, "content" => "", //translated html
+        $response = [
+            "success" => false,
+            "source"=>$source,
+            "locale" =>$locale,
+            "content" => "", //translated html
             "locale" => $this->currentLocale, //detected locale
-            "error" => null,];
+            "error" => null
+        ];
 
         if (!$this->isLocaleSupported($locale)) {
             $response['error'] = "$locale is not supported";
             return $response;
         }
 
-        try {
-            $tresult = $this->translateText($source, $locale);
-
-            // Return the translated HTML
-            $response['success'] = true;
-
-            $output = $tresult['translatedText'];
-            if (!$this->containsHtmlTags($source)) {
-                $output = strip_tags($output);
-            }
-
-            $response['content'] = $output;
-
-            if ($response['content'] == "") {
-                $response['success'] = false;
-                $response['error'] = "Failed to translate";
-            }
-        } catch (Exception $e) {
-            $response['error'] = $e->getMessage();
-            $this->logInfo("Libre API Failed: " . $e->getMessage());
+        $this->translateText($source, $locale, $response);
+        if ($response['success'] && !$this->containsHtmlTags($source)) {
+            $response['content'] = strip_tags($response['content']);
         }
 
         if ($response['content'] == "") {
-            $this->logInfo(["message" => "translation failed", "source" => $source, "locale" => $locale, "source_language" => $source_language]);
+            $this->logInfo(["message" => "failure", "response" => $response]);
         }
 
         return $response;
@@ -86,10 +74,8 @@ class LibreTranslatorDriver
         return in_array($locale, $this->supportedLocalizations);
     }
 
-    private function translateText($text, $target)
+    private function translateText($text, $target, &$response)
     {
-        $response = [];
-
         $url = "https://libretranslate.com/translate";
         $data = ['q' => $text, 'source' => $this->currentLocale, //auto is failing drastically
             "format" => "html", 'target' => $target, 'api_key' => $this->apikey];
@@ -110,21 +96,29 @@ class LibreTranslatorDriver
 
             curl_close($ch);
 
+            $result = @json_decode($result, true);
 
-            if($result) {
-                $response = @json_decode($result, true);
+            if(isset($result['translatedText'])) {
+                $response['success'] = true;
+                $response['content'] = $result['translatedText'];
+                $response = [
+                    "success" => true,
+                    "content" => "", //translated html
+                    "locale" => $this->currentLocale, //detected locale
+                    "error" => null
+                ];
+            } else {
+                $response['success'] = false;
+                $response['content'] = null;
+                $response['error'] = "Libre failed to translate $text to $target for unknown reasons";
             }
-        } catch (Exception $e) {
-            $this->logInfo("curl error - " . $e->getMessage());
+        } catch (\Exception $e) {
+            $response['success'] = false;
+            $response['content'] = null;
+            $response['error'] = "Libre failed to translate $text to $target due to " . $e->getMessage();
         }
 
         sleep(2);
-
-        if (!isset($response['translatedText'])) {
-            $response = ['translatedText' => ''];
-        }
-
-        return $response;
     }
 
     public function logInfo($content)
