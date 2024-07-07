@@ -44,6 +44,7 @@ class LibreTranslatorDriver
             "locale" =>$locale,
             "content" => "", //translated html
             "locale" => $this->currentLocale, //detected locale
+            $response['errorLevel'] = 0, //translation failure
             "error" => null
         ];
 
@@ -101,20 +102,16 @@ class LibreTranslatorDriver
             if(isset($result['translatedText'])) {
                 $response['success'] = true;
                 $response['content'] = $result['translatedText'];
-                $response = [
-                    "success" => true,
-                    "content" => "", //translated html
-                    "locale" => $this->currentLocale, //detected locale
-                    "error" => null
-                ];
             } else {
                 $response['success'] = false;
                 $response['content'] = null;
+                $response['errorLevel'] = 1; //translation failure
                 $response['error'] = "Libre failed to translate $text to $target for unknown reasons";
             }
         } catch (\Exception $e) {
             $response['success'] = false;
             $response['content'] = null;
+            $response['errorLevel'] = 2; //exception, probably timeout
             $response['error'] = "Libre failed to translate $text to $target due to " . $e->getMessage();
         }
 

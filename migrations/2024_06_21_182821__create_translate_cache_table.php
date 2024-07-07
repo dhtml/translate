@@ -24,6 +24,8 @@ return [
             $table->increments('id');
             $table->integer('characters')->default(0);
             $table->integer('chunk_size')->default(0);
+            $table->integer('error_level')->default(0)->nullable();
+            $table->string('error_log', 100)->nullable();
             $table->string('hash', 100);
             $table->string('from_locale', 2);
             $table->string('to_locale', 2);

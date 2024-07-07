@@ -8,6 +8,7 @@ use Dhtml\Translate\Discussion;
 use Dhtml\Translate\Page;
 use Dhtml\Translate\Post;
 use Dhtml\Translate\Tag;
+use Flarum\Foundation\Paths;
 
 class BatchTranslatorService
 {
@@ -236,8 +237,15 @@ class BatchTranslatorService
                     //attempt to translate
                     $response = $this->translatorService->translateHTML($value, $_locale, $source_language);
 
+                    if($response->error_level != 0) {
+                        $this->logInfo([
+                            "message"=>"failure detected",
+                            "response" => $response->toArray()
+                        ]);
+                    }
 
-                    if (empty($response->translation) || trim($response->translation) == "") {
+
+                    if (empty($response->translation)) {
                         if ($this->translationEngine->name == 'microsoft') {
                             $this->showInfo("missing $itemName-{$item->id} for $_locale");
                             //$item->failed = 1; //mark failure
@@ -300,5 +308,12 @@ class BatchTranslatorService
         return $this->sendForTranslation("post", $items);
     }
 
+    public function logInfo($content)
+    {
+        $paths = resolve(Paths::class);
+        $logPath = $paths->storage . (DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'batch-translator-service.log');
+        $content = var_export($content, true);
+        file_put_contents($logPath, $content, FILE_APPEND);
+    }
 
 }

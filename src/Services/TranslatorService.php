@@ -84,10 +84,17 @@ class TranslatorService
 
         $from_locale = "";
         // Translate each chunk and combine the results
+
+        $error_level = 0;
+        $error_log = null;
+
         foreach ($chunks as $chunk) {
             $response = $this->translationEngine->translateHTML($chunk, $locale, $source_language);
             if (!$response['success']) {
-                trigger_error("Unable to translate data due to ".$response['error']);
+                $error_level = $response['errorLevel'] ?? 1;
+                $error_log = $response['error'] ?? null;
+                //trigger_error("Unable to translate data due to ".$response['error']);
+                break;
             }
             $from_locale = $response['locale'];
             $translatedHtml .= $response['content'];
@@ -98,6 +105,8 @@ class TranslatorService
             "source" => $source,
             "to_locale" => $locale,
             "chunk_size" => $chunk_size,
+            "error_level" => $error_level,
+            "error_log" => $error_log,
             "characters" => $characters,
             "from_locale" => $from_locale,
             "translation" => $translatedHtml,
@@ -128,12 +137,6 @@ class TranslatorService
     protected function translateHTMLResult($cacheData, $mode)
     {
         $response = $cacheData->toArray();
-
-        if($cacheData->translation=="") {
-            $cacheData->delete();
-
-            trigger_error("Unable to translate");
-        }
 
         $response['mode'] = $mode;
         return (object)$response;
