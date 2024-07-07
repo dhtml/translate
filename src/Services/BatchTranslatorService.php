@@ -240,7 +240,7 @@ class BatchTranslatorService
                     if($response->error_level != 0) {
                         $this->logInfo([
                             "message"=>"failure detected",
-                            "response" => $response->toArray()
+                            "response" => $response
                         ]);
                     }
 
