@@ -46,7 +46,7 @@ class BatchTranslatorService
 
     public function start()
     {
-        if($this->settingsService->isTranslatorServiceActive()) {
+        if ($this->settingsService->isTranslatorServiceActive()) {
             $this->settingsService->showLastTranslatorActivity();
             return;
         }
@@ -67,82 +67,24 @@ class BatchTranslatorService
         }
     }
 
-
-    public function startWithParam($param)
+    protected function startedTranslation()
     {
-
-        $this->startedTranslation();
-
-        $this->cliMode = true;
-        while (true) {
-            $this->translate($param); // Call the translate function
-
-
-            if ($this->stackEmpty) {
-                $this->finishedTranslation();
-                break;
-            }
-
-            if ($this->failed) {
-                $this->pauseTranslation();
-            }
-        }
-    }
-
-    public function startUntilEmpty()
-    {
-        $this->startedTranslation();
-
-        $this->cliMode = true;
-        while (true) {
-            $this->translate(); // Call the translate function
-
-            if ($this->stackEmpty) {
-                $this->finishedTranslation();
-                break;
-            }
-
-            if ($this->failed) {
-                $this->pauseTranslation();
-            }
-        }
-    }
-
-
-    protected function startedTranslation() {
         $startTime = new DateTime();
         $formattedStartTime = $startTime->format($this->fmt);
         $this->showInfo("We started @ $formattedStartTime");
 
-        if($this->settingsService->isLibrePaused()) {
+        if ($this->settingsService->isLibrePaused()) {
             $this->showInfo("...service will soon resume...");
-            while($this->settingsService->isLibrePaused()) {
+            while ($this->settingsService->isLibrePaused()) {
                 $this->settingsService->keepAlive();
                 sleep(40);
             }
         }
     }
 
-    protected function finishedTranslation() {
-        $startTime = new DateTime();
-        $formattedStartTime = $startTime->format($this->fmt);
-        $this->showInfo("We finished @ $formattedStartTime");
-    }
-
-    protected function pauseTranslation() {
-        $this->settingsService->pauseLibreAPI();
-
-        $setting = $this->settingsService->get("pauseLibreTranslate");
-        $duration = $setting['duration'];
-        $from = $setting['from'];
-        $to = $setting['to'];
-
-        $this->showInfo("Paused @ $from for $duration minutes, resume @ $to");
-
-        while($this->settingsService->isLibrePaused()) {
-            $this->settingsService->keepAlive();
-            sleep(40);
-        }
+    public function showInfo($string)
+    {
+        echo "$string\n";
     }
 
     protected function translate($tag = null)
@@ -229,37 +171,45 @@ class BatchTranslatorService
             $tdata = $data;
             foreach ($tdata as $key => &$value) {
                 $this->settingsService->keepAlive();
-                if($this->settingsService->isLibrePaused()) {
-                        $this->showInfo("...service paused...");
+                if ($this->settingsService->isLibrePaused()) {
+                    $this->showInfo("...service paused...");
+                    $this->failed = 1;
+                    return false;
+                }
+                //attempt to translate
+                $response = $this->translatorService->translateHTML($value, $_locale, $source_language);
+
+                if ($response->error_level == 1) {
+                    //the translator is never going to be able to do this
+                    echo("...skipped $_locale...");
+                    $value = null; //just legover this one
+                } else if ($response->error_level == 2) {
+                    //the translator has encountered a 500 error
+                    echo("...network error...");
+                    $this->failed = 1;
+                    //$item->failed = 1; //mark failure
+                    //$item->save();
+                    return false;
+                } else {
+                    //store the value
+                    $value = $response->translation;
+                }
+
+                /*
+                if (empty($response->translation)) {
+                    if ($this->translationEngine->name == 'microsoft') {
+                        $this->showInfo("missing $itemName-{$item->id} for $_locale");
+                        //$item->failed = 1; //mark failure
+                        //$item->save();
+                    } else {
+                        $this->showInfo("Failed to translate $itemName-{$item->id} to $_locale");
                         $this->failed = 1;
+                        //$item->failed = 1; //mark failure
+                        //$item->save();
                         return false;
                     }
-                    //attempt to translate
-                    $response = $this->translatorService->translateHTML($value, $_locale, $source_language);
-
-                    if($response->error_level != 0) {
-                        $this->logInfo([
-                            "message"=>"failure detected",
-                            "response" => $response
-                        ]);
-                    }
-
-
-                    if (empty($response->translation)) {
-                        if ($this->translationEngine->name == 'microsoft') {
-                            $this->showInfo("missing $itemName-{$item->id} for $_locale");
-                            //$item->failed = 1; //mark failure
-                            //$item->save();
-                        } else {
-                            $this->showInfo("Failed to translate $itemName-{$item->id} to $_locale");
-                            $this->failed = 1;
-                            //$item->failed = 1; //mark failure
-                            //$item->save();
-                            return false;
-                        }
-                    } else {
-                        $value = $response->translation;
-                    }
+                }
+                */
             }
 
             //save this translation
@@ -277,11 +227,6 @@ class BatchTranslatorService
         echo "done\n";
 
         return true;
-    }
-
-    public function showInfo($string)
-    {
-        echo "$string\n";
     }
 
     protected function translateTags()
@@ -304,8 +249,72 @@ class BatchTranslatorService
 
     protected function translatePosts($dir = "asc")
     {
-        $items = Post::where('type','comment')->orderBy('id', $dir)->get();
+        $items = Post::where('type', 'comment')->orderBy('id', $dir)->get();
         return $this->sendForTranslation("post", $items);
+    }
+
+    protected function finishedTranslation()
+    {
+        $startTime = new DateTime();
+        $formattedStartTime = $startTime->format($this->fmt);
+        $this->showInfo("We finished @ $formattedStartTime");
+    }
+
+    protected function pauseTranslation()
+    {
+        $this->settingsService->pauseLibreAPI();
+
+        $setting = $this->settingsService->get("pauseLibreTranslate");
+        $duration = $setting['duration'];
+        $from = $setting['from'];
+        $to = $setting['to'];
+
+        $this->showInfo("Paused @ $from for $duration minutes, resume @ $to");
+
+        while ($this->settingsService->isLibrePaused()) {
+            $this->settingsService->keepAlive();
+            sleep(40);
+        }
+    }
+
+    public function startWithParam($param)
+    {
+
+        $this->startedTranslation();
+
+        $this->cliMode = true;
+        while (true) {
+            $this->translate($param); // Call the translate function
+
+
+            if ($this->stackEmpty) {
+                $this->finishedTranslation();
+                break;
+            }
+
+            if ($this->failed) {
+                $this->pauseTranslation();
+            }
+        }
+    }
+
+    public function startUntilEmpty()
+    {
+        $this->startedTranslation();
+
+        $this->cliMode = true;
+        while (true) {
+            $this->translate(); // Call the translate function
+
+            if ($this->stackEmpty) {
+                $this->finishedTranslation();
+                break;
+            }
+
+            if ($this->failed) {
+                $this->pauseTranslation();
+            }
+        }
     }
 
     public function logInfo($content)
