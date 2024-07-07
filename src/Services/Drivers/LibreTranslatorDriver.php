@@ -97,6 +97,8 @@ class LibreTranslatorDriver
 
             curl_close($ch);
 
+            $this->logInfo(["rawResult"=>$result]);
+
             $result = @json_decode($result, true);
 
             if(isset($result['translatedText'])) {
@@ -105,7 +107,7 @@ class LibreTranslatorDriver
             } else {
                 $response['success'] = false;
                 $response['content'] = null;
-                $response['errorLevel'] = 1; //translation failure
+                $response['errorLevel'] = 2; //translation failure - should be 1 though
                 $response['error'] = "Libre failed to translate $text to $target for unknown reasons";
             }
         } catch (\Exception $e) {
