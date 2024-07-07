@@ -203,7 +203,7 @@ return [
             $validator->setRules($rules);
 
             $validator->setCustomMessages([
-                'content.max' => 'Your post is too large, please keep it under ' . $postLimit . ' characters.',
+                'content.max' =>  resolve(\Flarum\Locale\Translator::class)->trans('dhtml-translate.forum.post.content.max'),
             ]);
         }),
 

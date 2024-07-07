@@ -126,3 +126,6 @@ dhtml-translate:
           zu: Zulu [isiZulu] (zu)
 
   forum:
+    post:
+      content:
+        max: Your content is too large, please read our guidelines on posting
