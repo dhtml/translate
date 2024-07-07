@@ -121,6 +121,11 @@ class LibreTranslatorDriver
                     $response['errorLevel'] = 1;
                     $response['error'] = "empty result";
                 }
+            } else  if(isset($result['error'])) {
+                $response['success'] = false;
+                $response['content'] = null;
+                $response['errorLevel'] = 2; //serious failure
+                $response['error'] = $result['error'];
             } else {
                 $response['success'] = false;
                 $response['content'] = null;
