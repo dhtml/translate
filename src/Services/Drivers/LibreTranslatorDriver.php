@@ -107,7 +107,13 @@ class LibreTranslatorDriver
 
             //'rawResult' => '{"error":"Too many request limits violations"}
 
-            if(isset($result['translatedText'])) {
+            if(is_null($result)) {
+                //skipping criteria
+                $response['success'] = false;
+                $response['content'] = null;
+                $response['errorLevel'] = 1; //translation failure
+                $response['error'] = "Libre failed to translate $text to $target for internal reasons";
+            } else  if(isset($result['translatedText'])) {
                 $response['success'] = true;
                 $response['content'] = $result['translatedText'] ?? "";
 

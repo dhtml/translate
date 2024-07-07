@@ -87,6 +87,13 @@ class BatchTranslatorService
         echo "$string\n";
     }
 
+    public function translateSKipped($tag = null) {
+        if($tag=="post") {
+            $items = Post::where('type', 'comment')->where('_translated',1)->orderBy('id', "asc")->get();
+            return $this->sendForSkippedTranslation("post", $items);
+        }
+    }
+
     protected function translate($tag = null)
     {
         if (!$tag) {
@@ -126,7 +133,6 @@ class BatchTranslatorService
 
     protected function sendForTranslation($itemName, $items)
     {
-
         // Loop over each badge and update the name column
         foreach ($items as $item) {
             $hash = EntityService::generateHash($itemName, $item);
@@ -148,6 +154,74 @@ class BatchTranslatorService
 
         return true;
     }
+
+    protected function sendForSkippedTranslation($itemName, $items) {
+        // Loop over each badge and update the name column
+        foreach ($items as $item) {
+            $tdata = EntityService::toArray($itemName, $item);
+
+            if (!$this->translateSkippedEntity($itemName, $item, $tdata)) {
+                return false;
+            }
+            //die('xox');
+        }
+
+        return true;
+    }
+
+    protected function translateSkippedEntity($itemName, $item, $data)
+    {
+        $source_language = $item->_locale;
+
+
+        for ($i = 0; $i < count($this->locales); $i++) {
+            $_locale = $this->locales[$i];
+
+            if (!$this->translatorService->isLocaleSupported($_locale)) {
+                echo "...$_locale not supported...";
+                continue;
+            }
+
+            //translate per locale
+            $tdata = $data;
+            foreach ($tdata as $key => &$value) {
+                if(empty($value) || isArrayEmptyValues(json_decode($value,true))) {
+                    echo "==> $itemName-{$item->id}::{$i}...$_locale\n";
+                }
+                continue;
+                $this->settingsService->keepAlive();
+                if ($this->settingsService->isLibrePaused()) {
+                    $this->showInfo("...service paused...");
+                    $this->failed = 1;
+                    return false;
+                }
+                //attempt to translate
+                $response = $this->translatorService->translateHTML($value, $_locale, $source_language);
+
+                if ($response->error_level == 1) {
+                    //the translator is never going to be able to do this
+                    echo("...skipped $_locale...");
+                    $value = ""; //just legover this one
+                } else if ($response->error_level == 2) {
+                    //the translator has encountered a 500 error
+                    echo("...network error...");
+                    $this->failed = 1;
+                    //$item->failed = 1; //mark failure
+                    //$item->save();
+                    return false;
+                } else {
+                    //store the value
+                    $value = $response->translation;
+                }
+            }
+            //end of translation for a particular locale
+        }
+
+        //finished translating this item (iterated through all supported languages)
+
+        return true;
+    }
+
 
     protected function translateEntity($itemName, $item, $data)
     {
@@ -286,6 +360,26 @@ class BatchTranslatorService
         while (true) {
             $this->translate($param); // Call the translate function
 
+
+            if ($this->stackEmpty) {
+                $this->finishedTranslation();
+                break;
+            }
+
+            if ($this->failed) {
+                $this->pauseTranslation();
+            }
+        }
+    }
+
+    public function startWithSkipped($param)
+    {
+
+        $this->startedTranslation();
+
+        $this->cliMode = true;
+        while (true) {
+            $this->translateSKipped($param); // Call the translate function
 
             if ($this->stackEmpty) {
                 $this->finishedTranslation();
