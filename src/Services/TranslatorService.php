@@ -101,7 +101,6 @@ class TranslatorService
         }
 
         $rawData = [
-            "id" => -1,
             "hash" => $hash,
             "source" => $source,
             "to_locale" => $locale,
@@ -112,15 +111,18 @@ class TranslatorService
             "from_locale" => $from_locale,
             "translation" => $translatedHtml,
             "translator" => $this->translationEngineName,
-            "mode" => "remote",
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now(),
         ];
 
         if($error_level==0) {
+            //store and save
             $cache = TranslateCache::firstOrCreate($rawData);
             return $this->translateHTMLResult($cache, "remote");
         } else {
+            //send directly
+            $rawData['id'] = -1;
+            $rawData['mode'] = "remote";
             return (object) $rawData;
         }
     }
@@ -131,6 +133,8 @@ class TranslatorService
      * [id] => 2
      * [characters] => 20
      * [chunk_size] => 1
+     * [error_log] => 0
+     * [error_log] => null
      * [hash] => d9c6d7f4bf200a95a1ac31f9ee034c61
      * [from_locale] => en
      * [to_locale] => ar
