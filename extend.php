@@ -201,6 +201,10 @@ return [
             }, $rules['content']);
 
             $validator->setRules($rules);
+
+            $validator->setCustomMessages([
+                'content.max' => 'Your post is too large, please keep it under ' . $postLimit . ' characters.',
+            ]);
         }),
 
 ];
