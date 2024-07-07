@@ -101,13 +101,20 @@ class LibreTranslatorDriver
 
             $result = @json_decode($result, true);
 
-            if(isset($result['translatedText'])) {
+            //'rawResult' => '{"error":"Too many request limits violations"}
+
+            if(isset($result['error']) && $result['error']=="Too many request limits violations") {
+                $response['success'] = false;
+                $response['content'] = null;
+                $response['errorLevel'] = 2; //translation failure
+                $response['error'] = "Libre failed to translate $text to $target due to -> too many request limits violations";
+            } else if(isset($result['translatedText'])) {
                 $response['success'] = true;
                 $response['content'] = $result['translatedText'];
             } else {
                 $response['success'] = false;
                 $response['content'] = null;
-                $response['errorLevel'] = 2; //translation failure - should be 1 though
+                $response['errorLevel'] = 1; //translation failure
                 $response['error'] = "Libre failed to translate $text to $target for unknown reasons";
             }
         } catch (\Exception $e) {
