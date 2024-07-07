@@ -79,6 +79,8 @@ class LibreTranslatorDriver
 
     private function translateText($text, $target, &$response)
     {
+        sleep(5);
+
         $url = "https://libretranslate.com/translate";
         $data = ['q' => $text, 'source' => $this->currentLocale, //auto is failing drastically
             "format" => "html", 'target' => $target, 'api_key' => $this->apikey];
@@ -138,9 +140,6 @@ class LibreTranslatorDriver
             $response['errorLevel'] = 2; //exception, probably timeout
             $response['error'] = $e->getMessage();
         }
-
-
-        sleep(2);
     }
 
     public function logInfo($content)
