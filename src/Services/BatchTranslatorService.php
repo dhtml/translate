@@ -182,7 +182,7 @@ class BatchTranslatorService
                 if ($response->error_level == 1) {
                     //the translator is never going to be able to do this
                     echo("...skipped $_locale...");
-                    $value = null; //just legover this one
+                    $value = ""; //just legover this one
                 } else if ($response->error_level == 2) {
                     //the translator has encountered a 500 error
                     echo("...network error...");
