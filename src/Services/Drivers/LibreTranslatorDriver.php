@@ -58,9 +58,11 @@ class LibreTranslatorDriver
             $response['content'] = strip_tags($response['content']);
         }
 
+        /*
         if ($response['content'] == "") {
             $this->logInfo(["message" => "failure", "response" => $response]);
         }
+        */
 
         return $response;
     }
@@ -100,6 +102,8 @@ class LibreTranslatorDriver
             //$this->logInfo(["rawResult"=>$result]);
 
             $result = @json_decode($result, true);
+
+            $this->logInfo(["rawResult"=>$result]);
 
             //'rawResult' => '{"error":"Too many request limits violations"}
 
