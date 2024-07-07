@@ -38,12 +38,9 @@ class LibreTranslatorDriver
             $this->setCurrentLocale($source_language);
         }
 
-        $response = [
-            "success" => false,
-            "content" => "", //translated html
+        $response = ["success" => false, "content" => "", //translated html
             "locale" => $this->currentLocale, //detected locale
-            "error" => null,
-        ];
+            "error" => null,];
 
         if (!$this->isLocaleSupported($locale)) {
             $response['error'] = "$locale is not supported";
@@ -55,7 +52,6 @@ class LibreTranslatorDriver
 
             // Return the translated HTML
             $response['success'] = true;
-            //$response['locale'] = $tresult['detectedLanguage']['language'];
 
             $output = $tresult['translatedText'];
             if (!$this->containsHtmlTags($source)) {
@@ -63,9 +59,18 @@ class LibreTranslatorDriver
             }
 
             $response['content'] = $output;
+
+            if ($response['content'] == "") {
+                $response['success'] = false;
+                $response['error'] = "Failed to translate";
+            }
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             $this->logInfo("Libre API Failed: " . $e->getMessage());
+        }
+
+        if ($response['content'] == "") {
+            $this->logInfo(["message" => "translation failed", "source" => $source, "locale" => $locale, "source_language" => $source_language]);
         }
 
         return $response;
@@ -83,30 +88,18 @@ class LibreTranslatorDriver
 
     private function translateText($text, $target)
     {
-        // Lock file path
-        $lock_file = sys_get_temp_dir() . '/libreTranslateHTML.lock';
+        $response = [];
 
-        // Start the timer
-        $start_time = microtime(true);
+        $url = "https://libretranslate.com/translate";
+        $data = ['q' => $text, 'source' => $this->currentLocale, //auto is failing drastically
+            "format" => "html", 'target' => $target, 'api_key' => $this->apikey];
 
-
-            $url = "https://libretranslate.com/translate";
-            $data = [
-                'q' => $text,
-                'source' => $this->currentLocale, //auto is failing drastically
-                "format" => "html",
-                'target' => $target,
-                'api_key' => $this->apikey
-            ];
-
+        try {
             $ch = curl_init($url);
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                "Content-Type: application/json",
-                "Accept: application/json"
-            ]);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json", "Accept: application/json"]);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
             // Disable SSL verification
@@ -124,27 +117,25 @@ class LibreTranslatorDriver
             curl_close($ch);
 
             $response = @json_decode($result, true);
-
-            if (!isset($response['translatedText'])) {
-                trigger_error("Failed to transate text");
-            }
-
-            // Calculate the elapsed time
-            $elapsed_time = microtime(true) - $start_time;
-
-            // Calculate the remaining time to wait
-            $remaining_time = 1.5 - $elapsed_time;
-
-            // If the remaining time is positive, sleep for the remaining time
-            /*
-            if ($remaining_time > 0) {
-                usleep($remaining_time * 1000000); // Convert seconds to microseconds
-            }
-            */
+        } catch (Exception $e) {
+            $this->logInfo("curl error - " . $e->getMessage());
+        }
 
         sleep(2);
 
+        if (!isset($response['translatedText'])) {
+            $response = ['translatedText' => ''];
+        }
+
         return $response;
+    }
+
+    public function logInfo($content)
+    {
+        $paths = resolve(Paths::class);
+        $logPath = $paths->storage . (DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'libre-translator-engine.log');
+        $content = var_export($content, true);
+        file_put_contents($logPath, $content, FILE_APPEND);
     }
 
     protected function containsHtmlTags($string)
@@ -154,13 +145,5 @@ class LibreTranslatorDriver
 
         // Check if the pattern matches the string
         return preg_match($pattern, $string) === 1;
-    }
-
-    public function logInfo($content)
-    {
-        $paths = resolve(Paths::class);
-        $logPath = $paths->storage . (DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'libre-translator-engine.log');
-        $content = var_export($content, true);
-        file_put_contents($logPath, $content, FILE_APPEND);
     }
 }
