@@ -7,7 +7,7 @@ use Flarum\Console\AbstractCommand;
 use Flarum\Foundation\Paths;
 use Psr\Log\LoggerInterface;
 
-class BatchTranslator extends AbstractCommand
+class Translate extends AbstractCommand
 {
 
     /**

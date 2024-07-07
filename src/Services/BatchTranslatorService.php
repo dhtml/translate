@@ -52,19 +52,7 @@ class BatchTranslatorService
         }
 
         $this->startedTranslation();
-
-        while (true) {
-            $this->translate();
-
-            if ($this->stackEmpty) {
-                $this->finishedTranslation();
-                break;
-            }
-
-            if ($this->failed) {
-                $this->pauseTranslation();
-            }
-        }
+        $this->translate();
     }
 
     protected function startedTranslation()
