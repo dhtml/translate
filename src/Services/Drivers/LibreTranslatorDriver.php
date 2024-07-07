@@ -108,15 +108,12 @@ class LibreTranslatorDriver
 
             $result = curl_exec($ch);
 
-            if ($result === FALSE) {
-                $error = curl_error($ch);
-                curl_close($ch);
-                trigger_error("cURL Error: $error", E_USER_ERROR);
-            }
-
             curl_close($ch);
 
-            $response = @json_decode($result, true);
+
+            if($result) {
+                $response = @json_decode($result, true);
+            }
         } catch (Exception $e) {
             $this->logInfo("curl error - " . $e->getMessage());
         }
