@@ -163,7 +163,6 @@ class BatchTranslatorService
             if (!$this->translateSkippedEntity($itemName, $item, $tdata)) {
                 return false;
             }
-            //die('xox');
         }
 
         return true;
@@ -173,21 +172,20 @@ class BatchTranslatorService
     {
         $source_language = $item->_locale;
 
-
         for ($i = 0; $i < count($this->locales); $i++) {
             $_locale = $this->locales[$i];
-
-            if (!$this->translatorService->isLocaleSupported($_locale)) {
-                echo "...$_locale not supported...";
-                continue;
-            }
 
             //translate per locale
             $tdata = $data;
             foreach ($tdata as $key => &$value) {
-                if(empty($value) || isArrayEmptyValues(json_decode($value,true))) {
-                    echo "==> $itemName-{$item->id}::{$i}...$_locale\n";
-                }
+                $current = @json_decode($item->{"sub_".$_locale},true);
+
+                //skip non-empty values
+                if(!isArrayEmptyValues($current)) {continue;}
+
+                //process the empty value here
+                echo "==> $itemName-{$item->id}::{$i}...sub_{$_locale}\n";
+
                 continue;
                 $this->settingsService->keepAlive();
                 if ($this->settingsService->isLibrePaused()) {
@@ -374,22 +372,8 @@ class BatchTranslatorService
 
     public function startWithSkipped($param)
     {
-
         $this->startedTranslation();
-
-        $this->cliMode = true;
-        while (true) {
-            $this->translateSKipped($param); // Call the translate function
-
-            if ($this->stackEmpty) {
-                $this->finishedTranslation();
-                break;
-            }
-
-            if ($this->failed) {
-                $this->pauseTranslation();
-            }
-        }
+        $this->translateSKipped($param); // Call the translate function
     }
 
     public function startUntilEmpty()
