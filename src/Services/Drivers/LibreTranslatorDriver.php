@@ -79,7 +79,7 @@ class LibreTranslatorDriver
 
     private function translateText($text, $target, &$response)
     {
-        sleep(5);
+        sleep(6);
 
         $url = "https://libretranslate.com/translate";
         $data = ['q' => $text, 'source' => $this->currentLocale, //auto is failing drastically
