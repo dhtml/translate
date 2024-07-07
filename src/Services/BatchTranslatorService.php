@@ -186,7 +186,7 @@ class BatchTranslatorService
                 //process the empty value here
                 echo "==> $itemName-{$item->id}::{$i}...sub_{$_locale}\n";
 
-                continue;
+                //attempt to translate the skipped locale
                 $this->settingsService->keepAlive();
                 if ($this->settingsService->isLibrePaused()) {
                     $this->showInfo("...service paused...");
@@ -202,7 +202,7 @@ class BatchTranslatorService
                     $value = ""; //just legover this one
                 } else if ($response->error_level == 2) {
                     //the translator has encountered a 500 error
-                    echo("...network error...");
+                    echo("...{$response->error_log}...");
                     $this->failed = 1;
                     //$item->failed = 1; //mark failure
                     //$item->save();
@@ -257,7 +257,7 @@ class BatchTranslatorService
                     $value = ""; //just legover this one
                 } else if ($response->error_level == 2) {
                     //the translator has encountered a 500 error
-                    echo("...network error...");
+                    echo("...{$response->error_log}...");
                     $this->failed = 1;
                     //$item->failed = 1; //mark failure
                     //$item->save();

@@ -112,26 +112,26 @@ class LibreTranslatorDriver
                 $response['success'] = false;
                 $response['content'] = null;
                 $response['errorLevel'] = 1; //translation skipped
-                $response['error'] = "Libre failed to translate $text to $target for internal reasons";
+                $response['error'] = "unable to translate";
             } else  if(isset($result['translatedText'])) {
                 $response['success'] = true;
                 $response['content'] = $result['translatedText'] ?? "";
 
                 if($response['content']=="") {
                     $response['errorLevel'] = 1;
-                    $response['error'] = "Libre returned empty result";
+                    $response['error'] = "empty result";
                 }
             } else {
                 $response['success'] = false;
                 $response['content'] = null;
                 $response['errorLevel'] = 2; //translation failure
-                $response['error'] = "Libre failed to translate $text to $target for unknown reasons";
+                $response['error'] = "unknown failure";
             }
         } catch (\Exception $e) {
             $response['success'] = false;
             $response['content'] = null;
             $response['errorLevel'] = 2; //exception, probably timeout
-            $response['error'] = "Libre failed to translate $text to $target due to " . $e->getMessage();
+            $response['error'] = $e->getMessage();
         }
 
 
