@@ -6,7 +6,7 @@ app.initializers.add('dhtml/translate', () => {
       fetch('/api/translate-queue')
         .then(response => {
           // Handle response (if needed)
-          console.log('Translation queue initiated');
+          //console.log('Translation queue initiated');
         })
         .catch(error => {
           console.error('Error initiating async queue request:', error);
