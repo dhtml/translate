@@ -105,7 +105,7 @@ class LibreTranslatorDriver
 
             $result = @json_decode($result, true);
 
-            $this->logInfo(["rawResult"=>$result]);
+            //$this->logInfo(["rawResult"=>$result]);
 
             //'rawResult' => '{"error":"Too many request limits violations"}
 
