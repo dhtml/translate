@@ -56,6 +56,12 @@ function convertCustomBbcodeToHtml($string)
     return $result;
 }
 
+function formatContentoutput($html) {
+    $html = str_replace("&quot;","&",$html);
+
+    return html_entity_decode($html);
+}
+
 if(!function_exists("getTranslatableLocales")) {
     function getTranslatableLocales($key="locales")
     {

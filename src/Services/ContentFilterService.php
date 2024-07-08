@@ -121,21 +121,21 @@ class ContentFilterService
         switch ($item['type']) {
             case "posts":
                 //$this->logInfo(["post",$tdata]);
-                $item['attributes']['contentHtml'] = convertCustomBbcodeToHtml($tdata['contentHtml']);
+                $item['attributes']['contentHtml'] = formatContentoutput(convertCustomBbcodeToHtml($tdata['contentHtml']));
                 break;
             case "discussions":
-                $item['attributes']['title'] = $tdata['title'];
+                $item['attributes']['title'] = formatContentoutput($tdata['title']);
                 break;
             case "tags":$model = Tag::where('id',$id)->first();
-                $item['attributes']['name'] = $tdata['name'];
-                $item['attributes']['description'] = $tdata['description'];
+                $item['attributes']['name'] = formatContentoutput($tdata['name']);
+                $item['attributes']['description'] = formatContentoutput($tdata['description']);
                 break;
             case "badges":
-                $item['attributes']['name'] = strip_tags($tdata['name']);
+                $item['attributes']['name'] = formatContentoutput(strip_tags($tdata['name']));
                 break;
             case "page":
-                $item['attributes']['title'] = $tdata['title'];
-                $item['attributes']['content'] = $tdata['content'];
+                $item['attributes']['title'] = formatContentoutput($tdata['title']);
+                $item['attributes']['content'] = formatContentoutput($tdata['content']);
                 break;
         }
     }
