@@ -33,7 +33,7 @@ return [
         ->post('/languages', 'languages.index', LanguagesApiController::class),
 
     (new Extend\Routes('forum'))
-        ->get('/cron/translate', 'cron.translate.controller', TranslateController::class)
+        ->get('/translate', 'cron.translate.controller', TranslateController::class)
         ->get('/translate/stage', 'stage.translate.controller', BaseController::class)
         ->get('/translate/stats', 'stats.translate.controller', TranslateStatsController::class),
 

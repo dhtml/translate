@@ -23,11 +23,12 @@ class TranslateController implements RequestHandlerInterface
         $this->batchTranslatorService = new BatchTranslatorService();
 
         $this->settings = resolve(SettingsRepositoryInterface::class);
-        $this->cronKey = $this->settings->get('dhtml-translate.cronKey');
+        //$this->cronKey = $this->settings->get('dhtml-translate.cronKey');
     }
 
     public function handle(Request $request): ResponseInterface
     {
+        /*
         $queryParams = $request->getQueryParams();
         $key = $queryParams['key'] ?? null;
 
@@ -35,6 +36,7 @@ class TranslateController implements RequestHandlerInterface
             $html = "The cron service is not currently available";
             return new HtmlResponse($html);
         }
+        */
 
 
         ob_start();
