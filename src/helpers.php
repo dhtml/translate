@@ -38,6 +38,63 @@ if(!function_exists("parseHTMLData")) {
     }
 }
 
+function languageMenu($html) {
+    // Replace BBCode with HTML in the string
+    $replace = '<div class="langlist langlist-large hlist">'
+        . '<ul>'
+        . '<li><a href="https://ar.africoders.com/" lang="ar" title="Arabic"><bdi dir="rtl">العربية</bdi></a></li>'
+        . '<li><a href="https://az.africoders.com/" lang="az" title="Azərbaycan">Azərbaycan</a></li>'
+        . '<li><a href="https://bg.africoders.com/" lang="bg" title="Български">Български</a></li>'
+        . '<li><a href="https://bn.africoders.com/" lang="bn" title="বাংলা">বাংলা</a></li>'
+        . '<li><a href="https://ca.africoders.com/" lang="ca" title="Català">Català</a></li>'
+        . '<li><a href="https://cs.africoders.com/" lang="cs" title="Čeština">Čeština</a></li>'
+        . '<li><a href="https://da.africoders.com/" lang="da" title="Dansk">Dansk</a></li>'
+        . '<li><a href="https://de.africoders.com/" lang="de" title="Deutsch">Deutsch</a></li>'
+        . '<li><a href="https://el.africoders.com/" lang="el" title="Ελληνικά">Ελληνικά</a></li>'
+        . '<li><a href="https://en.africoders.com/" lang="en" title="English">English</a></li>'
+        . '<li><a href="https://eo.africoders.com/" lang="eo" title="Esperanto">Esperanto</a></li>'
+        . '<li><a href="https://es.africoders.com/" lang="es" title="Español">Español</a></li>'
+        . '<li><a href="https://et.africoders.com/" lang="et" title="Eesti">Eesti</a></li>'
+        . '<li><a href="https://fa.africoders.com/" lang="fa" title="فارسی"><bdi dir="rtl">فارسی</bdi></a></li>'
+        . '<li><a href="https://fi.africoders.com/" lang="fi" title="Suomi">Suomi</a></li>'
+        . '<li><a href="https://fr.africoders.com/" lang="fr" title="Français">Français</a></li>'
+        . '<li><a href="https://ga.africoders.com/" lang="ga" title="Gaeilge">Gaeilge</a></li>'
+        . '<li><a href="https://he.africoders.com/" lang="he" title="עברית"><bdi dir="rtl">עברית</bdi></a></li>'
+        . '<li><a href="https://hi.africoders.com/" lang="hi" title="हिन्दी">हिन्दी</a></li>'
+        . '<li><a href="https://hu.africoders.com/" lang="hu" title="Magyar">Magyar</a></li>'
+        . '<li><a href="https://id.africoders.com/" lang="id" title="Bahasa Indonesia">Bahasa Indonesia</a></li>'
+        . '<li><a href="https://it.africoders.com/" lang="it" title="Italiano">Italiano</a></li>'
+        . '<li><a href="https://ja.africoders.com/" lang="ja" title="日本語">日本語</a></li>'
+        . '<li><a href="https://ko.africoders.com/" lang="ko" title="한국어">한국어</a></li>'
+        . '<li><a href="https://lt.africoders.com/" lang="lt" title="Lietuvių">Lietuvių</a></li>'
+        . '<li><a href="https://lv.africoders.com/" lang="lv" title="Latviešu">Latviešu</a></li>'
+        . '<li><a href="https://ms.africoders.com/" lang="ms" title="Bahasa Melayu">Bahasa Melayu</a></li>'
+        . '<li><a href="https://nb.africoders.com/" lang="nb" title="Norsk Bokmål">Norsk Bokmål</a></li>'
+        . '<li><a href="https://nl.africoders.com/" lang="nl" title="Nederlands">Nederlands</a></li>'
+        . '<li><a href="https://pl.africoders.com/" lang="pl" title="Polski">Polski</a></li>'
+        . '<li><a href="https://pt.africoders.com/" lang="pt" title="Português">Português</a></li>'
+        . '<li><a href="https://ro.africoders.com/" lang="ro" title="Română">Română</a></li>'
+        . '<li><a href="https://ru.africoders.com/" lang="ru" title="Русский">Русский</a></li>'
+        . '<li><a href="https://sk.africoders.com/" lang="sk" title="Slovenčina">Slovenčina</a></li>'
+        . '<li><a href="https://sl.africoders.com/" lang="sl" title="Slovenščina">Slovenščina</a></li>'
+        . '<li><a href="https://sq.africoders.com/" lang="sq" title="Shqip">Shqip</a></li>'
+        . '<li><a href="https://sr.africoders.com/" lang="sr" title="Српски">Српски</a></li>'
+        . '<li><a href="https://sv.africoders.com/" lang="sv" title="Svenska">Svenska</a></li>'
+        . '<li><a href="https://th.africoders.com/" lang="th" title="ไทย">ไทย</a></li>'
+        . '<li><a href="https://tl.africoders.com/" lang="tl" title="Tagalog">Tagalog</a></li>'
+        . '<li><a href="https://tr.africoders.com/" lang="tr" title="Türkçe">Türkçe</a></li>'
+        . '<li><a href="https://uk.africoders.com/" lang="uk" title="Українська">Українська</a></li>'
+        . '<li><a href="https://ur.africoders.com/" lang="ur" title="اردو"><bdi dir="rtl">اردو</bdi></a></li>'
+        . '<li><a href="https://vi.africoders.com/" lang="vi" title="Tiếng Việt">Tiếng Việt</a></li>'
+        . '<li><a href="https://zh.africoders.com/" lang="zh" title="中文">中文</a></li>'
+        . '<li><a href="https://zt.africoders.com/" lang="zt" title="中文繁體">中文繁體</a></li>'
+        . '</ul>'
+        . '</div>';
+
+    $result = str_replace('<lang></lang>', $replace, $html);
+    return $result;
+}
+
 
 function convertCustomBbcodeToHtml($string)
 {
@@ -52,6 +109,7 @@ function convertCustomBbcodeToHtml($string)
 
     // Replace BBCode with HTML in the string
     $result = preg_replace_callback($pattern, $callback, $string);
+
 
     return $result;
 }

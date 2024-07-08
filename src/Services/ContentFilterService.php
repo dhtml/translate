@@ -92,6 +92,8 @@ class ContentFilterService
                 break;
             case "page":
                 $model = Page::where('id',$id)->first();
+
+                $item['attributes']['content'] = languageMenu($item['attributes']['content']);
                 break;
         }
 
@@ -135,7 +137,7 @@ class ContentFilterService
                 break;
             case "page":
                 $item['attributes']['title'] = formatContentoutput($tdata['title']);
-                $item['attributes']['content'] = formatContentoutput($tdata['content']);
+                $item['attributes']['content'] = formatContentoutput(languageMenu($tdata['content']));
                 break;
         }
     }
