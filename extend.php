@@ -2,6 +2,7 @@
 
 namespace Dhtml\Translate;
 
+use Dhtml\Translate\Api\Controllers\TranslateQueueApiController;
 use Flarum\Post\Event\Posted;
 use Flarum\Discussion\Event\Started;
 
@@ -29,11 +30,12 @@ return [
     new Extend\Locales(__DIR__.'/locale'),
 
     (new Extend\Routes('api'))
+        ->get('/translate-queue', 'language.translate.queue', TranslateQueueApiController::class)
         ->post('/translate', 'language.translator.index', TranslateApiController::class)
         ->post('/languages', 'languages.index', LanguagesApiController::class),
 
     (new Extend\Routes('forum'))
-        ->get('/translate', 'cron.translate.controller', TranslateController::class)
+        ->get('/translate', 'base.translate.controller', TranslateController::class)
         ->get('/translate/stage', 'stage.translate.controller', BaseController::class)
         ->get('/translate/stats', 'stats.translate.controller', TranslateStatsController::class),
 

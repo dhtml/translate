@@ -5,6 +5,7 @@ namespace Dhtml\Translate\Api\Controllers;
 
 use Dhtml\Translate\Api\Serializer\LanguagesSerializer;
 use Dhtml\Translate\Api\Serializer\TranslateCacheSerializer;
+use Dhtml\Translate\Services\BatchTranslatorService;
 use Dhtml\Translate\Services\TranslatorService;
 use Flarum\Api\Controller\AbstractShowController;
 use Flarum\Settings\SettingsRepositoryInterface;
@@ -16,10 +17,11 @@ use Tobscure\JsonApi\Document;
 class LanguagesApiController extends AbstractShowController
 {
     public $serializer = LanguagesSerializer::class;
+    private BatchTranslatorService $batchTranslatorService;
 
     public function __construct()
     {
-        $this->settings = resolve(SettingsRepositoryInterface::class);
+        $this->batchTranslatorService = new BatchTranslatorService();
     }
 
     protected function data(ServerRequestInterface $request, Document $document)
