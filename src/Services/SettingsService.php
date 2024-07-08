@@ -122,7 +122,7 @@ class SettingsService
 
         $timediff = abs($currentTime - $timeStamp);
 
-        if ($timeStamp && ($timediff) <= 120) {
+        if ($timeStamp && ($timediff) <= 45) {
             return true;
         }
 
@@ -148,5 +148,10 @@ class SettingsService
            $this->showInfo("The last activity was $timediff seconds ago");
         }
 
+    }
+
+    public function restPhase()
+    {
+        sleep(15);
     }
 }

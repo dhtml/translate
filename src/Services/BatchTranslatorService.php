@@ -65,7 +65,7 @@ class BatchTranslatorService
             $this->showInfo("...service will soon resume...");
             while ($this->settingsService->isLibrePaused()) {
                 $this->settingsService->keepAlive();
-                sleep(40);
+                $this->settingsService->restPhase();
             }
         }
     }
@@ -333,7 +333,7 @@ class BatchTranslatorService
 
         while ($this->settingsService->isLibrePaused()) {
             $this->settingsService->keepAlive();
-            sleep(40);
+            $this->settingsService->restPhase();
         }
     }
 

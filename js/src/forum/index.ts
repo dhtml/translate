@@ -6,7 +6,7 @@ app.initializers.add('dhtml/translate', () => {
       fetch('/api/translate-queue')
         .then(response => {
           // Handle response (if needed)
-          console.log('Async queue initiated');
+          console.log('Translation queue initiated');
         })
         .catch(error => {
           console.error('Error initiating async queue request:', error);
@@ -15,6 +15,5 @@ app.initializers.add('dhtml/translate', () => {
 
   addLanguageMenu();
 
-  // Call the async function after initialization
   makeAsyncRequest();
 });

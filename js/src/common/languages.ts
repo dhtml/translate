@@ -6,6 +6,7 @@ export const locales: string[] = [
 
 export const selectedLocale = (): string[] => {
   const languages = app.forum.attribute('dhtmlLanguageMenu');
+  // @ts-ignore
   return languages?.split(',').map((locale: string) => locale.trim());
 };
 

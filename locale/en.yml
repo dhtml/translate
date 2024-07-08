@@ -9,6 +9,7 @@ dhtml-translate:
       libreRestTime: Libre API Rest Interval (minutes)
       apiKey: API Key
       cronKey: Cron Job Key
+      cronLess: Cronless Mode (auto-translate on website usage)
       subdomains: Use localized subdomains e.g. ar.siteurl.com
       language-menu: Put locales you want to show in language menu here (coma separated)
       engine:

@@ -76,6 +76,13 @@ app.initializers.add('dhtml/translate', () => {
     })
 
     .registerSetting({
+      setting: 'dhtml-translate.cronLess',
+      label: app.translator.trans('dhtml-translate.admin.settings.cronLess'),
+      type: 'boolean',
+      required: true,
+    })
+
+    .registerSetting({
       setting: 'dhtml-translate.locales',
       label: app.translator.trans('dhtml-translate.admin.settings.language-menu'),
       type: 'text',

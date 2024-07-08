@@ -74,6 +74,8 @@ return [
         ->default('dhtml-translate.rate-limit', 60)
         ->default('dhtml-translate.post-limit', 65535)
         ->default('dhtml-translate.subdomains', false)
+        //->default('dhtml-translate.cronLess', false)
+        ->serializeToForum('cronLessTranslate', "dhtml-translate.cronLess",null,false)
         ->default('dhtml-translate.cronKey', "12345")
         ->default('dhtml-translate.googleApiKey', "1234543456")
         ->default('dhtml-translate.microsoftApiKey', "1234543456")
