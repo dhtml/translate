@@ -121,7 +121,7 @@ class ContentFilterService
         switch ($item['type']) {
             case "posts":
                 //$this->logInfo(["post",$tdata]);
-                $item['attributes']['contentHtml'] = $tdata['contentHtml'];
+                $item['attributes']['contentHtml'] = convertCustomBbcodeToHtml($tdata['contentHtml']);
                 break;
             case "discussions":
                 $item['attributes']['title'] = $tdata['title'];

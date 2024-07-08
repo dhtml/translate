@@ -1,7 +1,60 @@
 <?php
 
+use Flarum\Foundation\Paths;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
+use Flarum\Formatter\Formatter;
+
+if(!function_exists("convertBbcodeToHtml")) {
+    function convertBbcodeToHtml($bbcode)
+    {
+        // Get the Formatter instance
+        $formatter = resolve(Formatter::class);
+
+        // Use the Formatter to parse and render the BBCode to HTML
+        $html = $formatter->render($formatter->parse($bbcode));
+
+        return $html;
+    }
+}
+
+if(!function_exists("parseHTMLData")) {
+    function parseHTMLData($string)
+    {
+        // Define the regex pattern to match BBCode tags
+        $pattern = '/\[([a-zA-Z]+)(?:=[^\]]+)?\](.*?)\[\/\1\]/s';
+
+        // Callback function to replace BBCode with HTML
+        $callback = function ($matches) {
+            $bbcode = $matches[0];
+            $html = convertBbcodeToHtml($bbcode);
+            return $html;
+        };
+
+        // Replace BBCode with HTML in the string
+        $result = preg_replace_callback($pattern, $callback, $string);
+
+        return $result;
+    }
+}
+
+
+function convertCustomBbcodeToHtml($string)
+{
+    // Define the regex pattern to match the specific BBCode tag
+    $pattern = '/\[upl-image-preview url=([^\]]+)\]/';
+
+    // Callback function to replace BBCode with HTML
+    $callback = function ($matches) {
+        $url = $matches[1];
+        return '<img src="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '" title="" alt="">';
+    };
+
+    // Replace BBCode with HTML in the string
+    $result = preg_replace_callback($pattern, $callback, $string);
+
+    return $result;
+}
 
 if(!function_exists("getTranslatableLocales")) {
     function getTranslatableLocales($key="locales")
@@ -139,3 +192,12 @@ if(!function_exists("refactorTranslationTable")) {
 }
 
 
+if(!function_exists("logInfo")) {
+    function logInfo($content)
+    {
+        $paths = resolve(Paths::class);
+        $logPath = $paths->storage . (DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'dhtml-general-dump.log');
+        $content = var_export($content, true);
+        file_put_contents($logPath, $content, FILE_APPEND);
+    }
+}
