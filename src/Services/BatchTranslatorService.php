@@ -273,7 +273,7 @@ class BatchTranslatorService
             }
 
             //save this translation
-            $item->{"sub_{$_locale}"} = json_encode($tdata);
+            $item->{"sub_{$_locale}"} = json_encode($tdata,JSON_UNESCAPED_UNICODE);
             $item->_pointer = $i + 1; //mark pointer
             $item->save();
             //end of translation for a particular locale

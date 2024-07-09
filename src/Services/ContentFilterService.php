@@ -32,11 +32,11 @@ class ContentFilterService
         } elseif (str_contains($contentType, 'application/json')) {
             $data = json_decode($content, true);
             $data = $this->translateApiData($data);
-            $content = json_encode($data);
+            $content = json_encode($data,JSON_UNESCAPED_UNICODE);
         } elseif (str_contains($contentType, 'application/vnd.api+json')) {
             $data = json_decode($content, true);
             $data = $this->translateApiData($data);
-            $content = json_encode($data);
+            $content = json_encode($data,JSON_UNESCAPED_UNICODE);
         }
 
         return $content;
@@ -72,50 +72,63 @@ class ContentFilterService
      * @param $item
      * @return void
      */
-    public function localizeData(&$item) {
+    public function localizeData(&$item)
+    {
         $id = $item['id'];
         $model = null;
 
         switch ($item['type']) {
             case "posts":
-                $model = Post::where('type','comment')->where('id',$id)->first();
+                $model = Post::where('type', 'comment')->where('id', $id)->first();
                 break;
             case "discussions":
-                $model = Discussion::where('id',$id)->first();
+                $model = Discussion::where('id', $id)->first();
 
                 break;
             case "tags":
-                $model = Tag::where('id',$id)->first();
+                $model = Tag::where('id', $id)->first();
                 break;
             case "badges":
-                $model = Badge::where('id',$id)->first();
+                $model = Badge::where('id', $id)->first();
                 break;
             case "page":
-                $model = Page::where('id',$id)->first();
+                $model = Page::where('id', $id)->first();
 
                 $item['attributes']['content'] = languageMenu($item['attributes']['content']);
                 break;
+            default:
+                return;
         }
 
         //no model found
-        if(!$model) {return;}
+        if (!$model) {
+            //$this->logInfo(["type"=>$item['type'],"error"=>"missing model","item"=>$item]);
+            return;
+        }
 
         $detectedLocale = getDetectedLocale();
         $locale = $model->_locale;
 
         //detected local is same as model local
-        if($detectedLocale == $locale) {return;}
+        if ($detectedLocale == $locale) {
+            $this->logInfo(["type" => $item['type'], "error" => "original locale", "item" => $item]);
+            return;
+        }
 
         //attempt to get localized data from db
-        $translatedData = $model->{"sub_".$detectedLocale} ?? null;
+        $translatedData = $model->{"sub_" . $detectedLocale} ?? null;
 
         //localized data not found
-        if(!$translatedData) {return;}
+        if (!$translatedData) {
+            //$this->logInfo(["type"=>$item['type'],"error"=>"empty a","translatedata"=>$translatedData]);
+            return;
+        }
 
-        $tdata = @json_decode($translatedData,true);
+        $tdata = @json_decode($translatedData, true);
 
         //the translated data is empty -- error
-        if(isArrayEmptyValues($tdata)) {
+        if (isArrayEmptyValues($tdata)) {
+            //$this->logInfo(["type"=>$item['type'],"error"=>"empty b","translatedata"=>$translatedData,"item"=>$item]);
             return;
         }
 
@@ -128,7 +141,8 @@ class ContentFilterService
             case "discussions":
                 $item['attributes']['title'] = formatContentoutput($tdata['title']);
                 break;
-            case "tags":$model = Tag::where('id',$id)->first();
+            case "tags":
+                $model = Tag::where('id', $id)->first();
                 $item['attributes']['name'] = formatContentoutput($tdata['name']);
                 $item['attributes']['description'] = formatContentoutput($tdata['description']);
                 break;
