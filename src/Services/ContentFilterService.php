@@ -111,7 +111,7 @@ class ContentFilterService
 
         //detected local is same as model local
         if ($detectedLocale == $locale) {
-            $this->logInfo(["type" => $item['type'], "error" => "original locale", "item" => $item]);
+            //$this->logInfo(["type" => $item['type'], "error" => "original locale", "item" => $item]);
             return;
         }
 
