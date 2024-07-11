@@ -63,6 +63,8 @@ return [
     (new Extend\Console())
         ->command(Console\TranslateSkippedPost::class),
 
+    (new Extend\Console())
+        ->command(Console\TranslateStringsBuild::class),
 
 (new Extend\Event())
         ->listen(Posted::class, [Listeners\ForumListener::class, 'postWasPosted'])

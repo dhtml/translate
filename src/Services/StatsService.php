@@ -4,6 +4,7 @@ namespace Dhtml\Translate\Services;
 
 use Dhtml\Translate\Badge;
 use Dhtml\Translate\Discussion;
+use Dhtml\Translate\LocaleString;
 use Dhtml\Translate\Page;
 use Dhtml\Translate\Post;
 use Dhtml\Translate\Tag;
@@ -77,6 +78,14 @@ class StatsService
                 'outdated' => Page::where('_translated', 1)->where("_outdated", 1)->where('_failed', 0)->count(),
                 'failed' => Page::where('_failed', 1)->count(),
             ],
+            "strings" => [
+                'name' => "Strings",
+                'total' => LocaleString::count(),
+                'translated' => LocaleString::where('_translated', 1)->where('_failed', 0)->count(),
+                'pending' => LocaleString::where('_translated', 0)->where('_failed', 0)->count(),
+                'outdated' => LocaleString::where('_translated', 1)->where("_outdated", 1)->where('_failed', 0)->count(),
+                'failed' => LocaleString::where('_failed', 1)->count(),
+            ],
         ];
 
         $result = "
@@ -124,6 +133,7 @@ class StatsService
     {$this->renderEntityStat('tags')}
     {$this->renderEntityStat('badges')}
     {$this->renderEntityStat('pages')}
+    {$this->renderEntityStat('strings')}
     </table>
     </div>
 </body>

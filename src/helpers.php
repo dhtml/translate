@@ -5,6 +5,10 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
 use Flarum\Formatter\Formatter;
 
+function getSourceStringLanguageFilePath() {
+    return __DIR__."/../language/source.yml";
+}
+
 if(!function_exists("convertBbcodeToHtml")) {
     function convertBbcodeToHtml($bbcode)
     {
