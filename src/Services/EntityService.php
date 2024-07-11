@@ -22,6 +22,9 @@ class EntityService
             case "badge":
                 $tdata = ["name" => $model->name];
                 break;
+            case "string":
+                $tdata = ["original" => $model->original];
+                break;
             default:
                 trigger_error("Unable to process $entityName");
         }

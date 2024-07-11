@@ -5,6 +5,7 @@ namespace Dhtml\Translate\Services;
 use DateTime;
 use Dhtml\Translate\Badge;
 use Dhtml\Translate\Discussion;
+use Dhtml\Translate\LocaleString;
 use Dhtml\Translate\Page;
 use Dhtml\Translate\Post;
 use Dhtml\Translate\Tag;
@@ -85,6 +86,7 @@ class BatchTranslatorService
     protected function translate($tag = null)
     {
         if (!$tag) {
+            //translate all if no param
             if (!$this->translateBadges()) {
                 return false;
             }
@@ -100,10 +102,18 @@ class BatchTranslatorService
             if (!$this->translatePosts()) {
                 return false;
             }
+            if (!$this->translateStrings()) {
+                return false;
+            }
         } else {
             switch ($tag) {
                 case "posts":
                     if (!$this->translatePosts("desc")) {
+                        return false;
+                    }
+                    break;
+                case "strings":
+                    if (!$this->translateStrings("desc")) {
                         return false;
                     }
                     break;
@@ -313,6 +323,12 @@ class BatchTranslatorService
         return $this->sendForTranslation("post", $items);
     }
 
+    protected function translateStrings($dir = "asc")
+    {
+        $items = LocaleString::orderBy('id', $dir)->get();
+        return $this->sendForTranslation("string", $items);
+    }
+
     protected function finishedTranslation()
     {
         $startTime = new DateTime();
@@ -343,19 +359,8 @@ class BatchTranslatorService
         $this->startedTranslation();
 
         $this->cliMode = true;
-        while (true) {
-            $this->translate($param); // Call the translate function
 
-
-            if ($this->stackEmpty) {
-                $this->finishedTranslation();
-                break;
-            }
-
-            if ($this->failed) {
-                $this->pauseTranslation();
-            }
-        }
+        $this->translate($param); // Call the translate function
     }
 
     public function startWithSkipped($param)
