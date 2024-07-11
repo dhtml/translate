@@ -1,4 +1,255 @@
 core:
+    admin:
+        appearance:
+            colored_header_label: 'Colored Header'
+            colors_heading: Colors
+            colors_primary_label: 'Primary Color'
+            colors_secondary_label: 'Secondary Color'
+            colors_text: 'Choose two colors to theme your forum with. The first will be used as a highlight color, while the second will be used to style background elements.'
+            custom_footer_heading: 'Custom Footer'
+            custom_header_heading: 'Custom Header'
+            custom_styles_cannot_use_less_features: 'The @import and data-uri features are not allowed in custom LESS.'
+            custom_styles_heading: 'Custom Styles'
+            custom_styles_text: 'Customize your forum''s appearance by adding your own Less/CSS code to be applied on top of Flarum''s default styles.'
+            dark_mode_label: 'Dark Mode'
+            description: 'Customize your forum''s colors, logos, and other variables.'
+            edit_css_button: 'Edit Custom CSS'
+            enter_hex_message: 'Please enter a hexadecimal color code.'
+            favicon_heading: Favicon
+            favicon_text: 'Upload an image to be displayed as the forum''s shortcut icon.'
+            logo_heading: Logo
+            logo_text: 'Upload an image to be displayed in place of the forum title.'
+            title: Appearance
+            custom_footer_text: 'Add HTML to be displayed at the very bottom of the page.'
+            custom_header_text: 'Add HTML to be displayed at the very top of the page, above Flarum''s own header.'
+            edit_footer_button: 'Edit Custom Footer'
+            edit_header_button: 'Edit Custom Header'
+        basics:
+            default_language_heading: 'Default Language'
+            description: 'Set your forum title, language, and other basic settings.'
+            display_name_heading: 'User Display Name'
+            display_name_text: 'Select the driver that should be used for users'' display names. By default, the username is shown.'
+            forum_description_heading: 'Forum Description'
+            forum_description_text: 'Enter a short sentence or two that describes your community. This will appear in the meta tag and show up in search engines.'
+            forum_title_heading: 'Forum Title'
+            home_page_heading: 'Home Page'
+            home_page_text: 'Choose the page which users will first see when they visit your forum.'
+            show_language_selector_label: 'Show language selector'
+            slug_driver_heading: 'Slug Driver: {model}'
+            slug_driver_text: 'Select a driver to be used for slugging this model.'
+            title: Basics
+            welcome_banner_heading: 'Welcome Banner'
+            welcome_banner_text: 'Configure the text that displays in the banner on the All Discussions page. Use this to welcome guests to your forum.'
+            all_discussions_label: 'All Discussions'
+        create_user:
+            email_confirmed_label: 'Require user to confirm this email'
+            submit_and_create_another_button: 'Create and add another'
+            submit_button: 'Create user'
+            title: 'Create new user'
+            use_random_password: 'Generate random password'
+            email_placeholder: Email
+            password_placeholder: Password
+            username_placeholder: Username
+        dashboard:
+            clear_cache_button: 'Clear Cache'
+            description: 'Your forum at a glance.'
+            io_error_message: 'Could not write to filesystem. Check your filesystem permissions and try again. Or try running from the command line.'
+            status:
+                headers:
+                    scheduler-status: Scheduler
+                    queue-driver: 'Queue Driver'
+                    session-driver: 'Session Driver'
+                scheduler:
+                    active: Active
+                    inactive: Inactive
+                    never-run: 'Never run'
+            title: Dashboard
+            tools_button: Tools
+        debug-warning:
+            detail: "When <code>debug</code> mode is active, Flarum will rebuild its <code>JavaScript</code> and <code>CSS</code> assets on every request, and could also potentially leak other information, such as database secrets, environment variables, etc.\n\nIt is highly recommended to disable <code>debug</code> in your <code>config.php</code> file in production. See <link>Flarum docs</link> for more information.\n"
+            label: 'Debug mode active'
+        edit_css:
+            customize_text: 'Customize your forum''s appearance by adding your own Less/CSS code to be applied on top of Flarum''s <a>default styles</a>.'
+            title: 'Edit Custom CSS'
+            submit_button: 'Save Changes'
+        edit_group:
+            delete_button: 'Delete Group'
+            delete_confirmation: 'Are you sure you want to delete this group? The group members will NOT be deleted.'
+            hide_label: 'Hide on forum'
+            name_label: Name
+            plural_placeholder: 'Plural (e.g. Mods)'
+            singular_placeholder: 'Singular (e.g. Mod)'
+            title: 'Create Group'
+            color_label: Color
+            icon_label: Icon
+            icon_text: 'Enter the name of any <a>FontAwesome</a> icon class, <em>including</em> the <code>fas fa-</code> prefix.'
+            submit_button: 'Save Changes'
+        email:
+            addresses_heading: Addresses
+            description: 'Configure the driver, settings and addresses your forum will use to send email.'
+            driver_heading: 'Choose a Driver'
+            driver_label: Driver
+            from_label: Sender
+            mail_encryption_label: Encryption
+            mail_host_label: Host
+            mail_mailgun_domain_label: Domain
+            mail_mailgun_region_label: Region
+            mail_mailgun_secret_label: 'Secret key'
+            mail_port_label: Port
+            mailgun_heading: 'Mailgun Settings'
+            not_sending_message: 'Flarum currently does not send emails. This can be due to the selected driver, or errors in its configuration.'
+            send_test_mail_button: Send
+            send_test_mail_heading: 'Send Test Mail'
+            send_test_mail_success: 'Test mail sent successfully!'
+            send_test_mail_text: 'This will send an email using the above configuration to your email, {email}.'
+            smtp_heading: 'SMTP Settings'
+            mail_password_label: Password
+            mail_username_label: Username
+            title: Email
+        extension:
+            configure_scopes: 'Configure Scopes'
+            confirm_purge: 'Purging will remove all database entries and assets related to the extension. It will not uninstall the extension; that must be done via Composer. Are you sure you want to continue?'
+            disabled: Disabled
+            enable_to_see: 'Enable the extension to view and change settings.'
+            enabled: Enabled
+            info_links:
+                discuss: Discuss
+                documentation: Documentation
+                donate: Donate
+                source: Source
+                support: Support
+                website: Website
+            no_permissions: 'This extension has no permissions.'
+            no_settings: 'This extension has no settings.'
+            open_modal: 'Open Settings'
+            permissions_title: Permissions
+            purge_button: Purge
+            readme:
+                button_label: README
+                no_readme: 'This extension does not appear to have a README file'
+                title: '{extName} documentation'
+        header:
+            get_help: 'Get Help'
+            log_out_button: 'Log Out'
+        loading:
+            title: 'Please Wait...'
+        nav:
+            categories:
+                authentication: Authentication
+                core: 'Core Configuration'
+                discussion: Discussion
+                feature: Features
+                formatting: Formatting
+                language: Languages
+                moderation: Moderation
+                other: 'Other Extensions'
+                theme: Themes
+            search_placeholder: 'Search Extensions'
+            appearance_button: Appearance
+            appearance_title: 'Customize your forum''s colors, logos, and other variables.'
+            basics_button: Basics
+            basics_title: 'Set your forum title, language, and other basic settings.'
+            dashboard_button: Dashboard
+            dashboard_title: 'Your forum at a glance.'
+            email_button: Email
+            email_title: 'Configure the driver, settings and addresses your forum will use to send email.'
+            permissions_button: Permissions
+            permissions_title: 'Configure who can see and do what.'
+            userlist_button: Users
+            userlist_title: 'A paginated list of all users on your forum.'
+        permissions:
+            allow_hide_own_posts_label: 'Allow deleting own posts'
+            allow_post_editing_label: 'Allow post editing'
+            allow_renaming_label: 'Allow renaming'
+            create_access_token_label: 'Create access token'
+            create_heading: Create
+            delete_discussions_forever_label: 'Delete discussions forever'
+            delete_discussions_label: 'Delete discussions'
+            delete_posts_forever_label: 'Delete posts forever'
+            delete_posts_label: 'Delete posts'
+            description: 'Configure who can see and do what.'
+            edit_posts_label: 'Edit posts'
+            edit_users_label: 'Edit user attributes'
+            edit_users_credentials_label: 'Edit user credentials'
+            edit_users_groups_label: 'Edit user groups'
+            global_heading: Global
+            moderate_heading: Moderate
+            moderate_access_tokens_label: 'Moderate Access Tokens'
+            new_group_button: 'New Group'
+            participate_heading: Participate
+            post_without_throttle_label: 'Reply multiple times without waiting'
+            read_heading: Read
+            rename_discussions_label: 'Rename discussions'
+            reply_to_discussions_label: 'Reply to discussions'
+            sign_up_label: 'Sign up'
+            start_discussions_label: 'Start discussions'
+            title: Permissions
+            view_forum_label: 'View forum (discussions and users)'
+            view_hidden_groups_label: 'View hidden group badges'
+            view_last_seen_at_label: 'Always view user last seen time'
+            view_post_ips_label: 'View post IP addresses'
+            can_push_to_frontpage_label: 'Can Push to FrontPage'
+            search_users_label: 'Search users'
+        permissions_controls:
+            allow_indefinitely_button: Indefinitely
+            allow_some_minutes_button: '{count, plural, one {For # minute} other {For # minutes}}'
+            allow_ten_minutes_button: 'For 10 minutes'
+            allow_until_reply_button: 'Until next reply'
+            everyone_button: Everyone
+            signup_closed_button: Closed
+            signup_open_button: Open
+            allow_never_button: Never
+            members_button: Members
+        settings:
+            saved_message: 'Your changes were saved.'
+            submit_button: 'Save Changes'
+        upload_image:
+            upload_button: 'Choose an Image...'
+            remove_button: Remove
+        users:
+            create_user_button: 'New User'
+            description: 'A paginated list of all users on your forum.'
+            grid:
+                columns:
+                    display_name:
+                        title: 'Display name'
+                    edit_user:
+                        tooltip: 'Edit {username}'
+                        button: Edit
+                        title: 'Edit User'
+                    email:
+                        visibility_hide: 'Hide email address'
+                        visibility_show: 'Show email address'
+                        title: Email
+                    group_badges:
+                        no_badges: None
+                        title: Groups
+                    join_time:
+                        title: Joined
+                    user_id:
+                        title: ID
+                    username:
+                        profile_link_tooltip: 'Visit {username}''s profile'
+                        title: Username
+                invalid_column_content: Invalid
+            pagination:
+                back_button: 'Previous page'
+                first_button: 'Go to first page'
+                go_to_page_textbox_a11y_label: 'Go directly to page number'
+                last_button: 'Go to last page'
+                next_button: 'Next page'
+                page_counter: 'Page {current} of {total}'
+            total_users: 'Total users: {count}'
+            search_placeholder: 'Search users'
+            title: Users
+        edit_footer:
+            customize_text: 'Add HTML to be displayed at the very bottom of the page.'
+            submit_button: 'Save Changes'
+            title: 'Edit Custom Footer'
+        edit_header:
+            customize_text: 'Add HTML to be displayed at the very top of the page, above Flarum''s own header.'
+            submit_button: 'Save Changes'
+            title: 'Edit Custom Header'
     forum:
         change_email:
             incorrect_password_message: 'The password you entered is incorrect.'
@@ -282,6 +533,18 @@ core:
         loading_indicator:
             accessible_label: Loading...
     views:
+        admin:
+            extensions:
+                disable: Disable
+                empty: 'No installed extensions'
+                enable: Enable
+                name: 'Extension Name'
+                package_name: 'Package Name'
+                version: Version
+                caption: Extensions
+            info:
+                caption: 'Application Info'
+            title: Administration
         confirm_email:
             text: 'Click the button below to confirm your account''s email.'
             submit_button: 'Confirm Email'
@@ -511,6 +774,46 @@ validation:
     recaptcha: 'reCAPTCHA validation failed.'
     recaptcha-unknown: 'An unknown error occurred while validating reCAPTCHA ({errors}).'
 flarum-tags:
+    admin:
+        edit_tag:
+            delete_tag_button: 'Delete Tag'
+            delete_tag_confirmation: 'Are you sure you want to delete this tag? The tag''s discussions will NOT be deleted.'
+            description_label: Description
+            hide_label: 'Hide from All Discussions'
+            slug_label: Slug
+            title: 'Create Tag'
+            color_label: Color
+            icon_label: Icon
+            icon_text: 'Enter the name of any <a>FontAwesome</a> icon class, <em>including</em> the <code>fas fa-</code> prefix.'
+            name_label: Name
+            name_placeholder: Name
+            submit_button: 'Save Changes'
+        nav:
+            tags_text: 'Manage the list of tags available to organise discussions with.'
+            tags_button: Tags
+        permissions:
+            allow_edit_tags_label: 'Allow tag editing'
+            bypass_tag_counts_label: 'Bypass tag requirements'
+            restrict_by_tag_heading: 'Restrict by Tag'
+            tag_discussions_label: 'Tag discussions'
+        tag_settings:
+            range_separator_text: ' to '
+            required_primary_heading: 'Required Number of Primary Tags'
+            required_primary_text: 'Enter the minimum and maximum number of primary tags that may be applied to a discussion.'
+            required_secondary_heading: 'Required Number of Secondary Tags'
+            required_secondary_text: 'Enter the minimum and maximum number of secondary tags that may be applied to a discussion.'
+            title: 'Tag Settings'
+        tags:
+            about_tags_text: 'Tags are used to categorize discussions. Primary tags are like traditional forum categories: they can be arranged in a two-level hierarchy. Secondary tags do not have hierarchy or order, and are useful for micro-categorization.'
+            create_primary_tag_button: 'Create Primary Tag'
+            create_secondary_tag_button: 'Create Secondary Tag'
+            primary_heading: 'Primary Tags'
+            secondary_heading: 'Secondary Tags'
+            settings_heading: Settings
+        basics:
+            tags_label: Tags
+        settings:
+            button_text: 'Choose Tags'
     forum:
         all_tags:
             meta_description_text: 'All Tags'
@@ -550,6 +853,12 @@ flarum-tags:
         name: Name
         tags: Tags
 flarum-mentions:
+    admin:
+        permissions:
+            mention_groups_label: 'Mention groups'
+        settings:
+            allow_username_format_label: 'Allow username mention format (@Username)'
+            allow_username_format_text: "The current format for user mentions is @\"Display Name\"#ID.\nThis setting allows using the old format of @Username, however it will still be converted to the new format upon saving.\n"
     forum:
         composer:
             mention_tooltip: 'Mention a user, group or post'
@@ -628,6 +937,14 @@ flarum-subscriptions:
         following: Following
         ignoring: Ignoring
 flarum-flags:
+    admin:
+        permissions:
+            flag_posts_label: 'Flag posts'
+            view_flags_label: 'View flagged posts'
+        settings:
+            flag_own_posts_label: 'Allow users to flag their own posts'
+            guidelines_url_label: 'Community Guidelines URL'
+            title: 'Flags Settings'
     forum:
         flag_post:
             confirmation_message: 'Thank you for flagging this post. Our moderators will look into it.'
@@ -658,6 +975,9 @@ flarum-flags:
         flag_post: 'Flag Post'
         flagged_posts: 'Flagged Posts'
 flarum-suspend:
+    admin:
+        permissions:
+            suspend_users_label: 'Suspend users'
     forum:
         notifications:
             user_suspended_text: 'You have been suspended for {timeReadable}'
@@ -709,6 +1029,124 @@ blomstra-gdpr:
                 export_description: 'If an IP ban record is associated with a user (i.e. the user was banned by IP), the user''s IP address will be included in the export, along with the reason for the ban and the creation date.'
                 anonymize_description: 'Any IP addresses linked to the user are decoupled, but the IP itself will remain banned, along with the reason. Ensure no PII data is stored in the ''reason'' field.'
 fof-upload:
+    admin:
+        nav:
+            shared-uploads-button: 'Shared uploads'
+        shared-uploads:
+            description: 'Upload files that can be used by all users of your forum.'
+            introduction: "Shared uploads are files that can be used by all users of your forum. They are not attached to any post, but can be inserted into posts by using the media manager.\n\n<strong>Warning:</strong> Shared uploads are not protected by any permissions. Anyone with the URL can view them.\n"
+            no-files: 'No shared files have been uploaded yet.'
+            title: 'Shared uploads'
+            upload-new-button: 'Upload new file'
+        pane:
+            title: Upload
+            description: 'Set up uploading services and preferences.'
+        help_texts:
+            disable-download-logging: "Disable logging every download made by users of your forum. Keeping it enabled allows you to view the number of downloads and other metrics in the nearby future.\n"
+            disable-hotlink-protection: "Hotlink protection prevents opening downloads from other sites. Current method requires a csrf token and post id.\n"
+            download_templates: "Download templates are how uploads are shown on your forum, eg like previews, buttons. Currently available:\n"
+            mime_types: "Please configure your mapping here. Each mime type regular expression will be handled by a specific upload adapter and download template.\n"
+            resize: "Choose whether you want to resize your images before they get uploaded. You can choose a maximum width and height, in pixels. The resizing process keeps the aspect ratio of the images.\n"
+            client_extension: "By default Upload will choose a safe file extension based on the MIME type.\nFor some file types based around ZIP or binary data this can result in generic extensions being used instead of the expected one.\nHere you can enter a comma-separated list of file extensions that will be kept verbatim.\n"
+            watermark: "Choose whether images will have a watermark added during upload. Watermarks are added to non-gifs based on your preferences below.\n"
+            s3_compatible_storage: "The following settings are only required when using S3 compatible storage. If you use AWS, you can leave them blank.\n"
+            s3_acl: "The ACL that should be applied to the uploaded object (default: private). For possible values, see https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl\n"
+            custom_s3_url: "Use this setting if you are using an S3-compatible service that requires a specific URL format (e.g., Backblaze B2) or if you are experiencing issues with the default URL format. This setting is generally not necessary for most services. Ensure the URL includes the protocol (https://) and is correctly formatted. Example: https://your-bucket.s3.your-region.backblazeb2.com\n"
+            s3_instance_profile: "Leave key and secret empty to use credentials in instance profile.\n"
+            composer_buttons: "By default both the media manager button and upload button are visible. You can also choose to display only one button.\n"
+        labels:
+            aws-s3:
+                bucket: Bucket
+                key: Key
+                region: Region
+                secret: Secret
+                title: 'AWS S3 storage settings'
+                advanced_title: 'Advanced S3 storage settings'
+                endpoint: Endpoint
+                use_path_style_endpoint: 'Use path style endpoint'
+                acl: 'Access Control List (ACL)'
+                custom_url: 'Custom S3 URL'
+            disable-download-logging:
+                title: 'Disable logging downloads'
+                toggle: Disable
+            disable-hotlink-protection:
+                title: 'Disable hotlink protection'
+                toggle: Disable
+            imgur:
+                client_id: 'Imgur client ID'
+                title: 'Imgur image storage settings'
+                tos: 'It is your responsibility to ensure your forum users adhere to Imgur''s <a>Terms of service</a>'
+            local:
+                cdn_url: 'Content Delivery URL (prefixes files)'
+                title: 'Local storage settings'
+            qiniu:
+                title: 'Qiniu storage settings'
+                key: Key
+                secret: Secret
+                bucket: Bucket
+            preferences:
+                max_file_size: 'Maximum file size (in kilobytes)'
+                mime_types: 'Configure your mime type, upload adapter mapping'
+                title: 'General preferences'
+                php_ini_values: 'Your <code>php.ini</code> values are <code>post_max_size={post}</code> and <code>upload_max_filesize={upload}</code>. Ensure the value set here is below these thresholds, or adjust them accordingly. If using <code>Nginx</code>, also ensure that <code>client_max_body_size</code> is of sufficient size for your chosen max limit.'
+            resize:
+                max_width: 'Maximum image width/height'
+                title: 'Image resize'
+                toggle: 'Resize images'
+            client_extension:
+                title: 'User-provided file extensions'
+            watermark:
+                file: 'Upload your watermark image'
+                position: 'Watermark position'
+                title: 'Watermark images'
+                toggle: 'Watermark images'
+            composer_buttons:
+                title: 'Composer buttons'
+                options:
+                    both: Both
+                    upload-btn: 'Upload button only'
+                    media-btn: 'Media manager button only'
+            inspect-mime: 'Test file MIME type'
+        permissions:
+            download_label: 'Download files'
+            upload_label: 'Upload files'
+            view_user_uploads_label: 'View user uploads'
+            delete_uploads_of_others_label: 'Delete user uploads'
+            upload_shared_label: 'Upload shared files'
+            access_shared_label: 'Access shared files in Media Manager'
+        templates:
+            file: 'Default file download template'
+            file_description: "Shows the file name and some general information. Proxies downloads through php, allowing for statistics gathering and hotlink protection.\n"
+            image: 'Default image download template'
+            image_description: "Shows a thumbnail of the image and proxies download through php. Allowing statistics to be gathered and hotlink protection.\n"
+            image-preview: 'Complete image preview template'
+            image-preview_description: "Shows the complete image in-line. No download functionality, no statistics are gathered and hotlink protection is ignored.\n"
+            markdown-image: 'Markdown image template'
+            markdown-image_description: "Shows the complete image in-line using Markdown. <strong>You must have flarum/markdown installed and enabled for this to work.</strong> No download functionality, no statistics are gathered and hotlink protection is ignored.\n"
+            bbcode-image: 'BBCode image template'
+            bbcode-image_description: "Shows the complete image in-line using BBCode. <strong>You must have flarum/bbcode installed and enabled for this to work.</strong> No download functionality, no statistics are gathered and hotlink protection is ignored.\n"
+            just-url: 'Just URL'
+            just-url_description: "Inserts just the URL. Rendering can be handled by other extensions with auto-link ability. No download functionality, no statistics are gathered and hotlink protection is ignored.\n"
+            text-preview: 'Text preview'
+            text-preview_description: "Inserts a preview (first 5 lines) of the text file, with an option to expand to reveal the full contents of the file.\n"
+        upload_methods:
+            aws-s3: S3/Compatible
+            imgur: Imgur
+            local: Local
+            ovh-svfs: 'OVH SVFS'
+            qiniu: QiNiu
+        inspect-mime:
+            title: 'Inspect MIME'
+            description: "FoF Upload uses the <a>PHP Mime Detector</a> library for common MIME types and PHP Fileinfo as a fallback.\nThe MIME value returned by Fileinfo can be different from server to server!\n"
+            select: 'Select a file below to inspect the values that will be used. The file will not be saved.'
+            laravel-validation: 'Laravel File Validation'
+            no-file-selected: 'No file'
+            validation-passed: Passed
+            validation-failed: 'Failed: {error}'
+            mime-detector: 'Mime Detector (primary)'
+            mime-fileinfo: 'PHP Fileinfo (fallback)'
+            guessed-extension: 'Default file extension (if original is not whitelisted)'
+            not-available: 'No result'
     forum:
         media_manager: 'Media manager'
         buttons:
@@ -839,6 +1277,11 @@ fof-follow-tags:
             settings:
                 heading: 'Follow Tags'
                 filter_label: 'What to show by default in the Following page'
+    admin:
+        settings:
+            following_page_default_label: 'Default Following Page Filtering'
+            following_none_label: 'Followed Discussions'
+            following_tags_label: 'Followed Tags'
     email:
         subject:
             newDiscussionInTag: '[Tag | New Discussion] {title}'
@@ -858,6 +1301,18 @@ fof-follow-tags:
             none: 'Followed Discussions'
             tags: 'Followed Tags'
 flarum-nicknames:
+    admin:
+        permissions:
+            edit_own_nickname_label: 'Edit own nickname'
+        settings:
+            max_label: 'Maximum nickname length'
+            min_label: 'Minimum nickname length'
+            random_username_label: 'Randomize Usernames'
+            random_username_help: 'This will hide the `username` input on registration, and use a random number instead. It will also make the `nickname` field mandatory. This will only take effect if "Allow setting nicknames on registration" is enabled.'
+            regex_label: 'Regular expression for validation'
+            set_on_registration_label: 'Allow setting nicknames on registration'
+            unique_label: 'Require unique nicknames'
+        wrong_driver: 'You must select "nickname" as the display name driver on the <a><strong>Basics Page</strong></a> for this extension to take effect.'
     api:
         invalid_nickname_message: 'This nickname is invalid. Please contact your forum administrator for more information on nickname rules.'
     ref:
@@ -875,6 +1330,57 @@ flarum-nicknames:
         sign_up:
             nickname_placeholder: Nickname
 fof-oauth:
+    admin:
+        configure_button_label: 'Configure with FoF OAuth'
+        settings_accessibility_label: '{name} settings'
+        permissions:
+            moderate_user_providers: 'Moderate user''s linked accounts'
+        settings:
+            advanced:
+                heading: Advanced
+                log-oauth-errors-label: 'Log OAuth errors'
+                log-oauth-errors-help: 'If enabled, OAuth errors will be logged to the Flarum log. This may help with debugging OAuth issues, but may also contain sensitive information.'
+            only_icons_label: 'Only show the Log In Button icons (alternative layout)'
+            update_email_from_provider_label: 'Update email address from provider'
+            update_email_from_provider_help: 'If enabled, the user''s email address will be updated to match the one provided by the OAuth provider on each login to the forum. Not all providers provide the updated email, in which case this setting will not have any effect with those providers.'
+            fullscreen_popup_label: 'Use Fullscreen Popup for OAuth'
+            fullscreen_popup_help: 'When enabled, the OAuth login will open in a fullscreen popup. If this is enabled, the width and height settings will be ignored.'
+            popup_width_label: 'OAuth Popup Width'
+            popup_width_help: 'Set the width of the OAuth popup window. This setting will be ignored if "Use Fullscreen Popup for OAuth" is enabled.'
+            popup_height_label: 'OAuth Popup Height'
+            popup_height_help: 'Set the height of the OAuth popup window. This setting will be ignored if "Use Fullscreen Popup for OAuth" is enabled.'
+            providers:
+                callback_url_text: 'If necessary, set the callback URL to {url}.'
+                discord:
+                    description: 'Create an app at {link}. Add the redirect URL in the OAuth2 tab.'
+                    client_id_label: 'Client ID'
+                    client_secret_label: 'Client Secret'
+                facebook:
+                    description: 'Create an app at {link}.'
+                    app_id_label: 'App ID'
+                    app_secret_label: 'App Secret'
+                github:
+                    description: 'Create an OAuth app at {link}.'
+                    client_id_label: 'Client ID'
+                    client_secret_label: 'Client Secret'
+                gitlab:
+                    description: 'Create an application at {link}. Give the application the <code>read_user</code> scope.'
+                    domain_label: 'GitLab Domain'
+                    client_id_label: 'App ID'
+                    client_secret_label: 'App Secret'
+                twitter:
+                    description: 'Create an app at {link}. You will need to set a Terms of Service URL and a Privacy Policy URL. Make sure to then add the request email permission.'
+                    api_key_label: 'API Key'
+                    api_secret_label: 'API Secret'
+                google:
+                    description: 'Create an application at {link}.'
+                    hosted_domain_label: 'Hosted Domain (G suite/Google Apps for Business, optional)'
+                    client_id_label: 'Client ID'
+                    client_secret_label: 'Client Secret'
+                linkedin:
+                    description: 'Create an application at {link}.'
+                    client_id_label: 'Client ID'
+                    client_secret_label: 'Client Secret'
     forum:
         log_in:
             with_button: 'Log In with {provider}'
@@ -925,6 +1431,13 @@ fof-oauth:
             client_id: 'Client ID'
             client_secret: 'Client Secret'
 fof-impersonate:
+    admin:
+        permissions:
+            login: 'Login as other users'
+        settings:
+            title: 'FoF Impersonate'
+            require_reason: 'Require a reason to be entered before proceeding to impersonate another user.'
+            no_settings_available: 'No settings are currently available. Try installing fof/moderator-notes'
     forum:
         modal:
             title: 'Login as another user'
@@ -995,6 +1508,25 @@ fof-byobu:
             pd_user_left_text: '{username} left the private discussion'
             pd_added_text: '{username} added you to a private discussion'
             pd_added_label: 'Someone adds me to an existing private discussion'
+    admin:
+        permission:
+            create_private_discussions_with_users: 'Create private discussions with users'
+            add_more_than_two_user_recipients: 'Add more than 2 user recipients to private discussion'
+            create_private_discussions_with_groups: 'Create private discussions with groups'
+            create_private_discussions_with_blocking_users: 'Create private discussions with users that block it'
+            edit_user_recipients: 'Edit users partaking in private discussions'
+            edit_group_recipients: 'Edit groups partaking in private discussions'
+            make_private_into_public: 'Transform a private discussion into a public discussion'
+            view_private_discussions-when-flagged: 'View private discussions of other users if flagged'
+        settings:
+            badge-icon: 'Byobu Discussion Badge'
+            enable-make-public-option: 'Enable the "make public" ability'
+            enable-make-public-option-help: 'Adds the ability for those with permission to remove all recipients, assign a new tag and make the discussion publically visible (accoring to the visibility settings of the chosen tag).'
+            post-event-icon: 'Byobu Post Events'
+            delete_on_last_recipient_left: 'Delete PDs when the last user leaves'
+            delete_on_last_recipient_left_help: 'If enabled, PDs will be permanently deleted from the database when the last user leaves. Otherwise, the PD will be soft-deleted/hidden.'
+            hide_from_all_discussions_page: 'Hide PDs from "All Discussions" page'
+            hide_from_all_discussions_page_help: 'Private discussions will only be accessible from the "Private Discussions" page or the user profile'
     email:
         subject:
             private_discussion_created: '[Private Discussion] {display_name} started a new private discussion with you'
@@ -1007,6 +1539,67 @@ fof-byobu:
             recipient_removed: "Hey {recipient_display_name},\n\n{actor_display_name} left the private discussion: {discussion_title}. They'll no longer be able to view any of it's content.\n\nView it here:\n{discussion_url}\n\nYou may need to login first before being able to access this link.\n"
             private_discussion_added: "Hey {recipient_display_name},\n\n{actor_display_name} added you to an existing private discussion: {discussion_title}.\n\nView it here:\n{discussion_url}\n\nYou may need to login first before being able to access this link.\n"
 v17development-flarum-badges:
+    admin:
+        uncategorized: Uncategorized
+        new_badge: 'New badge'
+        create_category: 'Create category'
+        update_badge: 'Update badge'
+        update_category: 'Update category'
+        edit_category: 'Edit category'
+        nothing_here_yet: 'You did not create any badges or categories yet.'
+        show_badges_on_user_card: 'Show badges on user card'
+        number_of_badges_on_user_card: 'Number of badges'
+        number_of_badges_on_user_card_help: 'Number of badges to show on user card'
+        permissions:
+            badge_detail_users: 'Can see users on badge details page'
+            give_badge: 'Give badge to user'
+            take_badge: 'Take badge from user'
+            edit_own_card_badges: 'Edit own user card badges'
+            edit_card_badges: 'Edit user card badges'
+        confirm_dialog:
+            title: Confirm
+            'no': 'No'
+            'yes': 'Yes'
+        confirm_messages:
+            delete_badge: 'Are you sure you want to remove this badge? It is removed from all users and is irreversible.'
+            delete_category: 'Are you sure you want to remove this category? If there are any badges in this category, they will be marked as ''uncategorized''.'
+        badge:
+            name: 'Badge name'
+            icon: 'Badge icon'
+            description: 'Badge description'
+            visible: Visible
+            visible_description: 'Enable this badge. When disabled, the badge will not be visible.'
+            is_image: 'Badge is an image'
+            is_image_description: 'Use an image instead of the default badge'
+            image: 'Badge image URL'
+            image_placeholder: 'Enter URL to badge image'
+            icon_color: 'Icon color'
+            background_color: 'Background color'
+            label_color: 'Text color'
+        badge_category:
+            name: 'Category name'
+            description: 'Category description'
+            blockview: Block-view
+            blockview_description: 'Show category-badges in blockview on badge overview. When disabled, all badges will be displayed in a table.'
+            enabled: Enabled
+            enabled_description: 'Enable this category. When disabled, all badges will be disabled and the category will be hidden.'
+        auto_moderator:
+            not_installed:
+                title: 'Automatically reward users with badges'
+                content: 'This extension offers more functionality when <a>Auto Moderator</a> is installed and activated. When you install this extension, users can be automatically rewarded with badges without the intervention of a community employee!'
+                install: Install
+                dismiss: 'Do not show again'
+            action_drivers:
+                badge_id: 'Badge ID'
+                give_badge: 'Give badge'
+                remove_badge: 'Remove badge'
+            requirement_drivers:
+                has_badge: 'Has badge'
+            metric_drivers:
+                badges_received: 'Badges received'
+            badge_selector:
+                placeholder: 'Select a badge'
+                loading_badges: 'Loading badges'
     forum:
         badge_information: 'Badge information'
         all_badges: 'See all badges'
@@ -1052,6 +1645,26 @@ v17development-flarum-seo:
         profile_title: 'Profile of {username}'
         profile_description: 'Profile of {username} | {discussion_count} discussions | {comment_count} posts'
 the-turk-miserable-users:
+    admin:
+        settings:
+            range_separator_text: ' to '
+            range_seconds_text: ' Seconds'
+            loading_delay_label: 'Loading delay'
+            loading_delay_text: 'Miserable users will be subjected to a page loading delay of a random period between the two values provided here.'
+            broken_page_chance_label: 'Broken page chance'
+            broken_page_chance_text: 'You may present miserable users with a broken page from time to time. Enter the percentage chance of this happening.'
+            flood_time_multiplier_label: 'Flood time multiplier'
+            flood_time_multiplier_text: 'The standard minimum time (which is 10 seconds) between messages can be multiplied to make miserable users wait longer between posting.'
+            redirection_chance_label: 'Redirection chance'
+            redirection_chance_text: 'Enter the percentage chance that a miserable user will be redirected to the redirection page URL.'
+            redirection_page_url_label: 'Redirection page URL'
+            redirection_page_url_text: 'You may randomly redirect miserable users to a different page. Leave this blank to redirect to the forum home page.'
+            log_out_chance_label: 'Log out chance'
+            log_out_chance_text: 'Enter the percentage chance that a miserable user will be logged out and redirected back to the home page. <b>Remember!</b> Once logged out, they''re not miserable anymore.'
+            shuffle_post_chance_label: 'Shuffle post chance'
+            shuffle_post_chance_text: 'You may randomly shuffle a miserable user''s post. Enter the percentage chance of this happening.'
+        permissions:
+            miserable_user_label: 'Miserable User'
     forum:
         miserable_user:
             title: 'Miserable {username}'
@@ -1068,6 +1681,11 @@ the-turk-miserable-users:
     ref:
         miserable_user: 'Miserable User'
 sycho-profile-cover:
+    admin:
+        thumbnails: 'Create thumbnails'
+        max_size: 'Maximum profile cover image size (in KB)'
+        permission:
+            set_cover: 'Set Profile Cover'
     forum:
         cover: Cover
         edit_cover: 'Edit Cover'
@@ -1079,8 +1697,39 @@ sycho-profile-cover:
             success: 'Profile cover removed.'
             error: 'Could not remove cover, try again later.'
 sycho-photoswipe:
+    admin:
+        my_cool_key: 'My Cool Key'
 nearata-tags-color-generator:
+    admin:
+        color_luminosity_label: 'Color Luminosity'
+        color_luminosity_options:
+            random: Random
+            light: Light
+            bright: Bright
+            dark: Dark
+        color_hue_label: 'Color Hue'
+        color_hue_options:
+            random: Random
+            red: Red
+            orange: Orange
+            yellow: Yellow
+            green: Green
+            blue: Blue
+            purple: Purple
+            pink: Pink
+            monochrome: Monochrome
+        generate_color_button: 'Generate Random Color'
 nearata-prevent-double-posting:
+    admin:
+        settings:
+            except_thread_author:
+                label: 'Except Thread Author'
+                help: 'Should the <strong>Thread Author</strong> be immune to this restriction?'
+            sequential_replies_threshold:
+                label: 'Sequential Replies Threshold'
+                help: 'Max consecutive replies allowed'
+        permissions:
+            bypass_double_posting_label: 'Bypass Double Posting'
     forum:
         exception:
             too_many_replies: 'No more than {count} consecutive replies are allowed. Please edit your previous reply instead, or wait for someone to reply to you.'
@@ -1088,6 +1737,24 @@ nearata-copy-code-to-clipboard:
     forum:
         copy: 'Copy to clipboard'
 migratetoflarum-canonical:
+    admin:
+        settings:
+            step:
+                how_to: 'How to enable the canonical redirect'
+                check_config_url: 'Check that the url defined in config.php is your preferred canonical URL (currently: {url})'
+                admin_on_canonical: 'Access the admin panel via the canonical URL'
+                enable_temporary: 'Enable temporary redirect and check everything works'
+                enable_permanent: 'Enable permanent redirect'
+                suggestions: 'Other suggestions that this extension does not enforce or cover'
+                use_https: 'Use an HTTPS canonical URL'
+                use_hsts: 'Use HSTS to prevent downgrade attacks'
+            field:
+                status: 'Redirect type'
+                wrong_url: 'The extension settings will appear once you access your forum via the canonical URL'
+            option:
+                disabled: 'Disabled (the extension won''t do anything)'
+                302: '302 (Temporary redirect, for testing)'
+                301: '301 (Permanent redirect, for production)'
 michaelbelgium-flarum-profile-views:
     forum:
         user:
@@ -1095,7 +1762,20 @@ michaelbelgium-flarum-profile-views:
                 title: 'Last visitors'
                 guest: Guest
             view_count_text: '{viewcount, plural, one {viewed {viewcount} time} other {viewed {viewcount} times}}'
+    admin:
+        settings:
+            track_guests_label: 'Track guests'
+            max_viewcount_label: 'Maximum visitorlist items'
 justoverclock-country-flags:
+    admin:
+        countryColumn: Country
+        showFlagsOnPosts: 'Show Flags on Posts'
+        showFlagsOnPosts_text: 'Show Flags (Text) on Posts'
+        set_on_registration_label: 'Allow setting country on registration'
+        required_label: 'Required entering country'
+        required_help: 'You need enable Set on country option to make this option work'
+        bind_label: 'Bind Required entering country'
+        bind_help: 'Force country to account that has not registered country after login'
     forum:
         inputCountryCode: 'Country Code'
         saveButton: Save
@@ -1113,7 +1793,38 @@ username-blacklist:
         blackList: 'Blacklisted Username'
         blackList-help: 'Write here username that you want to block during registration (separated by comma)'
 flarum-ext-socialcards:
+    admin:
+        settings:
+            showfacebook: 'Enable Facebook'
+            fblink: 'Facebook Link'
+            showyoutube: 'Enable Youtube'
+            ytlink: 'Youtube Link'
+            showtwitter: 'Enable Twitter'
+            showInstagram: 'Enable Instagram'
+            showLinkedin: 'Enable LinkedIn'
+            twlink: 'Twitter Link'
+            ghlink: 'GitHub Link'
+            lilink: 'LinkedIn Link'
+            islink: 'Instagram Link'
+            showGithub: 'Enable GitHub'
 ianm-synopsis:
+    admin:
+        settings:
+            disable-when-searching:
+                label: 'Disable synopsis when searching'
+                help: 'When enabled, the default most relevant post excerpt will be used instead of the synopsis'
+            excerpt-length:
+                label: 'Summary excerpt length in characters'
+                help: 'How many characters should be displayed from the post.'
+            rich-excerpts:
+                label: 'Display excerpts using rich content'
+                help: 'When enabled, images, embeds and other non text elements may be included in the synopsis'
+            excerpt-type:
+                label: 'Which post should be displayed as the excerpt?'
+                help: 'Select if the first or last post be used for synopsis content'
+            first-label: 'First post'
+            last-label: 'Last post'
+            tags-enabled: 'You have <code>flarum/tags</code> enabled. These settings will become default, unless per individual tags have their own setting.'
     forum:
         user:
             settings:
@@ -1148,9 +1859,58 @@ ianm-syndication:
                 user_subtitle: 'Latest posts & comments by this user.'
         discussion:
             feed_link: Feed
+    admin:
+        settings:
+            full-text:
+                label: 'Full-Text Feeds'
+                help: 'If disabled, feeds will only contain excerpts of posts, and users will have to go to the forum to read everything. I would recommend to leave this option active in order to respect the people following the forum from an RSS aggregator—if any.'
+            html:
+                label: 'Formatted Feeds'
+                help: 'Check this to keep the HTML in the generated feeds. If disabled, the feeds will be in plain text.'
+            entries-count: 'How many entries per feed?'
+            forum-icons:
+                label: 'Show Atom/RSS feed links on the forum'
+                help: 'Displays icons in All Discussions, Tags and Discussions to allow easy access to the feed(s).'
+            forum-link-format:
+                label: 'Forum feed format'
+                help: 'Select which format (Atom or RSS) should be used when the links are displayed on the forum.'
 ianm-log-viewer:
+    admin:
+        permissions:
+            access_logfile_api: 'Access logfile data via the API'
+        settings:
+            purge-days: 'Purge logfiles after days'
+            purge-days-help: 'Relies on the Flarum scheduler being active. 0 for disabled.'
+        viewer:
+            available_logs_heading: 'Available files'
+            file_contents_heading: 'File contents'
+            file_size: 'Size (bytes): {size}'
+            last_updated: 'Last updated: {updated}'
+            no_file_selected: 'Select a log file to view its content.'
 ianm-html-head:
+    admin:
+        create_button: Create
+        table:
+            description_label: Description
+            header_label: Header
+            active_label: Active
+            empty_text: 'No entries'
+            delete_button: Delete
+            edit_button: Edit
+        modal:
+            create_title: 'Create new item'
+            edit_title: 'Edit item'
+            text: 'Ensure your syntax is correct, as it''s possible to break the forum by supplying incorrect data on the head item. Once saved, enable your new header item using the toggle switch provided.'
+            description_label: Description
+            header_label: 'Custom head item'
+            save_button: Save
 ianm-follow-users:
+    admin:
+        permissions:
+            be_followed_label: 'Allow users to follow'
+        settings:
+            button-on-profile-label: 'Show the Follow button directly on the user profile header'
+            stats-on-profile-label: 'Show follower and following counts on user profiles'
     forum:
         followed: Followed
         followers: '{count, plural, one {Follower} other {Followers}}'
@@ -1214,6 +1974,11 @@ ianm-follow-users:
                 name: 'Follow all'
                 description: "Receive notifications when <em>{username}</em> starts a new discussion or posts within any discussion.\n"
 fof-username-request:
+    admin:
+        permissions:
+            moderate_requests: 'Approve username/nickname change requests'
+            request_nickname: 'Request nickname change'
+            request_username: 'Request username change'
     forum:
         nickname_modals:
             action:
@@ -1298,6 +2063,16 @@ fof-username-request:
             approved: '{display_name} approved your username change to {requested_username}'
             rejected: '{display_name} rejected your username change to {requested_username}'
 fof-user-bio:
+    admin:
+        permission:
+            view: 'View bio'
+            editOwn: 'Edit own bio'
+            editAny: 'Edit any bio'
+        setting:
+            bioLimit: 'Bio character limit'
+            maxLines: 'Max number of lines to show at a time'
+            allowFormatting: 'Allow formatting in bio'
+            allowFormatting_help: 'By design, this formatting is separate from post formatting. If the BBCode and/or Markdown extensions are enabled, they will be available to format the bio. No images or embeds are allowed. Extensions that add to the Flarum formatter must *explicitly* add support for the bio formatter.'
     forum:
         userbioPlaceholder: 'Write something about yourself'
         userbioPlaceholderOtherUser: 'Write a bio for {username}'
@@ -1307,6 +2082,9 @@ fof-user-bio:
             save_button: Save
             edit_bio_label: 'Edit bio'
 fof-split:
+    admin:
+        permissions:
+            split_discussion_label: 'Split posts from discussions'
     forum:
         post:
             was_split_to: '{count, plural, one {{count} post was split to {target}.} other {{count} posts were split to {target}.}}'
@@ -1320,6 +2098,13 @@ fof-split:
             new_discussion_label: 'Specify the title for the new discussion'
             submit_button: Split
 fof-socialprofile:
+    admin:
+        permissions:
+            view: 'View social profile'
+            editOwn: 'Edit own social profile'
+            editAny: 'Edit any social profile'
+        settings:
+            allow_external_favicons_label: 'Allow external website icons (uses DuckDuckGo''s favicon API)'
     forum:
         edit:
             edit: 'Edit your social media buttons'
@@ -1334,7 +2119,48 @@ fof-socialprofile:
             favicon: Favicon
             grey_favicon: 'Grey Favicon'
 fof-sitemap:
+    admin:
+        settings:
+            exclude_users: 'Exclude all user profiles from sitemap'
+            exclude_users_help: 'By default any user visible to guests will be indexed'
+            mode_label: 'Operation mode'
+            mode_help: 'Selecting the correct mode for your size of forum is vitally important.'
+            mode_help_runtime_label: 'Runtime Mode'
+            mode_help_runtime: 'For small forums, most likely on shared hosting environments, with discussions, users, tags and pages summed up being less than 10.000 items. The sitemap is generated on the fly at each request.'
+            mode_help_schedule: 'The following modes add their tasks to the Flarum schedule.'
+            mode_help_schedule_setup: 'Without the Flarum scheduler correctly setup, the following modes will not run. Refer here <a>for more information</a>.'
+            mode_help_large: '50.000 is the technical limit for sitemap files. If you have more entries to store, use the following option!'
+            mode_help_multi_label: 'Multi-file Mode'
+            mode_help_multi: 'Best for larger forums, starting at 10.000 items. Mult part, compressed sitemap files will be generated and stored in the /public folder'
+            advanced_options_label: 'Advanced options'
+            frequency_label: 'How often should the scheduler re-build the cached sitemap?'
+            risky_performance_improvements: 'Enable risky performance improvements'
+            risky_performance_improvements_help: 'These improvements make the CRON job run faster on million-rows datasets but might break compatibility with some extensions.'
+            modes:
+                runtime: Runtime
+                multi_file: 'Multi file'
+            frequency:
+                hourly: Hourly
+                twice_daily: 'Twice daily'
+                daily: Daily
+            soft_404:
+                heading: 'Soft 404 prevention'
+                help: 'When a model has no or little relevant content, Google and other crawlers may flag these as "soft 404" pages. To eliminate this, set a minimum number of items required for each qualifying item here.'
+                user:
+                    comments:
+                        minimum_item_threshold_label: 'User: Minimum number of comments/posts'
+                        minimum_item_threshold_help: 'The minimum number of comments/posts a user must have for their profile to be included in the sitemap.'
+                tags:
+                    discussion:
+                        minimum_item_threshold_label: 'Tag: Minimum number of discussions'
+                        minimum_item_threshold_help: 'The minimum number of discussions a tag must have for it to be included in the sitemap.'
 fof-share-social:
+    admin:
+        settings:
+            canonical-urls: 'Use canonical URLs for sharing'
+            plain-copy: 'Display plain URL copy'
+            default-option: 'Default share option'
+            default-option-help: "Choosing a default option will convert the modal into a dropdown button.\nIf \"Native Share\" is selected, it will only be shown if the browser supports it, otherwise behavior reverts to original modal.\n"
     forum:
         discussion:
             share_button: Share
@@ -1357,6 +2183,25 @@ fof-share-social:
             qzone: QZone
             native: 'Native Share'
 fof-recaptcha:
+    admin:
+        settings:
+            help_text: 'Obtain your Google reCAPTCHA credentials <a>here</a>.'
+            secret_key_label: 'Secret Key'
+            site_key_label: 'Site Key'
+            type_label: 'reCAPTCHA Type'
+            type_help: 'This extension only supports reCAPTCHA v2. The selected type must match the type of your reCAPTCHA credentials.'
+            signup: 'Sign Up'
+            signin: 'Log In'
+            forgot: 'Forgot Password'
+        test:
+            title: 'Test reCAPTCHA'
+            help_text: "This test will use the current values entered above. Make sure to reload the test after modifying settings, and don't forget to save once the test passes!\nBelow may not reflect the saved settings.\n"
+            success_message: 'Success! reCAPTCHA is configured correctly.'
+            load_test_button: Load
+            submit_button: Submit
+            reload_button: Reload
+        permissions:
+            post_without_captcha: 'Create posts and discussions without captcha'
     forum:
         error: 'There was an error submitting reCAPTCHA. Try again.'
         unknown_error: 'An unknown error occurred. Check the captcha and try again.'
@@ -1374,6 +2219,49 @@ fof-reactions:
             no_reactions: 'No reactions yet'
         mod_item: 'View Reactions'
         react_button_label: React
+    admin:
+        permissions:
+            react_posts_label: 'React to posts'
+            see_reactions_label: 'See who reacted on posts'
+            delete_post_reactions_label: 'Delete reactions on posts'
+        page:
+            cdn:
+                title: CDN
+                help: "By default, we serve the reaction assets from Cloudflare's CDN. You also have the option to specify any other CDN address\nas required. <code>[codepoint]</code> will be substituted with the codepoint of the emoji.\n\nFor example, to switch to Noto Emoji via jsdelivr, you would enter <code>https://cdn.jsdelivr.net/gh/googlefonts/noto-emoji@v2.040/svg/emoji_u[codepoint].svg</code>. This field must NEVER be left empty.\n"
+                label: URL
+                default-url: 'Default: {url}'
+            reactions:
+                title: 'Custom Reactions'
+                reactions: 'Current Reactions'
+                Helptext: 'Input the name (identifier) of the emoji or font-awesome icon and select which type you would like.'
+                help:
+                    display: Display
+                    identifier: Identifier
+                delete_confirmation: 'Are you sure you want to delete this reaction? This action cannot be undone.'
+            convert:
+                help: 'If you just updated your extension, your reactions will have to be converted. If you just installed this extension, you can saftely ignore this message.'
+                button: 'Convert old reactions'
+                converting: 'Your reactions are now converting. Refresh your site after a few minutes to see the process finished. (Conversion time might take a while depending on your total number of reactions)'
+                converted: 'Successfully converted all {number} likes'
+            settings:
+                react_own_posts_help: 'When enabled, subject to permission, users may react to their own posts on the forum. To prevent users reacting on their own posts, disable this setting.'
+                react_own_posts_label: 'Users may react to their own posts,'
+                allow-anonymous: 'Allow anonymous(guest) reactions'
+                allow-anonymous-help: 'If enabled, guests and anonymous users will be able to react to posts. Note that anonymous reactions will not be linked to a user profile and will be aggregated in the reactions list.'
+                save_settings: 'Save Settings'
+                integrations:
+                    legend: Integrations
+                    warning: 'The same reaction <strong>cannot</strong> be converted to a like <strong>and</strong> an upvote'
+                    gamification:
+                        legend: Gamification
+                        upvoteLabel: 'Convert reactions to upvotes'
+                        upvoteHelptext: 'Enter the identifier of the reaction you would like to automatically convert into an upvote'
+                        downvoteLabel: 'Convert reactions to downvotes'
+                        downvoteHelptext: 'Enter the identifier of the reaction you would like to automatically convert into an downvote'
+                    likes:
+                        legend: Likes
+                        Label: 'Convert reactions to likes'
+                        Helptext: 'Enter the identifier of the reaction you would like to automatically convert into a like'
 fof-profile-image-crop:
     forum:
         modal:
@@ -1392,8 +2280,53 @@ fof-prevent-necrobumping:
                 description: 'It is very likely that it does not need any further discussion and thus bumping it serves no purpose.'
                 checkbox_label: 'I am aware that this discussion is rather old but would still like to reply.'
                 error: 'This discussion is too old to reply to.'
+    admin:
+        settings:
+            days_label: Days
+            days_help: 'A discussion will be marked as old when the amount of days specified has passed since the last post on that discussion was posted. Use <code>0</code> to disable it by default.'
+            message_title_label: 'Custom Message Title'
+            message_title_help: 'Use <code>[time]</code> for the time text, e.g. "14 days".'
+            message_description_label: 'Custom Message Description'
+            message_agreement_label: 'Custom Message Agreement (Checkbox)'
+            tags_title: Tags
+            tags_help: 'Override the global days for a specific tag. Empty means use default value. If a discussion has multiple tags with different day values, it will use the smallest amount of days configured.'
 fof-pretty-mail:
+    admin:
+        nav:
+            desc: 'Customize your HTML email templates.'
+        settings:
+            attributes:
+                body: 'Contains the actual content of the email'
+                forumStyle: 'Contains the <strong>entire forum CSS</strong>'
+                url: 'Flarum''s <code>UrlGenerator</code>'
+                settings: 'Allows you to interact with the SettingsRepositoryInterface'
+                link: 'Contains the link within the email'
+            attributes_label: 'Available attributes'
+            label: 'Email Templates'
+            reset: 'Revert to Default'
+            confirm: 'Are you sure you want to revert to the stock email template for'
+            default: 'Default Template'
+            newPost: 'Flarum/subscriptions New Post Email'
+            userMentioned: 'Flarum/mentions User Mentioned Email'
+            postMentioned: 'Flarum/mentions Post Mentioned Email'
+            notifications: 'Notification templates'
+            notificationHelp: 'It is recommended to use "$forumStyle" for these emails as they may contain BBCODE. These emails also have "$user" available which contains the entire user model of the user being emailed.'
+            template_help: 'See each template for how to use each attribute.'
+        css_settings:
+            label: 'CSS settings'
+            help: 'You can choose to include the forum''s CSS in the email''s HTML code. If you enable this, you may have issues with certain email providers.'
+            switch_label: 'Include full forum CSS'
 fof-polls:
+    admin:
+        settings:
+            allow_option_image: 'Allow an image URL to be provided for each poll option'
+        permissions:
+            view_results_without_voting: 'View results without voting'
+            start: 'Start a poll'
+            self_edit: 'Allow users to edit their own polls'
+            vote: 'Vote on polls'
+            change_vote: 'Change vote'
+            moderate: 'Edit & remove polls'
     forum:
         days_remaining: 'Poll ends {time}.'
         no_permission: 'You don''t have permission to vote'
@@ -1435,6 +2368,15 @@ fof-nightmode:
         auto: 'Automatic (based on browser or device options)'
         light: 'Day Mode'
         dark: 'Night Mode'
+    admin:
+        settings:
+            modal:
+                always_show_theme_toggle_on_header: 'Always show the theme switch button on the forum header'
+                default_theme: 'Default forum theme'
+                default_theme_helper: 'The default theme is automatically set for new users, guests and those who have no preference set.'
+                theme_auto: 'Automatic (based on browser or device options)'
+                theme_light: 'Day Mode'
+                theme_dark: 'Night Mode'
     forum:
         header:
             nightmode_button: 'Night Mode'
@@ -1457,7 +2399,26 @@ fof-nightmode:
         day: 'Day Mode'
         night: 'Night Mode'
 fof-default-user-preferences:
+    admin:
+        settings:
+            fofNightMode: 'FoF Nightmode: Color theme to use by default'
+            fofNightMode-help: '0 - automatic, 1 - light mode, 2 - dark mode'
+            fofNightMode_perDevice: 'FoF Nightmode: Use per device settings'
+            fofNightMode_perDevice-help: 'Use per device preferences for nightmode settings'
+            followAfterReply: 'Follow after reply'
+            followAfterReply-help: 'When enabled, new users will automatically follow discussions they reply to or comment on.'
+            postMentioned: 'Post mentioned email'
+            postMentioned-help: 'When enabled, new users will automatically opt into receiving an email notification when one of their posts is mentioned.'
+            userMentioned: 'User mentioned email'
+            userMentioned-help: 'When enabled, new users will automatically opt into receiving an email notification when they are @mentioned.'
+            groupMentioned: 'Group mentioned email'
+            groupMentioned-help: 'When enabled, new users will automatically opt into recieving an email notifiation when a group they belong to is mentioned.'
 fof-moderator-notes:
+    admin:
+        permissions:
+            createnotes: 'Create moderator notes'
+            viewnotes: 'View moderator notes'
+            deletenotes: 'Delete moderator notes'
     forum:
         no_content_given: 'An empty note is not permitted.'
         moderatorNotes:
@@ -1477,7 +2438,112 @@ fof-moderator-notes:
         auto_note_actor: '_Switched to_ @{username}: {reason}'
         no_reason_provided: 'No reason provided'
 fof-linguist:
+    admin:
+        permissions:
+            view_string_keys: 'View translation string keys'
+        tabs:
+            strings: Translations
+            coverage: Coverage
+            export: Export
+            import: Import
+        buttons:
+            apply: Apply
+            reset: 'Restore original'
+            copy-original: 'Copy original text'
+            load-more: 'Load more'
+            delete-redundant: 'Delete redundant translations'
+            delete-redundant-confirm: "This will delete {count} translations that have identical original and custom values. This can be useful to clean up after a language pack update.\n"
+            delete-all: 'Delete all translations'
+            delete-all-confirm: "This will delete ALL of your {count} custom translations. Make sure you have exported or backed up everything you might have wanted to keep.\n"
+        locales:
+            all: All
+        placeholder:
+            not-translated: 'Not translated'
+            all-locales: 'A text defined here will be shown in all languages'
+            hint: 'Original value:'
+        filters:
+            search: 'Search translation strings...'
+            with-own-translations: 'My translations'
+            missing: 'Find missing translations'
+            missing-middle-label: 'translations in'
+            negation-options:
+                with: With
+                without: Without
+            type-options:
+                any: 'Original or Custom'
+                original: Original
+                own: Custom
+            operation-options:
+                or: 'Either of'
+                and: 'All of'
+            for-extension: 'For extension'
+            frontend: 'For frontend'
+            frontend-all-except-admin: 'All except Admin'
+            mass-edit: 'Mass edit'
+            results: 'Showing {shown} of {total} matching translations'
+        clear-cache:
+            text: "New translations have not yet been applied. Note: clearing the cache can momentarily slow down your forum.\n"
+            button: 'Clear cache now'
+        coverage:
+            column-options:
+                locale: 'By language'
+                namespace: 'By frontend'
+            total-options:
+                percent: Percent
+                count: Count
+            columns:
+                namespace: Namespace
+                total: Total
+                all-except-admin: 'Forum and other frontends'
+                all-frontends: 'Show all frontends'
+            count:
+                percent: '{percent} %'
+                total: '{translated} / {total}'
+                details: '{total} total / {original} original / {custom} custom'
+            all-namespaces: All
+            apply-missing-filter: 'Show matching missing translations'
+        export:
+            title: Export
+            warning: "The export format uses Flarum's Yaml-based translation files and is designed to share translations between forums and with language pack maintainers. The format is not designed to move all translations to a new forum. Depending on your use case, copying the database directly might be a better idea.\n"
+            locale: Locale
+            locale-all: 'Pseudo-locale "All"'
+            namespace: Namespace
+            namespace-all: All
+            include-originals: 'Include original translations'
+            include-all: 'Include translations defined for "All" languages'
+            output: Output
+            output-loading: 'Loading output...'
+            output-empty: 'Empty output'
+            download: Download
+        import:
+            title: Import
+            input: Input
+            input-placeholder: 'Drag and drop or paste a Yaml file here'
+            locale: Locale
+            locale-all: 'Pseudo-locale "All"'
+            override-existing: 'Override my existing custom translations'
+            submit: Import
+            results: "The import is finished. {imported} strings have been imported and {identical} identical strings were skipped. The page will now refresh to show the new translations.\n"
+            results-with-ignore: "The import is finished. {imported} strings have been imported, {ignored} existing strings have been ignored and {identical} identical strings were skipped. The page will now refresh to show the new translations.\n"
+        known-namespace:
+            core: 'Flarum Core'
+            validation: 'Validation Errors'
+        known-frontend:
+            forum: Forum
+            admin: Admin
+            lib: 'Lib (used on both Forum and Admin)'
+            ref: 'Ref (re-used in other keys)'
+            api: API
 fof-html-errors:
+    admin:
+        settings:
+            error:
+                403: '403 Forbidden'
+                404: '404 Not Found'
+                500: '500 Internal Server Error'
+                503: '503 Service Unavailable (Down For Maintenance)'
+            placeholder:
+                empty_for_default: 'Leave empty for the default Flarum error page'
 fof-gamification:
     forum:
         votes: Votes
@@ -1510,13 +2576,92 @@ fof-gamification:
         post:
             upvote_button: 'Upvote post'
             downvote_button: 'Downvote post'
+    admin:
+        permissions:
+            vote_label: 'Upvote/Downvote posts'
+            see_votes_label: 'See up/down vote count'
+            see_voters_label: 'See who voted'
+            see_ranking_page: 'See ranking page'
+            upvote_notifications: 'Receive notifications on upvote'
+            downvote_notifications: 'Receive notifications on downvote'
+        page:
+            rankings:
+                blocked:
+                    placeholder: 'admin, user1, user2'
+                    title: 'Ignored Users'
+                    help: 'These users will not be shown on the ranking page. Usernames should be separated by a comma followed by a space.'
+                title: 'Rankings Page'
+                enable: 'Enable custom images'
+                custom_image_1: '1st place image'
+                custom_image_2: '2nd place image'
+                custom_image_3: '3rd place image'
+            alt_votes:
+                icon_name: 'Alt layout icon name'
+            votes:
+                points_title: 'Points Placeholder'
+                points_placeholder: 'Points: '
+                color_holder: '#ffffff'
+                auto_upvote: 'Auto upvote posts when posted'
+                rate_limit: 'Enforce a vote rate limit (10 seconds)'
+                discussion_page: 'Show total votes of original post on discussions list'
+                alternate_layout: 'Use alternate voting layout on discussions list'
+                alternate_post_layout: 'Use alternate voting layout on posts'
+                title: Votes
+                vote_color: 'Voted color'
+                icon_name: 'Upvote/downvote icon'
+                icon_help: 'Input any Font-Awesome icon that is suffixed with -up and -down. Examples: arrow, thumbs, chevron'
+                upvotes_only: 'Only allow upvoting'
+                first_post_only: 'Only allow up/down votes in the first post in a discussion'
+                allow_self_votes: 'Users may vote on their own posts'
+            save_settings: 'Save settings'
+            convert:
+                button: 'Convert likes to upvotes'
+                help: 'Convert your previous likes from flarum-ext-likes into upvotes, as well as calculate the hotness for all current discussions.'
+                converting: 'Your likes are now being converted. Refresh your site after a few minutes to see the process finished. (Conversion time might take a while depending on your total forum likes)'
+                converted: 'Successfully converted all {number} likes'
+            ranks:
+                title: Ranks
+                ranks: 'Custom ranks'
+                number_title: 'How many rank badges should be shown?'
+                help:
+                    color: '#ffffff'
+                    help: 'Input the required number of upvotes, the name of the rank, and the hex color of the rank'
+                    points: Points
+                    name: Name
+            groups:
+                title: 'Automatically assigned groups'
+                help: "The selected groups will be automatically added or removed as needed when the number of points of a user changes. If you made changes to the configuration, you should run the <code>php flarum fof:gamification:assign-groups</code> command to update existing users. If you wish to delete a rule and remove all users from the group, set both minimum and maximum values to an empty string, save the settings and run the command line command. Finally you can delete the rule entirely from the settings.\n"
+                column:
+                    group: Group
+                    minPoints: 'Minimum points (inclusive)'
+                    maxPoints: 'Maximum points (inclusive)'
+                add: 'Add new rule'
+                delete: 'Delete rule'
     email:
         body:
             postVoted: "Hey {recipient_display_name},\n\n{actor_display_name} just voted on your post in {discussion_title}.\n\nView it here: {discussion_url}\n"
         subject:
             postVoted: 'Your post was voted on by {display_name}'
 fof-formatting:
+    admin:
+        plugins:
+            Autoimage: 'Convert image URLs into actual images'
+            Autovideo: 'Convert video URLs into playable videos'
+            FancyPants: 'Use fancy typography'
+            HTMLEntities: 'Use HTML entities'
+            MediaEmbed: 'Embed content from allowed sites'
+            PipeTables: 'ASCII-style tables'
+            TaskLists: 'GitHub/GitLab flavored task lists'
 fof-drafts:
+    admin:
+        permissions:
+            start: 'Create drafts'
+            schedule: 'Schedule drafts'
+        settings:
+            title: 'FoF Drafts'
+            enable_scheduled_drafts: 'Enable Scheduled Drafts'
+            schedule_on_one_server: 'Use ''onOneServer()'' directive for the task scheduler (requires Redis/Memcache)'
+            schedule_log_output: 'Append scheduler output to log storage'
     console:
         scheduled_drafts_disabled: 'Scheduled drafts are currently disabled in settings.'
     ref:
@@ -1559,6 +2704,48 @@ fof-drafts:
                 draft_autosave_interval_button: 'Update Interval'
                 draft_autosave_interval_invalid: 'The interval must be an integer greater than 4.'
 fof-best-answer:
+    admin:
+        permissions:
+            best_answer: 'Select Best Answer (own Discussion)'
+            best_answer_not_own_discussion: 'Select Best Answer (not own Discussion)'
+        settings:
+            label:
+                tags: 'Best Answer Tags'
+                general: General
+                reminders: Reminders
+                search: Search
+                advanced: Advanced
+                reminders_notice: 'For reminders to function, you must have set up the Flarum scheduler correctly.'
+            allow_select_own_post: 'Select own post'
+            allow_select_own_post_help: 'Allow a user to select their own post as a best answer to a discussion'
+            show_max_lines_label: 'Max lines to show in post preview'
+            show_max_lines_help: 'Set to 0 to disable. If a post is longer than the configured amount of lines, it will be truncated in the post preview with a fade out effect.'
+            select_best_answer_reminder_days: 'Reminder frequency'
+            select_best_answer_reminder_days_help: 'Send a reminder after the configurable amount of days to the OP to select a Best Answer, 0 = disable reminders.'
+            select_best_answer_tags_label: 'Tags for discussions with Best Answers'
+            select_best_answer_tags_help: 'Select which tags, if any, to add to discussions when a Best Answer is set. Only secondary tags are allowed. These tags will be removed if the Best Answer is removed.'
+            schedule_on_one_server: 'Use ''onOneServer()'' directive for the task scheduler'
+            schedule_on_one_server_help: 'Requires Redis/Memcache'
+            schedule_stop_overnight: 'Prevent reminder notifications being sent during unsocial hours'
+            schedule_stop_overnight_help: '9pm - 8am server time'
+            schedule_log_output: 'Append scheduler output to log storage'
+            show_filter_label: 'Display Best Answer filter dropdown'
+            show_filter_help: 'For tags which have Best Answers enabled, choose to display solved/unsolved filter option in the discussion list'
+            use_alt_ui: 'Alternative layout'
+            use_alt_ui_help: 'Best answer controls in post footer'
+            documentation: Documentation
+            enabled_tags_label: 'Enabled Tags'
+            enabled_tags_help: 'Select which tags, if any, to enable Best Answers for. These tags will become "Q&A" formatted tags, and will have the ability to set Best Answers.'
+            remind_tags_label: 'Reminder Tags'
+            remind_tags_help: 'Select which tags, if any, to send reminders for. Reminders will only be sent for discussions with these tags.'
+            tags_info: "When a tag is Best Answer enabled, assign permissions to each user group that may set answers (own discussion, any discussion). Permissions may be assigned globally (for any Best Answer anabled tag), or on a per tag basis.\n"
+            solution_search: 'Solution search'
+            solution_search_help: 'Enable the ability to search for discussions with Best Answers'
+            discussion_sidebar_jump_button: 'Display jump to Best Answer button in discussion sidebar'
+            discussion_sidebar_jump_button_help: 'Adds a button to the discussion sidebar which jumps to the Best Answer in the stream of posts.'
+        edit_tag:
+            qna_label: 'Enable Best Answers to be set in this tag'
+            reminders: 'Send reminders to set a Best Answer for discussions in this tag'
     forum:
         answered_badge: Answered
         this_best_answer: 'Select Best Answer'
@@ -1621,6 +2808,21 @@ fof-ban-ips:
         user_controls:
             ban_button: Ban
             unban_button: Unban
+    admin:
+        permissions:
+            view_banned_ip_list_label: 'View banned IP address list'
+            ban_ip_label: 'Ban IP(s)'
+        page:
+            creator_label: Creator
+            user_label: User
+            date_label: Date
+            create_button: 'Ban IP'
+            address_label: 'IP Address'
+            reason_label: Reason
+        modal:
+            update_title: 'Update Banned IP'
+            ban_ip_no_users: 'No one will be banned'
+        empty_text: 'No banned IPs found.'
     error:
         banned_ip_message: 'Authorization failed.'
         no_ips_found_message: 'No IP(s) found for user.'
@@ -1652,6 +2854,59 @@ fof-ban-ips:
         address_label: 'IP Address'
         reason_label: Reason
 fof-anti-spam:
+    admin:
+        permissions:
+            spamblock_users_label: 'Mark user as spammer'
+        settings:
+            button: Settings
+            default-actions:
+                delete_user_label: 'Delete user'
+                delete_user_help: 'This will permanently delete the user. When disabled, the user will be suspended instead.'
+                delete_discussions_label: 'Delete discussions'
+                delete_discussions_help: 'This will permanently delete all discussions started by this user. When disabled, discussions will be soft deleted instead.'
+                delete_posts_label: 'Delete posts'
+                delete_posts_help: 'This will permanently delete all posts made by this user. When disabled, posts will be soft deleted instead.'
+                heading: 'Default moderation actions'
+                introduction: "When a user is marked as a spammer, moderators are able to choose from various actions on how to deal with the particular use case. These settings allow you to pre-set the actions you'll normally take, to speed up the process, but also allowing for variations as needed.\n"
+                move_discussions_to_tags_label: 'Move discussions to tag(s)'
+                move_discussions_to_tags_help: 'This will move all discussions started by this user to the tag(s) you specified. Clear the tag selection to leave discussions in their original tag(s). Has no effect if the ''Delete discussions'' option is enabled.'
+            stopforumspam:
+                heading: StopForumSpam
+                introduction: "Checks new user registrations against the <a>StopForumSpam</a> database. If either the <code>confidence</code> or <code>frequency</code> thresholds are reached, the user is prevented from completing their registration on your forum.\n\nSSO register via <code>fof/oauth</code> and <code>fof/passport</code> is also supported. Other SSO providers should work, but are untested.\n"
+                username_label: 'Username Spam Check'
+                ip_label: 'IP Address Spam Check'
+                email_label: 'Email Spam Check'
+                frequency_label: Threshold
+                frequency_help: "The number of spam reports between all enabled checks that will trip the spam filter.\nEx: If the email has 1 hit, and the ip has 2 hits, there will be 3 hits in total. If the threshold is set to 3 or less we will prevent the registration.\n"
+                api_key_label: 'API Key'
+                api_key_text: 'You have the option to report spammers to StopForumSpam in order to keep the greater forum community spam free.'
+                api_key_instructions_text: '<register>Sign up for StopForumSpam</register>. Then you will need to <key>obtain an API key</key>.'
+                regional_endpoint_label: 'Geographic Access'
+                regional_endpoint_help: 'By default we will direct the lookup to the closest regional server in order to provide the fastest response. Should you wish to restrict traffic to a specific region, such as for compliance with company or country privacy regulations, then you can force a connection to a specific region.'
+                region_closest_label: Closest
+                region_europe_label: Europe
+                region_us_label: 'United States'
+                confidence_label: Confidence
+                confidence_help: 'The confidence score is a reasonably good indicator that the field under test would result in unwanted activity. Set your confidence level as a percentage. If the field is equal or above this figure, the registration will be blocked, regardless on the ''frequency'' test above.'
+                email_hash_label: 'Use hashed email address'
+                email_hash_help: 'Pass a MD5 hash of the email address should you wish to not pass the email address itself. This method bypasses all blacklists, normalisation and obfuscation bypass checks.'
+                sfs_lookup_label: 'Lookup registrations'
+                sfs_lookup_help: 'If enabled, we will check the StopForumSpam database when a new user registers on your forum. If the user is found (username, IP address, email) and that data point is enabled along with the SFS confidence level reaching your defined level, they will be prevented from completing their registration.'
+                report_blocked_registrations_label: 'Report blocked registrations'
+                report_blocked_registrations_help: 'When a registration is blocked by the Lookup Registrations feature, we will report the attempt back to StopForumSpam, so that the spammers activity can be better confirmed. Requires a StopForumSpam API key to be set (see below).'
+        blocked_registrations:
+            button: 'Blocked Registrations'
+            title: 'Blocked Registrations'
+            no-records: 'No blocked registrations found.'
+            help: "This page shows all registrations that have been blocked by the StopForumSpam service. You can view the details of each registration, and if you wish, you can delete the record from the database.\n"
+            attempted-at: 'Attempted at'
+            ip: 'IP Address'
+            email: 'Email Address'
+            username: Username
+            login-provider: 'Login Provider'
+            login-provider-data: 'Login Provider Data'
+            sfs-data: 'StopForumSpam Data'
+            delete_entry: 'Delete entry'
     forum:
         message:
             stopforumspam:
@@ -1673,6 +2928,33 @@ fof-anti-spam:
         user_controls:
             spammer_button: Spammer
 fof-analytics:
+    admin:
+        popup:
+            section:
+                googleAnalytics: 'Google Analytics'
+                piwik: Matomo
+            field:
+                statusGoogle: 'Enable Google Analytics (UA/GA4)'
+                optTrackingCode: 'Optimize Tracking Code (optional)'
+                googleTrackingCode: 'Tracking Code ID'
+                googleGTMCode: 'GTM code ID (optional)'
+                statusPiwik: 'Enable Matomo'
+                piwikUrl: 'Matomo domain or URL'
+                piwikSiteId: 'Site ID'
+                piwikTrackSubdomain: 'Track visitors across all subdomains of Flarum'
+                piwikPrependDomain: 'Prepend the site domain to the page title when tracking'
+                piwikHideAliasUrl: 'In the "Outlinks" report, hide clicks to known alias URLs'
+                piwikAliasUrl: 'Alias URL'
+                piwikTrackAccounts: 'Track individual user accounts'
+                piwikAuthToken: 'Authentication Token'
+            placeholder:
+                piwikAuthToken: "Fill this token to enable a Matomo stats widget in the admin panel.\nYou can find it in Settings > Personal > API Authentication Token.\n"
+            trackAccounts:
+                none: 'Do not track'
+                username: 'Track by username'
+                email: 'Track by email'
+        matomo-widget:
+            title: Matomo
 flarumite-simple-discussion-views:
     forum:
         modal_resetviews:
@@ -1681,7 +2963,15 @@ flarumite-simple-discussion-views:
             label: 'Set to view count'
         discussion_controls:
             resetviews_button: 'Set view count'
+    admin:
+        permissions:
+            reset_views_label: 'Set discussion views'
+        settings:
+            ignore_crawlers: 'Ignore crawler visits'
 flarum-sticky:
+    admin:
+        permissions:
+            sticky_discussions_label: 'Sticky discussions'
     forum:
         discussion_controls:
             unsticky_button: Unsticky
@@ -1694,11 +2984,50 @@ flarum-sticky:
     ref:
         sticky: Sticky
 flarum-statistics:
+    admin:
+        date_selection_modal:
+            description: "Pick a custom date range to display statistics for. Loading data may take\nmultiple minutes on forums with a lot of activity.\n"
+            end_date: 'End date (inclusive)'
+            errors:
+                end_before_start: 'The end date must be after the start date.'
+            start_date: 'Start date (inclusive)'
+            submit_button: 'Confirm date range'
+            title: 'Choose custom date range'
+        statistics:
+            export_chart_button: 'Export chart to SVG'
+            last_12_months_label: 'Last 12 months'
+            last_28_days_label: 'Last 28 days'
+            last_7_days_label: 'Last 7 days'
+            mini_heading: 'Forum statistics'
+            previous_28_days_label: 'Previous 28 days'
+            previous_7_days_label: 'Previous 7 days'
+            custom_label: 'Choose custom range...'
+            custom_label_specified: '{fromDate} to {toDate}'
+            today_label: Today
+            total_label: Total
+            view_full: 'View more statistics'
+            no_data: 'There is no data available for this date range.'
+            current_period: 'Current period'
+            previous_period: 'Previous period'
+            discussions_heading: Discussions
+            loading: Loading...
+            posts_heading: Posts
+            users_heading: Users
 flarum-pusher:
+    admin:
+        pusher_settings:
+            app_cluster_label: Cluster
+            app_id_label: 'App ID'
+            app_key_label: 'App Key'
+            app_secret_label: 'App Secret'
+            title: 'Pusher Settings'
     forum:
         discussion_list:
             show_updates_text: '{count, plural, one {Show # updated discussion} other {Show # updated discussions}}'
 flarum-lock:
+    admin:
+        permissions:
+            lock_discussions_label: 'Lock discussions'
     forum:
         badge:
             locked_tooltip: Locked
@@ -1713,6 +3042,12 @@ flarum-lock:
         settings:
             notify_discussion_locked_label: 'Someone locks a discussion I started'
 flarum-likes:
+    admin:
+        permissions:
+            like_posts_label: 'Like posts'
+        settings:
+            like_own_posts_help: 'When enabled, subject to permission, users may ''like'' their own posts on the forum. To prevent users placing a ''like'' on their own posts, disable this setting.'
+            like_own_posts_label: 'Users may like their own posts'
     forum:
         notifications:
             post_liked_text: '{username} liked your post'
@@ -1737,6 +3072,130 @@ flarum-emoji:
             emoji_tooltip: 'Insert emoji'
             type_to_search_text: 'Type to search for an emoji'
 dhtml-translate:
+    admin:
+        settings:
+            googleApiKey: 'Google API Key'
+            microsoftApiKey: 'Microsoft API Key'
+            libreApiKey: 'Libre API Key'
+            libreRestTime: 'Libre API Rest Interval (minutes)'
+            apiKey: 'API Key'
+            cronKey: 'Cron Job Key'
+            cronLess: 'Cronless Mode (auto-translate on website usage)'
+            subdomains: 'Use localized subdomains e.g. ar.siteurl.com'
+            language-menu: 'Put locales you want to show in language menu here (coma separated)'
+            engine:
+                label: 'Translation Engine'
+                help: 'Ensure you get the correct api and that you also select languages supported'
+            rate-limit:
+                label: 'Use rate limiting'
+                help: 'What this setting means depends on what translator engine is being used'
+            post-limit:
+                label: 'Post Size Limit'
+                help: 'Set the maximum number of post that is allowed'
+            plugin:
+                help: 'Put your api key here based on the service you are using'
+                cronHelp: 'This key will be used when the translation cron job gets called with /cron/translate?key=12345'
+                subdomains: 'This requires you to redirect your subdomains to your forum'
+                language:
+                    af: 'Afrikaans (af)'
+                    am: 'Amharic [አማርኛ] (am)'
+                    ar: 'Arabic [العربية] (ar)'
+                    as: 'Assamese [অসমীয়া] (as)'
+                    az: 'Azerbaijani [Azərbaycan] (az)'
+                    ba: 'Bashkir [Башҡорт теле] (ba)'
+                    be: 'Belarusian [Беларуская] (be)'
+                    bg: 'Bulgarian [Български] (bg)'
+                    bn: 'Bengali [বাংলা] (bn)'
+                    bs: 'Bosnian [Bosanski] (bs)'
+                    ca: 'Catalan [Català] (ca)'
+                    cs: 'Czech [Čeština] (cs)'
+                    cy: 'Welsh [Cymraeg] (cy)'
+                    da: 'Danish [Dansk] (da)'
+                    de: 'German [Deutsch] (de)'
+                    dv: 'Dhivehi [ދިވެހިބަސް] (dv)'
+                    el: 'Greek [Ελληνικά] (el)'
+                    en: 'English (en)'
+                    eo: 'Esperanto [Esperanto] (eo)'
+                    es: 'Spanish [Español] (es)'
+                    et: 'Estonian [Eesti] (et)'
+                    eu: 'Basque [Euskara] (eu)'
+                    fa: 'Persian [فارسی] (fa)'
+                    fi: 'Finnish [Suomi] (fi)'
+                    fil: 'Filipino [Filipino] (fil)'
+                    fj: 'Fijian [Na Vosa Vakaviti] (fj)'
+                    fo: 'Faroese [Føroyskt] (fo)'
+                    fr: 'French [Français] (fr)'
+                    ga: 'Irish [Gaeilge] (ga)'
+                    gl: 'Galician [Galego] (gl)'
+                    gu: 'Gujarati [ગુજરાતી] (gu)'
+                    ha: 'Hausa [Hausa] (ha)'
+                    he: 'Hebrew [עברית] (he)'
+                    hi: 'Hindi [हिन्दी] (hi)'
+                    hr: 'Croatian [Hrvatski] (hr)'
+                    hu: 'Hungarian [Magyar] (hu)'
+                    hy: 'Armenian [Հայերեն] (hy)'
+                    id: 'Indonesian [Bahasa Indonesia] (id)'
+                    ig: 'Igbo [Asụsụ Igbo] (ig)'
+                    is: 'Icelandic [Íslenska] (is)'
+                    it: 'Italian [Italiano] (it)'
+                    ja: 'Japanese [日本語] (ja)'
+                    ka: 'Georgian [ქართული] (ka)'
+                    kk: 'Kazakh [Қазақ] (kk)'
+                    km: 'Khmer [ភាសាខ្មែរ] (km)'
+                    kn: 'Kannada [ಕನ್ನಡ] (kn)'
+                    ko: 'Korean [한국어] (ko)'
+                    ku: 'Kurdish [Kurdî] (ku)'
+                    ky: 'Kyrgyz [Кыргызча] (ky)'
+                    lo: 'Lao [ລາວ] (lo)'
+                    lt: 'Lithuanian [Lietuvių] (lt)'
+                    lv: 'Latvian [Latviešu] (lv)'
+                    mg: 'Malagasy [Malagasy] (mg)'
+                    mi: 'Maori [Māori] (mi)'
+                    mk: 'Macedonian [Македонски] (mk)'
+                    ml: 'Malayalam [മലയാളം] (ml)'
+                    mn: 'Mongolian [Монгол] (mn)'
+                    mr: 'Marathi [मराठी] (mr)'
+                    ms: 'Malay [Bahasa Melayu] (ms)'
+                    mt: 'Maltese [Malti] (mt)'
+                    my: 'Burmese [မြန်မာစာ] (my)'
+                    nb: 'Norwegian Bokmål [Bokmål] (nb)'
+                    ne: 'Nepali [नेपाली] (ne)'
+                    nl: 'Dutch [Nederlands] (nl)'
+                    'no': 'Norwegian [Norsk] (no)'
+                    ny: 'Chichewa [Chinyanja] (ny)'
+                    or: 'Odia [ଓଡ଼ିଆ] (or)'
+                    pa: 'Punjabi [ਪੰਜਾਬੀ] (pa)'
+                    ps: 'Pashto [پښتو] (ps)'
+                    pl: 'Polish [Polski] (pl)'
+                    pt: 'Portuguese [Português] (pt)'
+                    ro: 'Romanian [Română] (ro)'
+                    ru: 'Russian [Русский] (ru)'
+                    sd: 'Sindhi [سنڌي] (sd)'
+                    si: 'Sinhala [සිංහල] (si)'
+                    sk: 'Slovak [Slovenčina] (sk)'
+                    sl: 'Slovenian [Slovenščina] (sl)'
+                    sm: 'Samoan [Gagana Sāmoa] (sm)'
+                    so: 'Somali [Soomaali] (so)'
+                    sq: 'Albanian [Shqip] (sq)'
+                    sr: 'Serbian [Српски] (sr)'
+                    st: 'Sesotho [Sesotho] (st)'
+                    su: 'Sundanese [Basa Sunda] (su)'
+                    sv: 'Swedish [Svenska] (sv)'
+                    sw: 'Swahili [Kiswahili] (sw)'
+                    ta: 'Tamil [தமிழ்] (ta)'
+                    te: 'Telugu [తెలుగు] (te)'
+                    th: 'Thai [ไทย] (th)'
+                    tl: 'Tagalog [Tagalog] (tl)'
+                    tr: 'Turkish [Türkçe] (tr)'
+                    uk: 'Ukrainian [Українська] (uk)'
+                    ur: 'Urdu [اردو] (ur)'
+                    uz: 'Uzbek [Oʻzbek] (uz)'
+                    vi: 'Vietnamese [Tiếng Việt] (vi)'
+                    xh: 'Xhosa [isiXhosa] (xh)'
+                    yo: 'Yoruba [Yorùbá] (yo)'
+                    zh: 'Chinese [中文] (zh)'
+                    zt: 'Traditional Chinese [繁體中文] (zt)'
+                    zu: 'Zulu [isiZulu] (zu)'
     forum:
         post:
             content:
@@ -1744,10 +3203,26 @@ dhtml-translate:
 dhtml-persona:
     forum:
         persona: Persona
+    admin:
+        settings:
+            pattern1: 'Domain pattern 1'
+            pattern2: 'Domain pattern 2'
+            pattern3: 'Domain pattern 3'
+            plugin:
+                help: 'This determines the email account domain patterns of the filter'
 dhtml-leaderboard:
     forum:
         leaderboard: Leaderboard
 dhtml-gender:
+    admin:
+        genderColumn: Gender
+        showGendersOnPosts: 'Show Gender on Posts'
+        showGendersOnPosts_text: 'Show Gender (Text) on Posts'
+        set_on_registration_label: 'Allow setting gender on registration'
+        required_label: 'Required entering gender'
+        required_help: 'You need enable Set on gender option to make this option work'
+        bind_label: 'Bind Required entering gender'
+        bind_help: 'Force gender to account that has not registered gender after login'
     forum:
         male: Male
         female: Female
@@ -1777,6 +3252,19 @@ dhtml-composer:
         composer:
             character_counter: 'Character counter'
 datlechin-birthdays:
+    admin:
+        permissions:
+            edit_own_birthday_label: 'Edit own birthday'
+            view_birthday_label: 'View birthday'
+        settings:
+            set_on_registration_label: 'Allow setting birthdays on registration'
+            required_label: 'Required entering birthdays'
+            required_help: 'You need enable Set on registration option to make this option work'
+            min_age_label: 'Minimum age'
+            min_age_help: 'Minimum age for registration'
+            date_format_label: 'Date format'
+            date_format_help: 'Use the <a>dayjs</a> date format. Leave blank to use the default format.'
+            date_none_year_label: 'Date format without year'
     forum:
         user:
             birthday_text: 'Birthday: {date}'
@@ -1806,10 +3294,22 @@ datlechin-birthdays:
     ref:
         date_of_birth: 'Date of Birth'
 clarkwinkelmann-post-permissions:
+    admin:
+        permissions:
+            edit-first-own-post-forever: 'Edit own discussion first post forever'
+            edit-own-post-forever: 'Edit any own post forever'
 clarkwinkelmann-emojionearea:
     forum:
         picker_button: 'Emoji Picker'
         search_placeholder: Search...
+    admin:
+        settings:
+            enableSearch: 'Enable search'
+            enableRecent: 'Enable recent'
+            enableTones: 'Enable tones'
+            filtersPosition: 'Move categories to the bottom'
+            searchPosition: 'Move search and tones to the bottom'
+            hideFlarumButton: 'Hide Flarum''s emoji picker button'
 clarkwinkelmann-author-change:
     forum:
         controls:
@@ -1829,8 +3329,39 @@ clarkwinkelmann-author-change:
             placeholder: 'Search users'
             type-more: 'Type 3 characters to search database'
             no-results: 'No results'
+    admin:
+        permissions:
+            edit-user: 'Update discussion and post author'
+            edit-date: 'Update discussion and post date'
 blomstra-database-queue:
+    admin:
+        settings:
+            backoff_label: Backoff
+            backoff_help: "The number of seconds to wait before retrying a job that encountered an uncaught exception.\n"
+            memory_label: Memory
+            memory_help: "The memory limit in megabytes.\n"
+            rest_label: Rest
+            rest_help: "The number of seconds to rest between jobs.\n"
+            retries_label: Retries
+            retries_help: "The number of times to attempt a job before logging it failed.\n"
+            timeout_label: Timeout
+            timeout_help: "The number of seconds a child process can run.\n"
+        stats:
+            auto_refresh: 'Auto Refresh'
+            heading: 'Queue Overview'
+            refresh: Refresh
+            data:
+                queue-name: Queue
+                pending-jobs: 'Pending Jobs'
+                failed-jobs: 'Failed Jobs'
+                status:
+                    label: Status
+                    running: Running
+                    inactive: Inactive
 askvortsov-rich-text:
+    admin:
+        settings:
+            toggle_on_editor: 'Show rich text mode toggle on editor?'
     lib:
         composer:
             toggle_button: 'Toggle Rich Text Mode'
@@ -1868,6 +3399,64 @@ askvortsov-rich-text:
             use_rich_text_editor_label: 'Use rich text editor?'
             rich_text_compact_paragraphs_label: 'Don''t separate paragraphs with newline.'
 askvortsov-pwa:
+    admin:
+        nav:
+            pwa_button: 'Progressive Web App'
+            pwa_text: 'Configure Flarum to run as an Progressive Web App, installable on mobile devices.'
+        pwa:
+            about:
+                description_label: Description
+                description_text: 'You can set the description on the ''Basics'' page in your admin dashboard.'
+                long_name_label: 'Long name'
+                long_name_text: 'The name of the web application displayed to the user.'
+                heading: About
+                short_name_label: 'Short name'
+                short_name_text: 'The name of the application displayed to the user if there is not enough space for the long name.'
+            colors:
+                heading: Colors
+                background_color_label: 'Background color'
+                background_color_text: 'This is used as a placeholder color for the splash screen that''s displayed while your PWA is being loaded. It is not used when the app is actually loaded.'
+                theme_color_label: 'Theme color'
+                theme_color_text: 'This color is sometimes used by devices when displaying your app, for example on Android''s task switcher, as the color that surround the site.'
+            maintenance:
+                heading: Maintenance
+                debug_label: 'Debug mode?'
+                debug_text: 'This will log info about notifications to `storage/logs`. It should generally be disabled to avoid filling up logs unnecessarily.'
+                reset_vapid_text: 'This will regenerate VAPID keys, and delete any existing subscriptions using the current VAPID keys.'
+                reset_vapid_confirm: 'Resetting VAPID keys will remove any subscriptions using the existing keys, so users won''t receive any notifications until the next time they visit your site. This should only be done when setting up push notifications for the first time, or if push notifications aren''t working at all and there''s a warning about missing VAPID keys above.'
+                reset_vapid_success: 'Successfully reset VAPID keys. {count} subscriptions were reset. Reload the page to see an updated status check report.'
+            firebase_config:
+                heading: Firebase
+                help_text: 'To add support for push notifications when publishing your app in the Apple app store, you need to use Firebase to add push notifications to your application. Please generate your Firebase Service Config and upload it here.'
+                see_documentation_here: 'See documentatation here'
+                upload_successful: 'Your firebase config has been uploaded successfully'
+                upload_file: 'Upload file'
+            other:
+                heading: Other
+                force_portrait_text: 'Force portait orientation?'
+                push_notif_preference_default_to_email_label: 'Default Push Preferences to Email?'
+                push_notif_preference_default_to_email_text: 'If true, users will have push notifications enabled by default for all notification types where email notifications are enabled by default. If false, users will have push notifications disabled by default.'
+                user_max_subscriptions_label: 'Max Push Subscriptions Per User'
+                user_max_subscriptions_text: 'How many push subscriptions should each user be able to have at a time? When a user receives a push notification, each subscription will result in an API call. Each subscription typically corresponds to a browser the user has used.'
+                window_controls_overlay_label: 'Enable Window Controls Overlay?'
+                window_controls_overlay_text: "If true, users will be able to get an more immersive, native-like experience by hiding the native titlebar. Window Controls Overlay enables or not depends on user's preference and browser's compatibility. You must customize your titlebar by adding some CSS/JS after enabled, or the controls will overlay some elements of your forum's top navbar and the window almost can't drag, resulting a bad experience.\n\nSee also: <compatibilitylink>The compatibility of Window Controls Overlay</compatibilitylink> & <learnlink>About Window Controls Overlay in Microsoft Learn</learnlink>\n"
+            heading: 'Progressive Web App Configuration'
+            text: 'Configure your Flarum site to run as a progressive web app! Please note that this doesn''t automatically put your site in the app store. Instead, this means that users have an ''Add to Homescreen'' option for your site. We provide some status checks, however, the best way to test this is to try and install it (search on google for instructions on how to install progressive web apps). Also, please keep in mind that ''install this PWA'' popups are controlled by browsers, and cannot be triggered by developers/admins/programs. I recommend including instructions for how to install a PWA in your site''s documentation.'
+            status_check_heading: 'Status Check'
+            logo_heading: 'Logos and Icons'
+            logo_text: "You must upload at least one logo for your progressive web app to be installable. Please note that all logos must be square; if they are not, they will be resized and possibly stretched.\n\nThere are a number of size options available below. I would recommend trying to upload a logo to as many as you can: this supports more devices.\n\nPlease note that you can upload 1 large logo to inputs for smaller logos. For instance, you can upload a 1000px x 1000px logo to ALL the file inputs below. However, if you try to upload a 50px x 50px logo to the 512x512 input, it will be stretched a lot.\n"
+            logo_size_text: 'Upload a logo which will be scaled to {size} pixels by {size} pixels size.'
+            submit_button: 'Save Settings'
+            refreshed_message: 'PWA config refreshed successfully.'
+        status:
+            config_no_https: 'The url in your config.php file isn''t using HTTPS. HTTPS is required for Progressive Web Apps to work.'
+            possible_https_disabled: 'Your site might not be running on HTTPS. Clearing your cache (admin dashboard page => tools button) might help. If it is, ignore this. If it isn''t, keep in mind that HTTPS is required for Progressive Web Apps to work.'
+            no_logo: 'You must upload at least one logo, with a size of at least 144x144px, for the PWA to be installable.'
+            no_name: 'You must provide a full name for your app to work.'
+            no_vapid_keys: 'No VAPID keys found. These are required for push notifications to send. You can reset VAPID keys below.'
+            key_gen_failed: 'Generation of keys needed for push notifications has failed. The full error message was: {error}'
+            suggest_gmp: 'The gmp PHP extension doesn''t seem to be enabled on your server. It''s not strictly necessary, but can improve performance and is recommended. Some shared hosts might not support it though.'
+            success: 'No Potential Issues Found!'
     forum:
         alerts:
             optin: 'You have push notifications enabled, but have not configured this device.'
@@ -1894,6 +3483,11 @@ askvortsov-pwa:
             header: 'Network connection error'
             text: 'This app requires a network connection; it cannot be used offline. Please check your connection.'
 askvortsov-moderator-warnings:
+    admin:
+        permissions:
+            manage_warnings: 'Create and remove moderator warnings'
+            view_warnings: 'View moderator warnings'
+            delete_warnings: 'Permanently delete moderator warnings'
     emails:
         post_warned:
             subject: '{warner_display_name} warned you with {strikes, plural, one {# strike} other {# strikes}} in {discussion_title}'
@@ -1940,6 +3534,22 @@ askvortsov-moderator-warnings:
             private_comment_heading: 'Why is <strong>{username}</strong> receiving these warnings? These comments will ONLY be visible to other moderators.'
             submit_button: 'Save warning'
 askvortsov-discussion-templates:
+    admin:
+        permissions:
+            manage_own_discussion_reply_templates: 'Manage reply templates for their discussions'
+            manage_all_reply_templates: 'Manage reply templates for all discussions'
+        settings:
+            no_tag_template: 'Default template (used when discussion started with no tags selected):'
+            append_template_on_tag_change: 'Append template on tag change?'
+            append_template_on_tag_change_help: 'When tags are changed, should the new tag''s template be appended even if the user has already started writing? Regardless of this setting, if tags are changed and the user has not made modifications, the template will be switched.'
+        tags:
+            tag_template_heading: 'Discussion Template'
+            tag_template_text: 'Manage a template for new discussions in this tag.'
+            tag_template_button: 'Edit Template'
+        tag_template_modal:
+            title: 'Discussion Template'
+            customize_text: 'Manage a template for new discussions in this tag.'
+            submit_button: 'Save Template'
     forum:
         discussion_controls:
             reply_template_button: 'Edit Reply Template'
