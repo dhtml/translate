@@ -69,7 +69,10 @@ return [
     (new Extend\Console())
         ->command(Console\TranslateStringsStart::class),
 
-(new Extend\Event())
+    (new Extend\Console())
+        ->command(Console\TranslateForce::class),
+
+    (new Extend\Event())
         ->listen(Posted::class, [Listeners\ForumListener::class, 'postWasPosted'])
         ->listen(Started::class, [Listeners\ForumListener::class, 'discussionWasStarted']),
 

@@ -45,9 +45,9 @@ class BatchTranslatorService
         $this->settingsService = new SettingsService();
     }
 
-    public function start()
+    public function start($force=false)
     {
-        if ($this->settingsService->isTranslatorServiceActive()) {
+        if (!$force && $this->settingsService->isTranslatorServiceActive()) {
             $this->settingsService->showLastTranslatorActivity();
             return;
         }
