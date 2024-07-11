@@ -109,8 +109,28 @@ class BatchTranslatorService
             */
         } else {
             switch ($tag) {
+                case "pages":
+                    if (!$this->translatePages()) {
+                        return false;
+                    }
+                    break;
+                case "tags":
+                    if (!$this->translateTags()) {
+                        return false;
+                    }
+                break;
+                case "badges":
+                    if (!$this->translateBadges()) {
+                        return false;
+                    }
+                    break;
                 case "posts":
                     if (!$this->translatePosts("desc")) {
+                        return false;
+                    }
+                    break;
+                case "discussions":
+                    if (!$this->translateDiscussions()) {
                         return false;
                     }
                     break;

@@ -58,6 +58,18 @@ return [
         ->command(Console\TranslatePost::class),
 
     (new Extend\Console())
+        ->command(Console\TranslateDiscussion::class),
+
+    (new Extend\Console())
+        ->command(Console\TranslatePage::class),
+
+    (new Extend\Console())
+        ->command(Console\TranslateBadge::class),
+
+    (new Extend\Console())
+        ->command(Console\TranslateTag::class),
+
+    (new Extend\Console())
         ->command(Console\TranslatorClear::class),
 
     (new Extend\Console())
