@@ -173,6 +173,8 @@ if(!function_exists("getDefaultLocale")) {
 if(!function_exists("getDetectedLocale")) {
     function getDetectedLocale()
     {
+        if(!isset($_SERVER['HTTP_HOST'])) {return getDefaultLocale();}
+
         $host = $_SERVER['HTTP_HOST'];
 
         $parts = explode('.', $host);
