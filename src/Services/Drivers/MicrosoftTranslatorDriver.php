@@ -35,7 +35,7 @@ class MicrosoftTranslatorDriver
 end;
         } else {
 
-            sleep(10);
+            //sleep(10);
             $endpoint = 'https://api.cognitive.microsofttranslator.com/translate';
             $resourceKey = $this->apikey;
             $region = $this->region; // e.g., 'westus2'

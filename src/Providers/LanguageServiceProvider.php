@@ -16,5 +16,6 @@ class LanguageServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $this->attributesTranslatorService->translateAttributes();
+
     }
 }

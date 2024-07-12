@@ -29,6 +29,7 @@ return [
         ->css(__DIR__.'/less/admin.less'),
     new Extend\Locales(__DIR__.'/locale'),
 
+
     (new Extend\Routes('api'))
         ->get('/translate-queue', 'language.translate.queue', TranslateQueueApiController::class)
         ->post('/translate', 'language.translator.index', TranslateApiController::class)
@@ -101,6 +102,9 @@ return [
 
     (new Extend\ServiceProvider())
         ->register(Providers\LanguageServiceProvider::class),
+
+    (new Extend\ServiceProvider())
+        ->register(Providers\LocaleServiceProvider::class),
 
     (new Extend\Settings())
         ->default('dhtml-translate.plugin.engine', 'libre')

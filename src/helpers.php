@@ -13,6 +13,10 @@ function getSourceAttributesPath() {
     return __DIR__ . "/../language/attributes.json";
 }
 
+function getLocaleDestinationPath() {
+    return __DIR__ . "/../../translate-localization/locale";
+}
+
 if(!function_exists("convertBbcodeToHtml")) {
     function convertBbcodeToHtml($bbcode)
     {
