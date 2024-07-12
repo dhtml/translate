@@ -382,7 +382,18 @@ class BatchTranslatorService
 
         $this->cliMode = true;
 
-        $this->translate($param); // Call the translate function
+        while (true) {
+            $this->translate($param); // Call the translate function
+
+            if ($this->stackEmpty) {
+                $this->finishedTranslation();
+                break;
+            }
+
+            if ($this->failed) {
+                $this->pauseTranslation();
+            }
+        }
     }
 
     public function startWithSkipped($param)
