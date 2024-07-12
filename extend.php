@@ -83,7 +83,7 @@ return [
         ->command(Console\TranslateStringsStart::class),
 
     (new Extend\Console())
-        ->command(Console\TranslateStringsStartAsc::class),
+        ->command(Console\TranslateStringsStore::class),
 
 
     (new Extend\Console())

@@ -2,11 +2,12 @@
 
 namespace Dhtml\Translate\Console;
 
-use Dhtml\Translate\Services\BatchTranslatorService;
+use Dhtml\Translate\Services\LanguageService;
+use Dhtml\Translate\Services\StringTranslationService;
 use Flarum\Console\AbstractCommand;
 use Psr\Log\LoggerInterface;
 
-class TranslateStringsStartAsc extends AbstractCommand
+class TranslateStringsStore extends AbstractCommand
 {
 
     /**
@@ -19,20 +20,21 @@ class TranslateStringsStartAsc extends AbstractCommand
         parent::__construct($name);
 
         $this->logger = resolve(LoggerInterface::class);
-        $this->batchTranslatorService = new BatchTranslatorService();
+        $this->languageService = new LanguageService();
     }
 
     protected function configure()
     {
         $this
-            ->setName('translate:strings:start:asc')
-            ->setDescription('Build translatable start');
+            ->setName('translate:strings:store')
+            ->setDescription('Store locales');
     }
 
     protected function fire()
     {
-        $this->info("Execute language translation all strings");
-        $this->batchTranslatorService->startWithParam("strings","asc");
+        $this->info("Store the strings inside language files");
+
+        $this->languageService->start();
     }
 
 
