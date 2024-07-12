@@ -5,6 +5,7 @@ namespace Dhtml\Translate\Services;
 use DateTime;
 use Dhtml\Translate\Badge;
 use Dhtml\Translate\Discussion;
+use Dhtml\Translate\LocaleAttribute;
 use Dhtml\Translate\LocaleString;
 use Dhtml\Translate\Page;
 use Dhtml\Translate\Post;
@@ -102,6 +103,9 @@ class BatchTranslatorService
             if (!$this->translatePosts()) {
                 return false;
             }
+            if (!$this->translateAttributes()) {
+                return false;
+            }
             if (!$this->translateStrings()) {
                 return false;
             }
@@ -137,6 +141,10 @@ class BatchTranslatorService
                         return false;
                     }
                     break;
+                case "attributes":
+                    if (!$this->translateAttributes()) {
+                        return false;
+                    }
             }
         }
 
@@ -347,6 +355,12 @@ class BatchTranslatorService
     {
         $items = LocaleString::orderBy('id', $dir)->get();
         return $this->sendForTranslation("string", $items);
+    }
+
+    protected function translateAttributes($dir = "asc")
+    {
+        $items = LocaleAttribute::orderBy('id', $dir)->get();
+        return $this->sendForTranslation("attribute", $items);
     }
 
     protected function finishedTranslation()

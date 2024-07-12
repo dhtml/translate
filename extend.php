@@ -81,6 +81,14 @@ return [
     (new Extend\Console())
         ->command(Console\TranslateStringsStart::class),
 
+
+    (new Extend\Console())
+        ->command(Console\TranslateAttributesBuild::class),
+
+    (new Extend\Console())
+        ->command(Console\TranslateAttributesStart::class),
+
+
     (new Extend\Console())
         ->command(Console\TranslateForce::class),
 

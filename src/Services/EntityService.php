@@ -23,6 +23,7 @@ class EntityService
                 $tdata = ["name" => $model->name];
                 break;
             case "string":
+            case "attribute":
                 $tdata = ["original" => $model->original];
                 break;
             default:

@@ -9,6 +9,10 @@ function getSourceStringLanguageFilePath() {
     return __DIR__."/../language/source.yml";
 }
 
+function getSourceAttributesPath() {
+    return __DIR__ . "/../language/attributes.json";
+}
+
 if(!function_exists("convertBbcodeToHtml")) {
     function convertBbcodeToHtml($bbcode)
     {
