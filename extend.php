@@ -88,6 +88,9 @@ return [
         ->listen(Posted::class, [Listeners\ForumListener::class, 'postWasPosted'])
         ->listen(Started::class, [Listeners\ForumListener::class, 'discussionWasStarted']),
 
+    (new Extend\ServiceProvider())
+        ->register(Providers\LanguageServiceProvider::class),
+
     (new Extend\Settings())
         ->default('dhtml-translate.plugin.engine', 'libre')
         ->default('dhtml-translate.af.enabled', false)

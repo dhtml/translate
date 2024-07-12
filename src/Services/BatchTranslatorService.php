@@ -102,11 +102,9 @@ class BatchTranslatorService
             if (!$this->translatePosts()) {
                 return false;
             }
-            /*
             if (!$this->translateStrings()) {
                 return false;
             }
-            */
         } else {
             switch ($tag) {
                 case "pages":
