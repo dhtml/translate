@@ -60,7 +60,7 @@ class BatchTranslatorService
     {
         $startTime = new DateTime();
         $formattedStartTime = $startTime->format($this->fmt);
-        $this->showInfo("We started @ $formattedStartTime");
+        $this->showInfo("We started translating @ $formattedStartTime");
 
         if ($this->settingsService->isLibrePaused()) {
             $this->showInfo("...service will soon resume...");
