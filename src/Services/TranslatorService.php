@@ -34,7 +34,8 @@ class TranslatorService
                 break;
             case "microsoft":
                 $this->apikey = $this->settings->get('dhtml-translate.microsoftApiKey');
-                $this->translationEngine = new MicrosoftTranslatorDriver($this->apikey, $this->maximumRateLimit);
+                $this->region = $this->settings->get('dhtml-translate.microsoftRegion');
+                $this->translationEngine = new MicrosoftTranslatorDriver($this->apikey, $this->region, $this->maximumRateLimit);
                 break;
             case "libre":
                 $this->apikey = $this->settings->get('dhtml-translate.libreApiKey');

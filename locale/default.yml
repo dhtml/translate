@@ -8,6 +8,7 @@ dhtml-translate:
       libreApiKey: Libre API Key
       libreRestTime: Libre API Rest Interval (minutes)
       apiKey: API Key
+      microsoftRegion: Location/Region
       cronKey: Cron Job Key
       cronLess: Cronless Mode (auto-translate on website usage)
       subdomains: Use localized subdomains e.g. ar.siteurl.com

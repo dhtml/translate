@@ -84,7 +84,7 @@ class BatchTranslatorService
         }
     }
 
-    protected function translate($tag = null)
+    protected function translate($tag = null,$dir="desc")
     {
         if (!$tag) {
             //translate all if no param
@@ -121,7 +121,7 @@ class BatchTranslatorService
                     }
                     break;
                 case "posts":
-                    if (!$this->translatePosts("desc")) {
+                    if (!$this->translatePosts($dir)) {
                         return false;
                     }
                     break;
@@ -131,7 +131,7 @@ class BatchTranslatorService
                     }
                     break;
                 case "strings":
-                    if (!$this->translateStrings("desc")) {
+                    if (!$this->translateStrings($dir)) {
                         return false;
                     }
                     break;
@@ -347,7 +347,7 @@ class BatchTranslatorService
 
     protected function translateStrings($dir = "asc")
     {
-        $items = LocaleString::orderBy('id', $dir)->get();
+        $items = LocaleString::orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("string", $items);
     }
 
@@ -381,7 +381,7 @@ class BatchTranslatorService
         }
     }
 
-    public function startWithParam($param)
+    public function startWithParam($param,$dir="asc")
     {
 
         $this->startedTranslation();
@@ -389,7 +389,7 @@ class BatchTranslatorService
         $this->cliMode = true;
 
         while (true) {
-            $this->translate($param); // Call the translate function
+            $this->translate($param,$dir); // Call the translate function
 
             if ($this->stackEmpty) {
                 $this->finishedTranslation();

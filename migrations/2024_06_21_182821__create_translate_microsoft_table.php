@@ -23,7 +23,7 @@ return [
 
         $schema->create('translate_microsoft', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hash', 100)->unique();
+            $table->string('hash', 100);
             $table->string('locale', 10)->nullable()->default("en");
             $table->longText('source');
 

@@ -10,9 +10,10 @@ use Ramsey\Uuid\Uuid;
 
 class MicrosoftTranslatorDriver
 {
-    public function __construct($apikey, $rateLimit)
+    public function __construct($apikey, $region, $rateLimit)
     {
         $this->apikey = $apikey;
+        $this->region = $region;
         $this->rateLimit = $rateLimit;
 
         $this->supportedLocalizations = getTranslatableLocales("microsoft");
@@ -34,10 +35,10 @@ class MicrosoftTranslatorDriver
 end;
         } else {
 
-            sleep(4);
+            sleep(10);
             $endpoint = 'https://api.cognitive.microsofttranslator.com/translate';
             $resourceKey = $this->apikey;
-            $region = 'westus2'; // e.g., 'westus2'
+            $region = $this->region; // e.g., 'westus2'
 
             $client = new Client();
             $uuid = Uuid::uuid4()->toString(); // Generate a UUID for X-ClientTraceId
@@ -149,7 +150,7 @@ end;
             $inputData[$key] = $value;
         }
 
-        $cache = TranslateMicrosoft::firstOrCreate($inputData);
+            $cache = TranslateMicrosoft::firstOrCreate($inputData);
 
         return $this->translateHTMLResult($cache, "remote", $locale);
     }

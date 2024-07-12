@@ -9,6 +9,52 @@ app.initializers.add('dhtml/translate', () => {
     google: 'Google Translator',
   };
 
+  const regionOptions = {
+      "australiacentral": "Australia Central (australiacentral)",
+      "australiacentral2": "Australia Central 2 (australiacentral2)",
+      "australiaeast": "Australia East (australiaeast)",
+      "australiasoutheast": "Australia Southeast (australiasoutheast)",
+      "brazilsouth": "Brazil South (brazilsouth)",
+      "brazilsoutheast": "Brazil Southeast (brazilsoutheast)",
+      "canadacentral": "Canada Central (canadacentral)",
+      "canadaeast": "Canada East (canadaeast)",
+      "centralindia": "Central India (centralindia)",
+      "centralus": "Central US (centralus)",
+      "eastasia": "East Asia (eastasia)",
+      "eastus": "East US (eastus)",
+      "eastus2": "East US 2 (eastus2)",
+      "francecentral": "France Central (francecentral)",
+      "francesouth": "France South (francesouth)",
+      "germanynorth": "Germany North (germanynorth)",
+      "germanywestcentral": "Germany West Central (germanywestcentral)",
+      "japaneast": "Japan East (japaneast)",
+      "japanwest": "Japan West (japanwest)",
+      "koreacentral": "Korea Central (koreacentral)",
+      "koreasouth": "Korea South (koreasouth)",
+      "northcentralus": "North Central US (northcentralus)",
+      "northeurope": "North Europe (northeurope)",
+      "norwayeast": "Norway East (norwayeast)",
+      "norwaywest": "Norway West (norwaywest)",
+      "southafricanorth": "South Africa North (southafricanorth)",
+      "southcentralus": "South Central US (southcentralus)",
+      "southeastasia": "Southeast Asia (southeastasia)",
+      "southindia": "South India (southindia)",
+      "swedencentral": "Sweden Central (swedencentral)",
+      "switzerlandnorth": "Switzerland North (switzerlandnorth)",
+      "switzerlandwest": "Switzerland West (switzerlandwest)",
+      "uaecentral": "UAE Central (uaecentral)",
+      "uaenorth": "UAE North (uaenorth)",
+      "uksouth": "UK South (uksouth)",
+      "ukwest": "UK West (ukwest)",
+      "westcentralus": "West Central US (westcentralus)",
+      "westeurope": "West Europe (westeurope)",
+      "westindia": "West India (westindia)",
+      "westus": "West US (westus)",
+      "westus2": "West US 2 (westus2)",
+      "westus3": "West US 3 (westus3)"
+    };
+
+
   app.extensionData.for('dhtml-translate')
     .registerSetting({
       setting: 'dhtml-translate.plugin.engine',
@@ -37,6 +83,14 @@ app.initializers.add('dhtml/translate', () => {
       label: app.translator.trans('dhtml-translate.admin.settings.microsoftApiKey'),
       type: 'text',
       required: true,
+    })
+    .registerSetting({
+      setting: 'dhtml-translate.microsoftRegion',
+      label: app.translator.trans('dhtml-translate.admin.settings.microsoftRegion'),
+      type: 'select',
+      options: regionOptions,
+      required: true,
+      default: 'westus2',
     })
     .registerSetting({
       setting: 'dhtml-translate.libreApiKey',

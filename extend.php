@@ -81,6 +81,9 @@ return [
     (new Extend\Console())
         ->command(Console\TranslateStringsStart::class),
 
+    (new Extend\Console())
+        ->command(Console\TranslateStringsStartAsc::class),
+
 
     (new Extend\Console())
         ->command(Console\TranslateAttributesBuild::class),
@@ -110,6 +113,7 @@ return [
         ->default('dhtml-translate.cronKey', "12345")
         ->default('dhtml-translate.googleApiKey', "1234543456")
         ->default('dhtml-translate.microsoftApiKey', "1234543456")
+        ->default('dhtml-translate.microsoftRegion', "westus2")
         ->default('dhtml-translate.libreApiKey', "1234543456")
         ->default('dhtml-translate.libreRestTime', "15")
         ->default('dhtml-translate.translateSettings', "[]")
