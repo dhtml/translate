@@ -11,6 +11,9 @@ class LanguageService
 {
     public function __construct()
     {
+        ini_set('default_charset', 'UTF-8');
+        mb_internal_encoding('UTF-8');
+
         $this->localeService = new LocaleService();
 
         $this->locales = $this->localeService->selectEnabled();
@@ -61,7 +64,10 @@ class LanguageService
         $translatedData = $this->translateArray($data,$targetLanguage);
 
         // Write the translated data to the target file
-        $yaml = Yaml::dump($translatedData, 2, 4, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK);
+        $yaml = Yaml::dump($translatedData, 4, 2);
+        //$yaml = Yaml::dump($translatedData, 4, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK);
+
+
         return file_put_contents($targetFile, $yaml);
     }
 
@@ -95,7 +101,7 @@ class LanguageService
         $newvalue = $tdata['original'] ?? null;
         if(!$newvalue) {return $value;}
 
-        return $newvalue;
+        return mb_convert_encoding($newvalue, 'UTF-8', 'auto');
     }
 
 
