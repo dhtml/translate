@@ -48,6 +48,9 @@ class BatchTranslatorService
 
     public function start($force=false)
     {
+        ini_set('max_execution_time', 300);
+        set_time_limit(300);
+
         if (!$force && $this->settingsService->isTranslatorServiceActive()) {
             $this->settingsService->showLastTranslatorActivity();
             return;
