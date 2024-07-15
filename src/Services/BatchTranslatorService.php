@@ -326,25 +326,25 @@ class BatchTranslatorService
 
     protected function translateTags()
     {
-        $items = Tag::get();
+        $items = Tag::where('_translated',0)->get();
         return $this->sendForTranslation("tag", $items);
     }
 
     protected function translatePages()
     {
-        $items = Page::get();
+        $items = Page::where('_translated',0)->get();
         return $this->sendForTranslation("page", $items);
     }
 
     protected function translateDiscussions()
     {
-        $items = Discussion::get();
+        $items = Discussion::where('_translated',0)->get();
         return $this->sendForTranslation("discussion", $items);
     }
 
     protected function translatePosts($dir = "asc")
     {
-        $items = Post::where('type', 'comment')->orderBy('id', $dir)->get();
+        $items = Post::where('type', 'comment')->orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("post", $items);
     }
 
@@ -356,7 +356,7 @@ class BatchTranslatorService
 
     protected function translateAttributes($dir = "asc")
     {
-        $items = LocaleAttribute::orderBy('id', $dir)->get();
+        $items = LocaleAttribute::orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("attribute", $items);
     }
 
