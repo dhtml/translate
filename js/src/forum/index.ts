@@ -2,6 +2,7 @@ import app from 'flarum/forum/app';
 import addLanguageMenu from "./includes/addLanguageMenu";
 
 app.initializers.add('dhtml/translate', () => {
+  /*
   async function makeAsyncRequest() {
       fetch('/api/translate-queue')
         .then(response => {
@@ -12,8 +13,9 @@ app.initializers.add('dhtml/translate', () => {
           console.error('Error initiating async queue request:', error);
         });
   }
+  makeAsyncRequest();
+  */
 
   addLanguageMenu();
 
-  makeAsyncRequest();
 });
