@@ -27,6 +27,7 @@ class BatchTranslatorService
     protected $restingMinutes = 16; //minutes to rest when API is hot to cool down
 
     protected $fmt = 'm-d-Y H:ia';
+    private $itemSize = 1;
 
     public function __construct()
     {
@@ -322,49 +323,49 @@ class BatchTranslatorService
     protected function translateBadges()
     {
         $this->showInfo("[Translating badges]");
-        $items = Badge::limit(2)->where('_translated',0)->get();
+        $items = Badge::limit($this->itemSize)->where('_translated',0)->get();
         return $this->sendForTranslation("badge", $items);
     }
 
     protected function translateTags()
     {
         $this->showInfo("[Translating tags]");
-        $items = Tag::limit(2)->where('_translated',0)->get();
+        $items = Tag::limit($this->itemSize)->where('_translated',0)->get();
         return $this->sendForTranslation("tag", $items);
     }
 
     protected function translatePages()
     {
         $this->showInfo("[Translating pages]");
-        $items = Page::limit(2)->where('_translated',0)->get();
+        $items = Page::limit($this->itemSize)->where('_translated',0)->get();
         return $this->sendForTranslation("page", $items);
     }
 
     protected function translateDiscussions()
     {
         $this->showInfo("[Translating discussions]");
-        $items = Discussion::limit(2)->where('_translated',0)->get();
+        $items = Discussion::limit($this->itemSize)->where('_translated',0)->get();
         return $this->sendForTranslation("discussion", $items);
     }
 
     protected function translatePosts($dir = "asc")
     {
         $this->showInfo("[Translating posts]");
-        $items = Post::limit(2)->where('type', 'comment')->orderBy('id', $dir)->where('_translated',0)->get();
+        $items = Post::limit($this->itemSize)->where('type', 'comment')->orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("post", $items);
     }
 
     protected function translateStrings($dir = "asc")
     {
         $this->showInfo("[Translating strings]");
-        $items = LocaleString::limit(2)->orderBy('id', $dir)->where('_translated',0)->get();
+        $items = LocaleString::limit($this->itemSize)->orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("string", $items);
     }
 
     protected function translateAttributes($dir = "asc")
     {
         $this->showInfo("[Translating attributes]");
-        $items = LocaleAttribute::limit(2)->orderBy('id', $dir)->where('_translated',0)->get();
+        $items = LocaleAttribute::limit($this->itemSize)->orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("attribute", $items);
     }
 
