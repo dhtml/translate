@@ -148,11 +148,6 @@ class BatchTranslatorService
         return true;
     }
 
-    protected function translateBadges()
-    {
-        $items = Badge::get();
-        return $this->sendForTranslation("badge", $items);
-    }
 
     protected function sendForTranslation($itemName, $items)
     {
@@ -324,39 +319,52 @@ class BatchTranslatorService
         return true;
     }
 
+    protected function translateBadges()
+    {
+        $this->showInfo("[Translating badges]");
+        $items = Badge::limit(2)->where('_translated',0)->get();
+        return $this->sendForTranslation("badge", $items);
+    }
+
     protected function translateTags()
     {
-        $items = Tag::where('_translated',0)->get();
+        $this->showInfo("[Translating tags]");
+        $items = Tag::limit(2)->where('_translated',0)->get();
         return $this->sendForTranslation("tag", $items);
     }
 
     protected function translatePages()
     {
-        $items = Page::where('_translated',0)->get();
+        $this->showInfo("[Translating pages]");
+        $items = Page::limit(2)->where('_translated',0)->get();
         return $this->sendForTranslation("page", $items);
     }
 
     protected function translateDiscussions()
     {
-        $items = Discussion::where('_translated',0)->get();
+        $this->showInfo("[Translating discussions]");
+        $items = Discussion::limit(2)->where('_translated',0)->get();
         return $this->sendForTranslation("discussion", $items);
     }
 
     protected function translatePosts($dir = "asc")
     {
-        $items = Post::where('type', 'comment')->orderBy('id', $dir)->where('_translated',0)->get();
+        $this->showInfo("[Translating posts]");
+        $items = Post::limit(2)->where('type', 'comment')->orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("post", $items);
     }
 
     protected function translateStrings($dir = "asc")
     {
-        $items = LocaleString::orderBy('id', $dir)->where('_translated',0)->get();
+        $this->showInfo("[Translating strings]");
+        $items = LocaleString::limit(2)->orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("string", $items);
     }
 
     protected function translateAttributes($dir = "asc")
     {
-        $items = LocaleAttribute::orderBy('id', $dir)->where('_translated',0)->get();
+        $this->showInfo("[Translating attributes]");
+        $items = LocaleAttribute::limit(2)->orderBy('id', $dir)->where('_translated',0)->get();
         return $this->sendForTranslation("attribute", $items);
     }
 
@@ -416,6 +424,10 @@ class BatchTranslatorService
         $this->startedTranslation();
 
         $this->cliMode = true;
+
+        $this->translate(); // Call the translate function
+
+        /*
         while (true) {
             $this->translate(); // Call the translate function
 
@@ -428,6 +440,7 @@ class BatchTranslatorService
                 $this->pauseTranslation();
             }
         }
+        */
     }
 
     public function logInfo($content)
