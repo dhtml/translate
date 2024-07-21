@@ -8,7 +8,7 @@ use Dhtml\Translate\Page;
 use Dhtml\Translate\Post;
 use Dhtml\Translate\Tag;
 use Flarum\Foundation\Paths;
-
+use Symfony\Component\DomCrawler\Crawler;
 
 class ContentFilterService
 {
@@ -77,9 +77,13 @@ class ContentFilterService
         $id = $item['id'];
         $model = null;
 
+
+        //$this->logInfo($item);
+
         switch ($item['type']) {
             case "posts":
                 $model = Post::where('type', 'comment')->where('id', $id)->first();
+                $this->filterMedia($model,$item);
                 break;
             case "discussions":
                 $model = Discussion::where('id', $id)->first();
@@ -132,10 +136,10 @@ class ContentFilterService
             return;
         }
 
+
         //translate item at this point
         switch ($item['type']) {
             case "posts":
-                //$this->logInfo(["post",$tdata]);
                 $item['attributes']['contentHtml'] = formatContentoutput(convertCustomBbcodeToHtml($tdata['contentHtml']));
                 break;
             case "discussions":
@@ -162,6 +166,46 @@ class ContentFilterService
         $logPath = $paths->storage . (DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'dhtml-translator-content-filter.log');
         $content = var_export($content, true);
         file_put_contents($logPath, $content, FILE_APPEND);
+    }
+
+    private function filterMedia($model, $item)
+    {
+        if($item['attributes']['number']!=1) {return;}
+
+        $html = $item['attributes']['contentHtml'];
+
+        $result = $this->extractFirstMedia($html);
+
+        $this->logInfo($result);
+    }
+
+    function extractFirstMedia($html) {
+        $crawler = new Crawler($html);
+        $result = [];
+
+        // Find the first YouTube iframe
+        $youtubeNode = $crawler->filter('iframe[src*="youtube.com/embed"]')->first();
+        if ($youtubeNode->count()) {
+            $result[] = ['youtube' => $youtubeNode->attr('src')];
+        }
+
+        // Find the first video element
+        $videoNode = $crawler->filter('video')->first();
+        if ($videoNode->count()) {
+            $result[] = ['video' => $videoNode->attr('src')];
+        }
+
+        // Find the first image element inside a link
+        $imageNode = $crawler->filter('a[href*="imgur.com"] img')->first();
+        if ($imageNode->count()) {
+            $result[] = ['image' => $imageNode->attr('src')];
+        }
+
+        if(empty($result)) {
+            $result[] = ['image' => "https://static.africoders.com/img/post-image.png"];
+        }
+
+        return $result;
     }
 
 }

@@ -10,7 +10,8 @@
         "flarum/core": "^1.2.0",
         "google/cloud-translate": "^1.17",
         "ramsey/uuid": "^4.0",
-        "s9e/text-formatter": "^2.14"
+        "s9e/text-formatter": "^2.14",
+        "symfony/dom-crawler": "^6.4"
     },
     "authors": [
         {
