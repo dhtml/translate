@@ -99,8 +99,9 @@ return [
         ->command(Console\TranslateForce::class),
 
     (new Extend\Console())
-        ->command(PublishMediaPreview::class)
-        ->schedule(PublishMediaPreview::class, PublishMediaPreviewSchedule::class),
+        ->command(PublishMediaPreview::class),
+
+        //->schedule(PublishMediaPreview::class, PublishMediaPreviewSchedule::class),
 
     (new Extend\Event())
         ->listen(Posted::class, [Listeners\ForumListener::class, 'postWasPosted'])
