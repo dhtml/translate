@@ -175,8 +175,7 @@ class ContentFilterService
         $html = $item['attributes']['contentHtml'];
 
         $result = $this->extractFirstMedia($html);
-
-        $this->logInfo($result);
+        //$this->logInfo($result);
     }
 
     function extractFirstMedia($html) {
