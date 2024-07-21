@@ -1,5 +1,6 @@
 import app from 'flarum/forum/app';
 import addLanguageMenu from "./includes/addLanguageMenu";
+import {modifyPosts} from "../common/modposts";
 
 app.initializers.add('dhtml/translate', () => {
   /*
@@ -17,5 +18,6 @@ app.initializers.add('dhtml/translate', () => {
   */
 
   addLanguageMenu();
+  modifyPosts();
 
 });

@@ -3,6 +3,8 @@
 namespace Dhtml\Translate;
 
 use Dhtml\Translate\Api\Controllers\TranslateQueueApiController;
+use Dhtml\Translate\Console\PublishMediaPreview;
+use Dhtml\Translate\Console\PublishMediaPreviewSchedule;
 use Flarum\Post\Event\Posted;
 use Flarum\Discussion\Event\Started;
 
@@ -96,6 +98,10 @@ return [
     (new Extend\Console())
         ->command(Console\TranslateForce::class),
 
+    (new Extend\Console())
+        ->command(PublishMediaPreview::class)
+        ->schedule(PublishMediaPreview::class, PublishMediaPreviewSchedule::class),
+
     (new Extend\Event())
         ->listen(Posted::class, [Listeners\ForumListener::class, 'postWasPosted'])
         ->listen(Started::class, [Listeners\ForumListener::class, 'discussionWasStarted']),
@@ -121,6 +127,7 @@ return [
         ->default('dhtml-translate.libreApiKey', "1234543456")
         ->default('dhtml-translate.libreRestTime', "15")
         ->default('dhtml-translate.translateSettings', "[]")
+        ->serializeToForum('mediaPreviewCache', "dhtml-translate.mediaPreviewCache",null,null)
         ->serializeToForum('dhtmlLanguageMenu', "dhtml-translate.locales",null,"en, ar, zh, fr, de, hi, pt, ru, es"),
 
     (new Extend\Settings())
