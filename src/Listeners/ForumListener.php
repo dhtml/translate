@@ -26,7 +26,7 @@ class ForumListener
         $post = $event->post;
 
         $post->_locale = getDetectedLocale();
-        $post->media_html = "";
+        //$post->media_html = "";
         $post->save();
 
         //$event->post->content
@@ -38,7 +38,7 @@ class ForumListener
         $post = $event->post;
 
         $post->_locale = getDetectedLocale();
-        $post->media_html = "";
+        //$post->media_html = "";
         $post->save();
     }
 
