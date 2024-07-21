@@ -8,7 +8,6 @@ use Dhtml\Translate\Page;
 use Dhtml\Translate\Post;
 use Dhtml\Translate\Tag;
 use Flarum\Foundation\Paths;
-use Symfony\Component\DomCrawler\Crawler;
 
 class ContentFilterService
 {
@@ -160,6 +159,22 @@ class ContentFilterService
         }
     }
 
+
+    protected function filterMedia($model, $item)
+    {
+        if($item['attributes']['number']!=1 || !empty($model->media_html)) {return;}
+
+        $html = $item['attributes']['contentHtml'];
+
+        $postMedia = ExtractMediaService::extractFirstMedia($html);
+        $mediaHTML = ExtractMediaService::toHTML($postMedia);
+
+        $model->media_html = $mediaHTML;
+        $model->save();
+
+        $this->logInfo($mediaHTML);
+    }
+
     public function logInfo($content)
     {
         $paths = resolve(Paths::class);
@@ -168,43 +183,6 @@ class ContentFilterService
         file_put_contents($logPath, $content, FILE_APPEND);
     }
 
-    private function filterMedia($model, $item)
-    {
-        if($item['attributes']['number']!=1) {return;}
 
-        $html = $item['attributes']['contentHtml'];
-
-        $result = $this->extractFirstMedia($html);
-        //$this->logInfo($result);
-    }
-
-    function extractFirstMedia($html) {
-        $crawler = new Crawler($html);
-        $result = [];
-
-        // Find the first YouTube iframe
-        $youtubeNode = $crawler->filter('iframe[src*="youtube.com/embed"]')->first();
-        if ($youtubeNode->count()) {
-            $result[] = ['youtube' => $youtubeNode->attr('src')];
-        }
-
-        // Find the first video element
-        $videoNode = $crawler->filter('video')->first();
-        if ($videoNode->count()) {
-            $result[] = ['video' => $videoNode->attr('src')];
-        }
-
-        // Find the first image element inside a link
-        $imageNode = $crawler->filter('a[href*="imgur.com"] img')->first();
-        if ($imageNode->count()) {
-            $result[] = ['image' => $imageNode->attr('src')];
-        }
-
-        if(empty($result)) {
-            $result[] = ['image' => "https://static.africoders.com/img/post-image.png"];
-        }
-
-        return $result;
-    }
 
 }
