@@ -29,9 +29,11 @@ class ExtractMediaService
             $result[] = ['type'=>'image', 'src'=> $imageNode->attr('src')];
         }
 
+        /*
         if(empty($result)) {
             $result[] = ['type'=>'image', 'src' =>"https://static.africoders.com/img/post-image.png"];
         }
+        */
 
         return $result;
     }
