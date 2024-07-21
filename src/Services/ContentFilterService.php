@@ -162,18 +162,20 @@ class ContentFilterService
 
     protected function filterMedia($model, $item)
     {
-        if($item['attributes']['number']!=1 || !empty($model->media_html)) {return;}
-        //if($item['attributes']['number']!=1) {return;}
+        //if($item['attributes']['number']!=1 || !empty($model->media_html)) {return;}
+        if($item['attributes']['number']!=1) {return;}
 
         $html = $item['attributes']['contentHtml'];
 
         $postMedia = ExtractMediaService::extractFirstMedia($html);
         $mediaHTML = ExtractMediaService::toHTML($postMedia);
 
-        $model->media_html = $mediaHTML;
-        $model->save();
+        if($model->media_html != $mediaHTML) {
+            $model->media_html = $mediaHTML;
+            $model->save();
+        }
 
-        $this->logInfo($mediaHTML);
+        //$this->logInfo($mediaHTML);
     }
 
     public function logInfo($content)

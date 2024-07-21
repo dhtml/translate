@@ -6,6 +6,7 @@ use Flarum\Foundation\Paths;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Post\Event\Posted;
+use Flarum\Post\Event\Saving;
 use Flarum\Discussion\Event\Started;
 
 
@@ -32,9 +33,13 @@ class ForumListener
         //$this->logInfo("save post discussion " . json_encode($post->toArray()));
     }
 
-    public function postWasSaved(Posted $event): void
+    public function postWasSaved(Saving $event): void
     {
-        $this->postWasPosted($event);
+        $post = $event->post;
+
+        $post->_locale = getDetectedLocale();
+        $post->media_html = "";
+        $post->save();
     }
 
     public function discussionWasStarted(Started $event)
