@@ -20,7 +20,7 @@ class ForumListener
         $this->events = $events;
     }
 
-    public function postWasPosted(Posted $event)
+    public function postWasPosted(Posted $event): void
     {
         $post = $event->post;
 
@@ -31,6 +31,12 @@ class ForumListener
         //$event->post->content
         //$this->logInfo("save post discussion " . json_encode($post->toArray()));
     }
+
+    public function postWasSaved(Posted $event): void
+    {
+        $this->postWasPosted($event);
+    }
+
     public function discussionWasStarted(Started $event)
     {
         $discussion = $event->discussion;

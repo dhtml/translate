@@ -6,6 +6,7 @@ use Dhtml\Translate\Api\Controllers\TranslateQueueApiController;
 use Dhtml\Translate\Console\PublishMediaPreview;
 use Dhtml\Translate\Console\PublishMediaPreviewSchedule;
 use Flarum\Post\Event\Posted;
+use Flarum\Post\Event\Saving;
 use Flarum\Discussion\Event\Started;
 
 use Dhtml\Translate\Api\Controllers\LanguagesApiController;
@@ -105,6 +106,7 @@ return [
 
     (new Extend\Event())
         ->listen(Posted::class, [Listeners\ForumListener::class, 'postWasPosted'])
+        ->listen(Saving::class, [Listeners\ForumListener::class, 'postWasSaved'])
         ->listen(Started::class, [Listeners\ForumListener::class, 'discussionWasStarted']),
 
     (new Extend\ServiceProvider())
