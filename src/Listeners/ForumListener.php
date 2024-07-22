@@ -57,9 +57,8 @@ class ForumListener
     {
         $post->_locale = getDetectedLocale();
         $post->media_html = null;
-        if($post->_translated==1) {
-            $post->_outdated = 1;
-        }
+        $post->_translated = 0;
+        $post->_pointer = 0;
         $post->save();
 
         //$event->post->content
