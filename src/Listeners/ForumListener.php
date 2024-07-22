@@ -25,21 +25,13 @@ class ForumListener
     {
         $post = $event->post;
 
-        $post->_locale = getDetectedLocale();
-        //$post->media_html = "";
-        $post->save();
-
-        //$event->post->content
-        //$this->logInfo("save post discussion " . json_encode($post->toArray()));
+        $this->triggerPostEvent($post);
     }
 
     public function postWasSaved(Saving $event): void
     {
         $post = $event->post;
-
-        $post->_locale = getDetectedLocale();
-        //$post->media_html = "";
-        $post->save();
+        $this->triggerPostEvent($post);
     }
 
     public function discussionWasStarted(Started $event)
@@ -59,6 +51,19 @@ class ForumListener
         $logPath = $paths->storage . (DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'dhtml-translator-forum-listener.log');
         $content = var_export($content, true);
         file_put_contents($logPath, $content, FILE_APPEND);
+    }
+
+    protected function triggerPostEvent($post)
+    {
+        $post->_locale = getDetectedLocale();
+        $post->media_html = null;
+        if($post->_translated==1) {
+            $post->_outdated = 1;
+        }
+        $post->save();
+
+        //$event->post->content
+        //$this->logInfo("trigger stuffs" . json_encode($post->toArray()));
     }
 
 }

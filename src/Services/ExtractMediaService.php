@@ -40,6 +40,8 @@ class ExtractMediaService
 
     public static function toHTML(array $postMedia)
     {
+        if(empty($postMedia) || !isset($postMedia[0])) {return null;}
+
         $item = $postMedia[0];
 
         $type = $item['type'];

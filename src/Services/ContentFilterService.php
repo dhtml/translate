@@ -162,8 +162,8 @@ class ContentFilterService
 
     protected function filterMedia($model, $item)
     {
-        //if($item['attributes']['number']!=1 || !empty($model->media_html)) {return;}
-        if($item['attributes']['number']!=1) {return;}
+        if($item['attributes']['number']!=1 || !empty($model->media_html)) {return;}
+        //if($item['attributes']['number']!=1) {return;}
 
         $html = $item['attributes']['contentHtml'];
 
