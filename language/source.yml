@@ -1349,6 +1349,20 @@ flarum-content-pages:
         tags-cloud: 'Tags Cloud'
         languages: Languages
         leaderboard: Leaderboard
+        live: Live
+        live-coding: Live Coding
+        challenges: Challenges
+        dev-challenges: Dev Challenges
+        jobs: Jobs
+        dev-jobs: Dev Jobs
+        job-posting: Job Posting
+        job-postings: Job Postings
+        workshops: Workshops
+        dev-workshops: Dev Workshops
+        events: Events
+        conferences: Conferences
+        event-conferences: Events / Conferences
+        showcase: Showcase
 dhtml-composer:
     forum:
         composer:
