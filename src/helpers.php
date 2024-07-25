@@ -1,6 +1,8 @@
 <?php
 
 use Flarum\Foundation\Paths;
+use Flarum\Http\RequestUtil;
+use Flarum\Locale\LocaleManager;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
 use Flarum\Formatter\Formatter;
@@ -14,7 +16,8 @@ function getSourceAttributesPath() {
 }
 
 function getLocaleDestinationPath() {
-    return __DIR__ . "/../../translate-localization/locale";
+    //return __DIR__ . "/../../translate-localization/locale";
+    return __DIR__ . "/../../flarum-content-pages/locale";
 }
 
 if(!function_exists("convertBbcodeToHtml")) {
@@ -171,6 +174,16 @@ if(!function_exists("getDefaultLocale")) {
     {
         $translator = resolve('translator');
         return $translator->getLocale();
+    }
+}
+
+if(!function_exists('setupDetectedLocale')) {
+    function setupDetectedLocale()
+    {
+        $locales = resolve(LocaleManager::class);
+
+        $language = getDetectedLocale();
+        $locales->setLocale($language);
     }
 }
 
