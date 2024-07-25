@@ -100,6 +100,8 @@ class LocaleMiddleware implements Middleware
         setCurrentTranslationLocale($locale);
         $request = $request->withAttribute('locale', $this->locales->getLocale());
 
+
+
         return $handler->handle($request);
     }
 

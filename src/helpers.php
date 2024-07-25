@@ -184,6 +184,7 @@ if(!function_exists('setupDetectedLocale')) {
 
         $language = getDetectedLocale();
         $locales->setLocale($language);
+        return $locales;
     }
 }
 
