@@ -1364,6 +1364,21 @@ flarum-content-pages:
         conferences: Conferences
         event-conferences: Events / Conferences
         showcase: Showcase
+        tags: Tags
+        more: More 
+        general-discussion: General Discussion 
+        technology-articles: Technology Articles
+        coding-challenges: Coding Challenges
+        q-a: Q/A Section
+        artificial-intelligence: Artificial Intelligence
+        computer-science: Computer Science
+        programming-languages: Programming Languages
+        development-tools: Development Tools
+        software-development: Software Development
+        frontend-development: Frontend Development
+        backend-development: Backend Development
+        software-engineering: Software Engineering
+        cybersecurity: Cybersecurity
 dhtml-composer:
     forum:
         composer:

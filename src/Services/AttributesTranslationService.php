@@ -16,7 +16,6 @@ class AttributesTranslationService
 
     public function start()
     {
-        $file = getSourceStringLanguageFilePath();
         echo "Build Translatable Attributes Start\n";
 
         $data = json_decode(file_get_contents(getSourceAttributesPath()));
