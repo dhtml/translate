@@ -1354,6 +1354,7 @@ flarum-content-pages:
         challenges: Challenges
         dev-challenges: Dev Challenges
         jobs: Jobs
+        community: Community
         dev-jobs: Dev Jobs
         job-posting: Job Posting
         job-postings: Job Postings

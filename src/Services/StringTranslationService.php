@@ -49,13 +49,21 @@ class StringTranslationService
     }
 
     function cacheLocaleData($value) {
-        $rawData = [
-            "original" => $value,
-            "_translatable" => $this->isEnglish($value),
-            "created_at" => Carbon::now(),
-            "updated_at" => Carbon::now(),
-        ];
-        $cache = LocaleString::firstOrCreate($rawData);
+        if(empty($value)) {return;}
+        $hash = md5($value); // Or use another hash function if needed
+
+        $existingRecord = LocaleString::where('original', $value)->first();
+
+        if (!$existingRecord) {
+            $rawData = [
+                "_hash" => $hash,
+                "original" => $value,
+                "_translatable" => $this->isEnglish($value),
+                "created_at" => Carbon::now(),
+                "updated_at" => Carbon::now(),
+            ];
+            LocaleString::firstOrCreate($rawData);
+        }
     }
 
     public function logInfo($content)

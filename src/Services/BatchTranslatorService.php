@@ -400,6 +400,9 @@ class BatchTranslatorService
 
         $this->cliMode = true;
 
+        $this->translate($param,$dir); // Call the translate function
+
+        /*
         while (true) {
             $this->translate($param,$dir); // Call the translate function
 
@@ -412,6 +415,7 @@ class BatchTranslatorService
                 $this->pauseTranslation();
             }
         }
+        */
     }
 
     public function startWithSkipped($param)
