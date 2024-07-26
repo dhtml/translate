@@ -3,7 +3,7 @@ import addLanguageMenu from "./includes/addLanguageMenu";
 import {modifyPosts} from "../common/modposts";
 
 app.initializers.add('dhtml/translate', () => {
-  /*
+
   async function makeAsyncRequest() {
       fetch('/api/translate-queue')
         .then(response => {
@@ -15,7 +15,6 @@ app.initializers.add('dhtml/translate', () => {
         });
   }
   makeAsyncRequest();
-  */
 
   addLanguageMenu();
   modifyPosts();
