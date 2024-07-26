@@ -12,6 +12,9 @@ class LocaleServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-
+        $this->container->extend('config', function ($container) {
+            $container->set('session.lifetime', 2628000);
+            return $container;
+        });
     }
 }

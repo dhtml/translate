@@ -55,6 +55,8 @@ export default function () {
     };
     */
 
+    const useSubdomainSwitch = app.forum.attribute('dhtml-translate.subdomains');
+
 
     const locales = [];
 
@@ -64,8 +66,20 @@ export default function () {
           active={app.data.locale === locale}
           icon={app.data.locale === locale ? 'fas fa-check' : true}
           onclick={() => {
-            const newUrl = modifyURL(location.href,locale);
-            location.href=newUrl;
+            if(useSubdomainSwitch==1) {
+              //switch to subdomain
+              const newUrl = modifyURL(location.href,locale);
+              location.href=newUrl;
+            } else {
+              //change without switching
+              var newUrl = location.href.split("?")[0] + "?locale="+locale;
+              if (app.session.user) {
+                app.session.user.savePreferences({ locale }).then(() => window.location.href=newUrl);
+              } else {
+                document.cookie = `locale=${locale}; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT`;
+                window.location.href=newUrl;
+              }
+            }
           }}
         >
           {languages[locale]}

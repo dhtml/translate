@@ -17,7 +17,7 @@ function getSourceAttributesPath() {
 
 function getLocaleDestinationPath() {
     //return __DIR__ . "/../../translate-localization/locale";
-    return __DIR__ . "/../../flarum-content-pages/locale";
+    return __DIR__ . "/../../translated/locale";
 }
 
 if(!function_exists("convertBbcodeToHtml")) {

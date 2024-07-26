@@ -120,7 +120,6 @@ return [
         ->default('dhtml-translate.af.enabled', false)
         ->default('dhtml-translate.rate-limit', 60)
         ->default('dhtml-translate.post-limit', 65535)
-        ->default('dhtml-translate.subdomains', false)
         //->default('dhtml-translate.cronLess', false)
         ->serializeToForum('cronLessTranslate', "dhtml-translate.cronLess",null,false)
         ->default('dhtml-translate.cronKey', "12345")
@@ -130,6 +129,7 @@ return [
         ->default('dhtml-translate.libreApiKey', "1234543456")
         ->default('dhtml-translate.libreRestTime', "15")
         ->default('dhtml-translate.translateSettings', "[]")
+        ->serializeToForum('dhtml-translate.subdomains', "dhtml-translate.subdomains",null,false)
         ->serializeToForum('mediaPreviewCache', "dhtml-translate.mediaPreviewCache",null,null)
         ->serializeToForum('dhtmlLanguageMenu', "dhtml-translate.locales",null,"en, ar, zh, fr, de, hi, pt, ru, es"),
 

@@ -9,6 +9,7 @@ export const modifyPosts = () => {
 
     const firstPost = this.attrs.discussion.firstPost();
 
+
     if (firstPost) {
       let mediaPreviewCache = app.forum.attribute('mediaPreviewCache');
       try {
