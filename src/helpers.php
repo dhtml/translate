@@ -8,11 +8,11 @@ use Illuminate\Database\Schema\Builder;
 use Flarum\Formatter\Formatter;
 
 function getSourceStringLanguageFilePath() {
-    return __DIR__."/../language/source.yml";
+    return __DIR__."/../../translated/language/source.yml";
 }
 
 function getSourceAttributesPath() {
-    return __DIR__ . "/../language/attributes.json";
+    return __DIR__ . "/../../translated/language/attributes.json";
 }
 
 function getLocaleDestinationPath() {
