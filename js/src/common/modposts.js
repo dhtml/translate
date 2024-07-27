@@ -16,7 +16,7 @@ export const modifyPosts = () => {
         mediaPreviewCache = JSON.parse(mediaPreviewCache);
         const excerpt = mediaPreviewCache[firstPost.data.id];
         if (excerpt) {
-          items.add('excerpt', m.trust(excerpt), -100);
+          items.add('excerpt-media', m.trust(excerpt), -100);
         }
       } catch (e) {
       }
