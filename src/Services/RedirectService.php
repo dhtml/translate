@@ -30,6 +30,7 @@ class RedirectService
         if(!isset($_SERVER['HTTP_HOST'])) {return $handler->handle($request);}
 
         //detect subdomain
+        $baseLocale = "en"; //move it to config
         $subdomain = getDetectedSubdomain();
         $currentLocale = $this->localeService->getCurrentLocale();
         $defaultLocale = getDefaultLocale();
@@ -47,7 +48,7 @@ class RedirectService
 
         } else {
             //subdomain is detected so change the language to that locale
-            if($subdomain == $defaultLocale) {
+            if($subdomain == $baseLocale) {
                 //if default flarum locale is en and the current subdomain is en.
                 $url = $this->getBaseUrl($defaultLocale);
                 $this->redirectTo($url);
