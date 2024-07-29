@@ -210,6 +210,30 @@ if(!function_exists("getDetectedLocale")) {
     }
 }
 
+
+if(!function_exists("getDetectedSubdomain")) {
+    function getDetectedSubdomain()
+    {
+        if(!isset($_SERVER['HTTP_HOST'])) {return "";}
+
+        $host = $_SERVER['HTTP_HOST'];
+
+        $parts = explode('.', $host);
+
+        // Check if there are enough parts to have a subdomain
+        if (count($parts) >= 3) {
+            // The subdomain is the first part
+            $subdomain = $parts[0];
+        } else {
+            // No subdomain present - so use default
+            $subdomain = "";
+        }
+
+        return $subdomain;
+    }
+}
+
+
 if(!function_exists("isArrayEmptyValues")) {
     /*
      * $array1 = ["key1" => "", "key2" => 0, "key3" => null];
